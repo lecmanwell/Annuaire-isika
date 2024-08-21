@@ -1,12 +1,5 @@
 package fr.isika.cda27.projet1.Annuaire_Isika;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
 import javafx.application.Application;
@@ -22,9 +15,9 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	public void init() {
-
 	ReaderInitialText reader = new ReaderInitialText();
 	reader.readInitialText("src/main/resources/testAnnuaireText.txt");
+	
 		
 	}
     @Override
