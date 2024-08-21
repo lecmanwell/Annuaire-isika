@@ -21,6 +21,7 @@ public class App extends Application {
         var scene = new Scene(new StackPane(label), 640, 480);
         stage.setScene(scene);
         stage.show();
+		scene.getRoot().setStyle("-fx-font-family: 'Helvetica'");
     }
 
     public static void main(String[] args) {
