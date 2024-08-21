@@ -11,6 +11,11 @@
 		private int yearPromo;
 		
 		
+		public Stagiaire() {
+			super();
+		}
+
+
 		public Stagiaire(String lastName, String firstName, String location, String namePromo, int yearPromo) {
 			super();
 			this.lastName = lastName;
