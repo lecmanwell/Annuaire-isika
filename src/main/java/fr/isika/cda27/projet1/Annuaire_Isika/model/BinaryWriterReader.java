@@ -40,37 +40,27 @@ public class BinaryWriterReader {
 			for (int i = 0; i < 30; i++) {
 				studentLastName += rafR.readChar();
 			}
-			
+
 			String studentFirstName = "";
 			for (int i = 0; i < 30; i++) {
 				studentFirstName += rafR.readChar();
 			}
-			
-			
+
 			String studentLocation = "";
 			for (int i = 0; i < 3; i++) {
 				studentLocation += rafR.readChar();
 			}
-			
-			
+
 			String studentNamePromo = "";
 			for (int i = 0; i < 12; i++) {
 				studentNamePromo += rafR.readChar();
 			}
-			
-			int studentYearPromo = rafR.readInt();
-			System.out.println("+++++++++++++++++++++" + studentLastName + " " + studentFirstName + " " + studentLocation + " " + studentNamePromo + " " + studentYearPromo);
 
-//			reader = new FileReader("src/main/resources/binarySave.bin");
-//			BufferedReader br = new BufferedReader(reader);
-//			String test;
-//			while (br.read() != -1) {
-//				test = br.readLine();
-////				System.out.println("---tralala-------" +test);
-//			}
+			int studentYearPromo = rafR.readInt();
+			System.out.println("+++++++++++++++++++++" + studentLastName + " " + studentFirstName + " "
+					+ studentLocation + " " + studentNamePromo + " " + studentYearPromo);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}

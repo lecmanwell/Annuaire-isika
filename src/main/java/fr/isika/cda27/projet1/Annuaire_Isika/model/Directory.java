@@ -12,8 +12,7 @@ public class Directory {
 		studentsList.add(student);
 		Node node = new Node(student, null, null);
 		tree.insert(student);
-		
-		
+
 		BinaryWriterReader writer = new BinaryWriterReader();
 		writer.writeBinary(student);
 	}
@@ -26,8 +25,6 @@ public class Directory {
 		return studentsList;
 	}
 
-	
-	
 	@Override
 	public String toString() {
 		System.out.println("List of all stagiaire-----------");
@@ -39,7 +36,5 @@ public class Directory {
 
 		return null;
 	}
-	
-	
 
 }

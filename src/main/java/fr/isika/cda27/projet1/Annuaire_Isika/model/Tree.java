@@ -43,7 +43,6 @@ public class Tree {
 		infixe(node.getLeftChild());
 
 		System.out.println(" Méthode infixe : " + node.getData().toString());
-		
 
 		infixe(node.getRightChild());
 	}
