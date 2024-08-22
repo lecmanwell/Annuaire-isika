@@ -91,7 +91,6 @@ public class Student implements Comparable<Student> {
 				&& Objects.equals(location, other.location) && Objects.equals(namePromo, other.namePromo)
 				&& yearPromo == other.yearPromo;
 	}
-	
 
 	@Override
 	public int compareTo(Student o) {
@@ -101,34 +100,36 @@ public class Student implements Comparable<Student> {
 	public String getStudentLastNameLong() {
 		String studentLastNameLong = this.getLastName();
 		for (int i = studentLastNameLong.length(); i < NBCHAR_LASTNAME; i++) {
-			studentLastNameLong+=" ";
+			studentLastNameLong += " ";
 		}
 		return studentLastNameLong;
-		
+
 	}
+
 	public String getStudentFirstNameLong() {
 		String studentFIrstNameLong = this.getFirstName();
 		for (int i = studentFIrstNameLong.length(); i < NBCHAR_FIRSTNAME; i++) {
-			studentFIrstNameLong+=" ";
+			studentFIrstNameLong += " ";
 		}
 		return studentFIrstNameLong;
-		
+
 	}
+
 	public String getStudentLocationLong() {
 		String studentLocationLong = this.getLocation();
 		for (int i = studentLocationLong.length(); i < NBCHAR_LOCATION; i++) {
-			studentLocationLong+=" ";
+			studentLocationLong += " ";
 		}
 		return studentLocationLong;
-		
+
 	}
+
 	public String getStudentNamePromoLong() {
 		String studentNamePromoLong = this.getNamePromo();
 		for (int i = studentNamePromoLong.length(); i < NBCHAR_NAMEPROMO; i++) {
-			studentNamePromoLong+=" ";
+			studentNamePromoLong += " ";
 		}
 		return studentNamePromoLong;
-		
 
-}
+	}
 }

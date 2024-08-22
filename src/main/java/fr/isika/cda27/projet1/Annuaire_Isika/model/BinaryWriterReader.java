@@ -10,8 +10,6 @@ import java.io.RandomAccessFile;
 
 public class BinaryWriterReader {
 
-	private File file;
-
 	public void writeBinary(Student student) {
 		try {
 
@@ -25,40 +23,40 @@ public class BinaryWriterReader {
 
 			raf.close();
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println("no file found");
 		}
 	}
 
 	public Student readBinary() {
 
-		FileReader reader;
 		try {
 			RandomAccessFile rafR = new RandomAccessFile("src/main/resources/binarySave.bin", "r");
 
-			String studentLastName = "";
-			for (int i = 0; i < 30; i++) {
-				studentLastName += rafR.readChar();
-			}
+			while (rafR.getFilePointer() != rafR.length()) {
 
-			String studentFirstName = "";
-			for (int i = 0; i < 30; i++) {
-				studentFirstName += rafR.readChar();
-			}
+				String studentLastName = "";
+				for (int i = 0; i < 30; i++) {
+					studentLastName += rafR.readChar();
+				}
 
-			String studentLocation = "";
-			for (int i = 0; i < 3; i++) {
-				studentLocation += rafR.readChar();
-			}
+				String studentFirstName = "";
+				for (int i = 0; i < 30; i++) {
+					studentFirstName += rafR.readChar();
+				}
+				String studentLocation = "";
+				for (int i = 0; i < 3; i++) {
+					studentLocation += rafR.readChar();
+				}
 
-			String studentNamePromo = "";
-			for (int i = 0; i < 12; i++) {
-				studentNamePromo += rafR.readChar();
-			}
+				String studentNamePromo = "";
+				for (int i = 0; i < 12; i++) {
+					studentNamePromo += rafR.readChar();
+				}
 
-			int studentYearPromo = rafR.readInt();
-			System.out.println("+++++++++++++++++++++" + studentLastName + " " + studentFirstName + " "
-					+ studentLocation + " " + studentNamePromo + " " + studentYearPromo);
+				int studentYearPromo = rafR.readInt();
+				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
+						+ " " + studentNamePromo + " " + studentYearPromo + "\n");
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
