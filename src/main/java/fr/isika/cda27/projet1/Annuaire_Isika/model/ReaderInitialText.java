@@ -19,28 +19,29 @@ public class ReaderInitialText {
 			BufferedReader br = new BufferedReader(fr);
 			StringBuffer sb = new StringBuffer();
 			String line;
-			Stagiaire stagiaire = new Stagiaire();
+			Student student = new Student();
 			int indice = 0;
 			while ((line = br.readLine()) != null) {
 				if (indice == 0) {
-					stagiaire.setLastName(line);
+					student.setLastName(line);
 					indice++;
 				} else if (indice == 1) {
-					stagiaire.setFirstName(line);
+					student.setFirstName(line);
 					indice++;
 				} else if (indice == 2) {
-					stagiaire.setLocation(line);
+					student.setLocation(line);
 					indice++;
 				} else if (indice == 3) {
-					stagiaire.setNamePromo(line);
+					student.setNamePromo(line);
 					indice++;
 				} else if (indice == 4) {
-					stagiaire.setYearPromo(Integer.parseInt(line));
+					student.setYearPromo(Integer.parseInt(line));
 					indice++;
 				} else if (line.equals("*")) {
 					indice = 0;
-					directory.addStagiaire(stagiaire);
-					stagiaire = new Stagiaire();
+					directory.addStagiaire(student);
+//					directory.addStagiaireToTree(student);
+					student = new Student();
 				}
 				// ajoute la ligne au buffer
 				sb.append(line);
