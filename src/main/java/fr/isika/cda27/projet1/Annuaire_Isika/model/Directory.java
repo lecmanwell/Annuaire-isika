@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Directory {
 
-	private ArrayList<Student> studentsList = new ArrayList<Student>();
+	private static ArrayList<Student> studentsList = new ArrayList<Student>();
 	Tree tree = new Tree();
 
 	public void addStagiaire(Student student) {
@@ -18,14 +18,21 @@ public class Directory {
 	public Student findStudent(Student student) {
 		return tree.searchFromNode(student, tree.getRoot()).getData();
 	}
-//	@Override
-//	public String toString() {
-//		System.out.println("List of all stagiaire-----------");
-//
-//		for (Student stag : this.studentsList) {
-//			System.out.println(stag.toString());
-//		}
-//		return null;
-//	}
+
+	public static ArrayList<Student> getStudentsList() {
+		return studentsList;
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		System.out.println("List of all stagiaire-----------");
+
+		for (Student stag : this.studentsList) {
+			System.out.println(stag.toString());
+		}
+		return null;
+	}
 
 }
