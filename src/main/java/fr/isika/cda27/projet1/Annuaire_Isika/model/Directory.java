@@ -13,6 +13,8 @@ public class Directory {
 		Node node = new Node(student, null, null);
 		tree.insert(student);
 		tree.infixe(tree.getRoot());
+		BinaryWriterReader writer = new BinaryWriterReader();
+		writer.writeBinary(student);
 	}
 
 	public Student findStudent(Student student) {
@@ -34,5 +36,7 @@ public class Directory {
 		}
 		return null;
 	}
+	
+	
 
 }

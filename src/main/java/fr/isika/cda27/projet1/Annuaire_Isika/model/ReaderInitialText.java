@@ -48,8 +48,11 @@ public class ReaderInitialText {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
-		Student stud = directory.findStudent(new Student("LACROIX", "Pascale", "91", "BOBI 5", 2008));
-		System.out.println(" Test find student" + stud.toString());
+//		Student stud = directory.findStudent(new Student("LACROIX", "Pascale", "91", "BOBI 5", 2008));
+//		System.out.println(" Test find student" + stud.toString());
+		
+		BinaryWriterReader br = new BinaryWriterReader();
+		br.readBinary();
 	}
 
 }
