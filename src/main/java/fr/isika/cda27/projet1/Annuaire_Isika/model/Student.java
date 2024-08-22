@@ -9,6 +9,10 @@ public class Student implements Comparable<Student> {
 	private String location;
 	private String namePromo;
 	private int yearPromo;
+	private static final int NBCHAR_LASTNAME = 30;
+	private static final int NBCHAR_FIRSTNAME = 30;
+	private static final int NBCHAR_LOCATION = 3;
+	private static final int NBCHAR_NAMEPROMO = 12;
 
 	public Student() {
 		super();
@@ -94,4 +98,37 @@ public class Student implements Comparable<Student> {
 		return this.getLastName().compareTo(o.getLastName());
 	}
 
+	public String getStudentLastNameLong() {
+		String studentLastNameLong = this.getLastName();
+		for (int i = studentLastNameLong.length(); i < NBCHAR_LASTNAME; i++) {
+			studentLastNameLong+=" ";
+		}
+		return studentLastNameLong;
+		
+	}
+	public String getStudentFirstNameLong() {
+		String studentFIrstNameLong = this.getFirstName();
+		for (int i = studentFIrstNameLong.length(); i < NBCHAR_FIRSTNAME; i++) {
+			studentFIrstNameLong+=" ";
+		}
+		return studentFIrstNameLong;
+		
+	}
+	public String getStudentLocationLong() {
+		String studentLocationLong = this.getLocation();
+		for (int i = studentLocationLong.length(); i < NBCHAR_LOCATION; i++) {
+			studentLocationLong+=" ";
+		}
+		return studentLocationLong;
+		
+	}
+	public String getStudentNamePromoLong() {
+		String studentNamePromoLong = this.getNamePromo();
+		for (int i = studentNamePromoLong.length(); i < NBCHAR_NAMEPROMO; i++) {
+			studentNamePromoLong+=" ";
+		}
+		return studentNamePromoLong;
+		
+
+}
 }
