@@ -2,7 +2,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student> {
 
 	private String lastName;
 	private String firstName;
@@ -86,6 +86,12 @@ public class Student {
 		return Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
 				&& Objects.equals(location, other.location) && Objects.equals(namePromo, other.namePromo)
 				&& yearPromo == other.yearPromo;
+	}
+	
+
+	@Override
+	public int compareTo(Student o) {
+		return this.getLastName().compareTo(o.getLastName());
 	}
 
 }

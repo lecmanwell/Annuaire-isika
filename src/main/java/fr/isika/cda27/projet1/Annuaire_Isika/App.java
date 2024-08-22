@@ -18,6 +18,8 @@ public class App extends Application {
 	ReaderInitialText reader = new ReaderInitialText();
 	reader.readInitialText("src/main/resources/testAnnuaireText.txt");
 	
+	
+	
 		
 	}
     @Override

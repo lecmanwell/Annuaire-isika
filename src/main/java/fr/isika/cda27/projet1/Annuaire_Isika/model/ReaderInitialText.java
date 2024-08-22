@@ -17,7 +17,6 @@ public class ReaderInitialText {
 			FileReader fr = new FileReader(file);
 			// Créer l'objet BufferedReader
 			BufferedReader br = new BufferedReader(fr);
-			StringBuffer sb = new StringBuffer();
 			String line;
 			Student student = new Student();
 			int indice = 0;
@@ -43,19 +42,14 @@ public class ReaderInitialText {
 //					directory.addStagiaireToTree(student);
 					student = new Student();
 				}
-				// ajoute la ligne au buffer
-				sb.append(line);
-				sb.append("\n");
 			}
 			fr.close();
-//			System.out.println("Contenu du fichier: ");
-//			System.out.println(sb.toString());  
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
-
-		directory.toString();
+		Student stud = directory.findStudent(new Student("LACROIX", "Pascale", "91", "BOBI 5", 2008));
+		System.out.println(" Test find student" + stud.toString());
 	}
 
 }
