@@ -39,7 +39,7 @@ public class BinaryWriterReader {
 			String test;
 			while (br.read() != -1) {
 				test = br.readLine();
-				System.out.println("---tralala-------" +test);
+//				System.out.println("---tralala-------" +test);
 			}
 
 		} catch (IOException e) {

@@ -51,6 +51,7 @@ public class ReaderInitialText {
 //		Student stud = directory.findStudent(new Student("LACROIX", "Pascale", "91", "BOBI 5", 2008));
 //		System.out.println(" Test find student" + stud.toString());
 		
+		directory.toString();
 		BinaryWriterReader br = new BinaryWriterReader();
 		br.readBinary();
 	}

@@ -12,7 +12,8 @@ public class Directory {
 		studentsList.add(student);
 		Node node = new Node(student, null, null);
 		tree.insert(student);
-		tree.infixe(tree.getRoot());
+		
+		
 		BinaryWriterReader writer = new BinaryWriterReader();
 		writer.writeBinary(student);
 	}
@@ -31,9 +32,11 @@ public class Directory {
 	public String toString() {
 		System.out.println("List of all stagiaire-----------");
 
-		for (Student stag : this.studentsList) {
-			System.out.println(stag.toString());
-		}
+//		for (Student stag : this.studentsList) {
+//			System.out.println(stag.toString()+"\n");
+//		}
+		tree.infixe(tree.getRoot());
+
 		return null;
 	}
 	

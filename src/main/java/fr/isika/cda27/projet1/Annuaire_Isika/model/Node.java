@@ -82,9 +82,27 @@ public class Node {
 				this.rightChild.inserer(student);
 			}
 		}
-		
+		//to do 
+		//implémenter dans le cas où les student ont le memem nom de famille
+		//proposition, affectation au leftChild
 		else if (result == 0) {
-			System.out.println("Problème");
+			System.out.println("DOUBLON");
+			
+			if(this.leftChild == null) {
+				this.leftChild = new Node(student, null, null);
+				System.out.println("INSERT DOUBLON LEFT");
+				
+			} else if(this.rightChild == null) {
+				this.rightChild = new Node(student, null, null);
+				System.out.println("INSERT DOUBLON Right");
+
+			} else {
+				System.out.println("Problème");
+				Node temp = this.leftChild;
+				this.leftChild = new Node(student, temp, null);
+
+			}
+			
 		}
 	}
 
