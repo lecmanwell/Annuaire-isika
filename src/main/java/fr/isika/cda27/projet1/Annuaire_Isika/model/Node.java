@@ -5,6 +5,9 @@ public class Node {
 	private Student data;
 	private Node leftChild;
 	private Node rightChild;
+	private LinkedStudents doublon;
+	
+
 
 	public Node(Student data, Node leftChild, Node rightChild) {
 		super();
@@ -13,6 +16,14 @@ public class Node {
 		this.rightChild = rightChild;
 	}
 
+	public LinkedStudents getDoublon() {
+		return doublon;
+	}
+	
+	public void setDoublon(LinkedStudents doublon) {
+		this.doublon = doublon;
+	}
+	
 	public Student getData() {
 		return data;
 	}
@@ -73,24 +84,35 @@ public class Node {
 		}
 		// to do
 		// implémenter dans le cas où les student ont le memem nom de famille
-		// proposition, affectation au leftChild
+		// in the case of a double, we add the student to the node as a Linked element
+		
 		else if (result == 0) {
-			System.out.println("DOUBLON");
-
-			if (this.leftChild == null) {
-				this.leftChild = new Node(student, null, null);
-				System.out.println("INSERT DOUBLON LEFT");
-
-			} else if (this.rightChild == null) {
-				this.rightChild = new Node(student, null, null);
-				System.out.println("INSERT DOUBLON Right");
-
+			
+			if (this.getDoublon() == null) {
+				this.setDoublon(new LinkedStudents(student, null));
 			} else {
-				System.out.println("Problème");
-				Node temp = this.leftChild;
-				this.leftChild = new Node(student, temp, null);
-
+				this.getDoublon().setNextStudent(new LinkedStudents(student, null));
+				
 			}
+			
+			
+			
+//			System.out.println("DOUBLON");
+//
+//			if (this.leftChild == null) {
+//				this.leftChild = new Node(student, null, null);
+//				System.out.println("INSERT DOUBLON LEFT");
+//
+//			} else if (this.rightChild == null) {
+//				this.rightChild = new Node(student, null, null);
+//				System.out.println("INSERT DOUBLON Right");
+//
+//			} else {
+//				System.out.println("Problème");
+//				Node temp = this.leftChild;
+//				this.leftChild = new Node(student, temp, null);
+//
+//			}
 
 		}
 	}
