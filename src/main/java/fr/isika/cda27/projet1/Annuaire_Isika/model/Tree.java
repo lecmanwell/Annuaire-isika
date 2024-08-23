@@ -1,5 +1,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.util.ArrayList;
+
 public class Tree {
 
 	private Node root;
@@ -29,7 +31,7 @@ public class Tree {
 		}
 	}
 
-	public void infixe(Node node) {
+	public void infixe(Node node, ArrayList<Student> list) {
 
 		if (node == null) {
 			return;
@@ -40,12 +42,27 @@ public class Tree {
 		// Ensuite le noeud courant
 		// Ensuite la partie sous arbre droit
 
-		infixe(node.getLeftChild());
+		infixe(node.getLeftChild(), list);
 
 		System.out.println(" Méthode infixe : " + node.getData().toString());
+		if (node.getListDoublon() != null) {
+			System.out.println("Doublon : " + node.getListDoublon().toString());
+		}
+		System.out.println();
+		
+		list.add(node.getData());
 
-		infixe(node.getRightChild());
+		infixe(node.getRightChild(), list);
 	}
+	
+	public ArrayList<Student> treeAlphabeticalSorted () {
+		ArrayList<Student> studentArrayList = new ArrayList<Student>();
+		infixe(this.getRoot(), studentArrayList);
+		studentArrayList.toString();
+		return studentArrayList;
+	}
+	
+	
 
 	public Node searchFromNode(Student student, Node node) {
 

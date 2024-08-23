@@ -54,8 +54,8 @@ public class BinaryWriterReader {
 				}
 
 				int studentYearPromo = rafR.readInt();
-				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
-						+ " " + studentNamePromo + " " + studentYearPromo + "\n");
+//				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
+//						+ " " + studentNamePromo + " " + studentYearPromo + "\n");
 			}
 
 		} catch (IOException e) {

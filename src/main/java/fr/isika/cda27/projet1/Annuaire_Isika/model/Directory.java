@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Directory {
 
 	private static ArrayList<Student> studentsList = new ArrayList<Student>();
-	Tree tree = new Tree();
+	static Tree tree = new Tree();
 
 	public void addStagiaire(Student student) {
 		System.out.println("Stagiaire added to list: " + student.getLastName());
@@ -22,7 +22,7 @@ public class Directory {
 	}
 
 	public static ArrayList<Student> getStudentsList() {
-		return studentsList;
+		return tree.treeAlphabeticalSorted();
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class Directory {
 //		for (Student stag : this.studentsList) {
 //			System.out.println(stag.toString()+"\n");
 //		}
-		tree.infixe(tree.getRoot());
+		tree.infixe(tree.getRoot(), new ArrayList<Student>());
 
 		return null;
 	}

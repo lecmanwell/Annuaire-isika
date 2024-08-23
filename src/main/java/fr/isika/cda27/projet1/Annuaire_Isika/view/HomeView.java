@@ -25,14 +25,9 @@ public class HomeView extends VBox {
 		myObservableArrayList = FXCollections.observableArrayList(Directory.getStudentsList());
 		System.out.println("-------------------" + myObservableArrayList.toString());
 
-//		 for (Student stud : myObservableArrayList) {
-//			 Label lastNameLbl = new Label(stud.getLastName());
-//			 Label firstNameLbl = new Label(stud.getFirstName());
-//			 this.getChildren().addAll(lastNameLbl, firstNameLbl);
-//			 
-//		 }
 
-		// On instancie une TableView que l'on bind à notre liste observable
+
+		//On instancie une TableView que l'on bind à notre liste observable
 		TableView<Student> tableView = new TableView<Student>(myObservableArrayList);
 
 		// On créé la première colonne qui va afficher le nom des stagiaires

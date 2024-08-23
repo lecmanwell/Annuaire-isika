@@ -1,13 +1,13 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.util.LinkedList;
+
 public class Node {
 
 	private Student data;
 	private Node leftChild;
 	private Node rightChild;
-	private LinkedStudents doublon;
-	
-
+	private LinkedList<Student> listDoublon;
 
 	public Node(Student data, Node leftChild, Node rightChild) {
 		super();
@@ -16,14 +16,6 @@ public class Node {
 		this.rightChild = rightChild;
 	}
 
-	public LinkedStudents getDoublon() {
-		return doublon;
-	}
-	
-	public void setDoublon(LinkedStudents doublon) {
-		this.doublon = doublon;
-	}
-	
 	public Student getData() {
 		return data;
 	}
@@ -46,6 +38,14 @@ public class Node {
 
 	public void setRightChild(Node rightChild) {
 		this.rightChild = rightChild;
+	}
+
+	public LinkedList getListDoublon() {
+		return listDoublon;
+	}
+
+	public void setListDoublon(LinkedList listDoublon) {
+		this.listDoublon = listDoublon;
 	}
 
 	public void afficher() {
@@ -85,18 +85,22 @@ public class Node {
 		// to do
 		// implémenter dans le cas où les student ont le memem nom de famille
 		// in the case of a double, we add the student to the node as a Linked element
-		
+
 		else if (result == 0) {
-			
-			if (this.getDoublon() == null) {
-				this.setDoublon(new LinkedStudents(student, null));
+
+			if (listDoublon == null) {
+				this.listDoublon = new LinkedList<Student>();
+				this.listDoublon.add(student);
 			} else {
-				this.getDoublon().setNextStudent(new LinkedStudents(student, null));
-				
+				this.listDoublon.add(student);
 			}
-			
-			
-			
+//			if (this.getDoublon() == null) {
+//				this.setDoublon(new LinkedStudents(student, null));
+//			} else {
+//				this.getDoublon().setNextStudent(new LinkedStudents(student, null));
+//				
+//			}
+
 //			System.out.println("DOUBLON");
 //
 //			if (this.leftChild == null) {
