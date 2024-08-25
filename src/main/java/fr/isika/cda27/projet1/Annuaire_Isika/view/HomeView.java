@@ -7,11 +7,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class HomeView extends VBox {
 
@@ -22,8 +27,21 @@ public class HomeView extends VBox {
 		super();
 		this.scene = scene;
 
+	
+		HBox topBar = new HBox();
+		topBar.setStyle("-fx-background-color: #f2f2f2; -fx-padding: 10px;");
+		Label titleLabel = new Label("ISIKA - Annuaire");
+		
+		HBox pageCentrale = new HBox();
+		
 		HeaderView header = new HeaderView(scene);
-		Label title = new Label("Annuaire");
+		
+		String imagePath = "file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/imageCardHome.jpg";
+		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
+		HomeText homeText = new HomeText("Accueil", "Dans cet annuaire vous pourrez retrouver tous les stagiaires ayant bénéficier d’une formation chez nous");
+		
+		pageCentrale.getChildren().addAll(studentCard, homeText);
+		
 		
 		
 //		myObservableArrayList = FXCollections.observableArrayList(Directory.getStudentsList());
@@ -54,7 +72,7 @@ public class HomeView extends VBox {
 //		// On ajoute les colonnes à la tableView
 //		tableView.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear);
 //		this.getChildren().add(tableView);
-		this.getChildren().addAll(header, title);
+		this.getChildren().addAll(header, pageCentrale);
 		scene.setRoot(this);
 	}
 
