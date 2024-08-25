@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -27,23 +29,23 @@ public class HomeView extends VBox {
 		super();
 		this.scene = scene;
 
-	
-		HBox topBar = new HBox();
-		topBar.setStyle("-fx-background-color: #f2f2f2; -fx-padding: 10px;");
-		Label titleLabel = new Label("ISIKA - Annuaire");
-		
-		HBox pageCentrale = new HBox();
-		
 		HeaderView header = new HeaderView(scene);
-		
+
+		HBox pageCentrale = new HBox();
 		String imagePath = "file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/imageCardHome.jpg";
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
-		HomeText homeText = new HomeText("Accueil", "Dans cet annuaire vous pourrez retrouver tous les stagiaires ayant bénéficier d’une formation chez nous");
+		HomeText homeText = new HomeText("Accueil",
+				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez nous");
+//		homeText.setAlignment(Pos.CENTER);
 		
+		HBox.setHgrow(studentCard, Priority.ALWAYS);
+		HBox.setHgrow(homeText, Priority.ALWAYS);
+		studentCard.setMaxWidth(Double.MAX_VALUE);
+		 homeText.setMaxWidth(Double.MAX_VALUE);
+		
+
 		pageCentrale.getChildren().addAll(studentCard, homeText);
-		
-		
-		
+
 //		myObservableArrayList = FXCollections.observableArrayList(Directory.getStudentsList());
 //		System.out.println("-------------------" + myObservableArrayList.toString());
 //

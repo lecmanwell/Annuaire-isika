@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	public void init() {
-		//initialisation données
+		// initialisation données
 		ReaderInitialText reader = new ReaderInitialText();
 		reader.readInitialText("src/main/resources/STAGIAIRES.don");
 
@@ -24,7 +24,8 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 
-		stage.getIcons().add(new Image("file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/isika.png"));
+		stage.getIcons().add(new Image(
+				"file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/isika.png"));
 		var label = new Label("Hello, ISIKA ");
 		var scene = new Scene(new StackPane(label), 640, 480);
 
