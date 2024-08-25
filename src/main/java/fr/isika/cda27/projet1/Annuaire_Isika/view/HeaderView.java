@@ -7,7 +7,14 @@ import javafx.scene.layout.VBox;
 
 public class HeaderView extends HBox  {
 	
-	VBox ba;
+	
+	//Stripes container
+    private VBox stripesBox;
+    private HBox blueStripe;
+    private HBox whiteStripe;
+    private HBox orangeStripe;
+	
+	
 	Label headerLbl;
 	
 	public HeaderView(Scene scene) {
