@@ -1,0 +1,18 @@
+package fr.isika.cda27.projet1.Annuaire_Isika.view;
+
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+
+public class HeaderView extends HBox  {
+	
+	VBox ba;
+	Label headerLbl;
+	
+	public HeaderView(Scene scene) {
+		headerLbl = new Label("hello header");
+		this.getChildren().add(headerLbl);
+	}
+
+}
