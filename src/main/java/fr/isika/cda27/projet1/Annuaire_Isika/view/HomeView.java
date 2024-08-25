@@ -22,9 +22,9 @@ public class HomeView extends VBox {
 		super();
 		this.scene = scene;
 
-	
+		HeaderView header = new HeaderView(scene);
 		Label title = new Label("Annuaire");
-		this.getChildren().add(title);
+		
 		
 //		myObservableArrayList = FXCollections.observableArrayList(Directory.getStudentsList());
 //		System.out.println("-------------------" + myObservableArrayList.toString());
@@ -54,6 +54,7 @@ public class HomeView extends VBox {
 //		// On ajoute les colonnes à la tableView
 //		tableView.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear);
 //		this.getChildren().add(tableView);
+		this.getChildren().addAll(header, title);
 		scene.setRoot(this);
 	}
 
