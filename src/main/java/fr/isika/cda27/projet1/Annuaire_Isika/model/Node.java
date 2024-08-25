@@ -40,7 +40,8 @@ public class Node {
 		this.rightChild = rightChild;
 	}
 
-	public LinkedList getListDoublon() {
+	public LinkedList<Student> getListDoublon() {
+		
 		return listDoublon;
 	}
 
@@ -82,42 +83,19 @@ public class Node {
 				this.rightChild.inserer(student);
 			}
 		}
-		// to do
-		// implémenter dans le cas où les student ont le memem nom de famille
-		// in the case of a double, we add the student to the node as a Linked element
 
 		else if (result == 0) {
-
-			if (listDoublon == null) {
+			if (this.getListDoublon() == null) {
 				this.listDoublon = new LinkedList<Student>();
 				this.listDoublon.add(student);
+				this.data.setListDoublon(new LinkedList<Student>());
+				this.data.getListDoublon().add(student);
+				
 			} else {
 				this.listDoublon.add(student);
+				this.data.getListDoublon().add(student);
 			}
-//			if (this.getDoublon() == null) {
-//				this.setDoublon(new LinkedStudents(student, null));
-//			} else {
-//				this.getDoublon().setNextStudent(new LinkedStudents(student, null));
-//				
-//			}
-
-//			System.out.println("DOUBLON");
-//
-//			if (this.leftChild == null) {
-//				this.leftChild = new Node(student, null, null);
-//				System.out.println("INSERT DOUBLON LEFT");
-//
-//			} else if (this.rightChild == null) {
-//				this.rightChild = new Node(student, null, null);
-//				System.out.println("INSERT DOUBLON Right");
-//
-//			} else {
-//				System.out.println("Problème");
-//				Node temp = this.leftChild;
-//				this.leftChild = new Node(student, temp, null);
-//
-//			}
-
+			System.out.println("Ajout Doublon:" +this.listDoublon.toString());
 		}
 	}
 
@@ -130,6 +108,12 @@ public class Node {
 		builder.append(leftChild);
 		builder.append(", filsDroit=");
 		builder.append(rightChild);
+		if (this.getListDoublon() != null) {
+			builder.append(", ------------***************------------------");
+			builder.append(", listDoublon=");
+			builder.append(listDoublon.toString());
+			builder.append("]");
+		}
 		builder.append("]");
 		return builder.toString();
 	}

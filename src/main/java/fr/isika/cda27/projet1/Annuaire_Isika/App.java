@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	public void init() {
+		//initialisation données
 		ReaderInitialText reader = new ReaderInitialText();
 		reader.readInitialText("src/main/resources/STAGIAIRES.don");
 
@@ -36,5 +37,7 @@ public class App extends Application {
 	public static void main(String[] args) {
 		launch();
 	}
+
+
 
 }

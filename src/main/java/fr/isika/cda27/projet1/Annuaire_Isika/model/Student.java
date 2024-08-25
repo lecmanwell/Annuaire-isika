@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class Student implements Comparable<Student> {
@@ -9,6 +10,7 @@ public class Student implements Comparable<Student> {
 	private String location;
 	private String namePromo;
 	private int yearPromo;
+	private LinkedList<Student> listDoublon;
 	private static final int NBCHAR_LASTNAME = 30;
 	private static final int NBCHAR_FIRSTNAME = 30;
 	private static final int NBCHAR_LOCATION = 3;
@@ -18,13 +20,16 @@ public class Student implements Comparable<Student> {
 		super();
 	}
 
-	public Student(String lastName, String firstName, String location, String namePromo, int yearPromo) {
+	public Student(String lastName, String firstName, String location, String namePromo, int yearPromo, LinkedList<Student> listDoublons) {
 		super();
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.location = location;
 		this.namePromo = namePromo;
 		this.yearPromo = yearPromo;
+		if (listDoublons != null) {
+			this.listDoublon = listDoublons;
+		}
 	}
 
 	public String getLastName() {
@@ -67,10 +72,12 @@ public class Student implements Comparable<Student> {
 		this.yearPromo = yearPromo;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Stagiaire [lastName=" + lastName + ", firstName=" + firstName + ", location=" + location
-				+ ", namePromo=" + namePromo + ", yearPromo=" + yearPromo + "]";
+		return "Student [lastName=" + lastName + ", firstName=" + firstName + ", location=" + location + ", namePromo="
+				+ namePromo + ", yearPromo=" + yearPromo + ", listDoublon=" + listDoublon + "]";
 	}
 
 	@Override
@@ -131,5 +138,13 @@ public class Student implements Comparable<Student> {
 		}
 		return studentNamePromoLong;
 
+	}
+
+	public LinkedList<Student> getListDoublon() {
+		return listDoublon;
+	}
+
+	public void setListDoublon(LinkedList<Student> listDoublon) {
+		this.listDoublon = listDoublon;
 	}
 }
