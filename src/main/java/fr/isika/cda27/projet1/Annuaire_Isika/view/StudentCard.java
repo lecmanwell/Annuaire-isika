@@ -2,7 +2,6 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -34,7 +33,7 @@ public class StudentCard extends GridPane {
 		this.setStyle("-fx-border-color: #000000; -fx-border-width: 1px; -fx-background-color: #ffffff;");
 
 		// Parametrage photo
-		ImageView photo = new ImageView(new Image(this.imagePath));
+		ImageView photo = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
 		photo.setFitHeight(150);
 		photo.setFitWidth(150);
 		photo.setStyle("-fx-border-color: black; -fx-border-radius: 15px;");

@@ -24,10 +24,10 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 
-		stage.getIcons().add(new Image(
-				"file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/isika.png"));
+		stage.setMaximized(true);
+		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		var label = new Label("Hello, ISIKA ");
-		var scene = new Scene(new StackPane(label), 1080, 768);
+		Scene scene = new Scene(new StackPane(label), stage.getMaxWidth(), stage.getMaxHeight());
 
 		HomeView home = new HomeView(scene);
 
