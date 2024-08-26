@@ -25,6 +25,15 @@ public class HeaderView extends HBox  {
 	
 	Label label;
 	
+
+	// Stripes container
+	private VBox stripesBox;
+	private HBox blueStripe;
+	private HBox whiteStripe;
+	private HBox orangeStripe;
+
+	Label headerLbl;
+
 	public HeaderView(Scene scene) {
 //	blueStripeL.setStyle("-fx-background-color: #144d65");
 	blueStripeL.setFill(Color.BLACK);

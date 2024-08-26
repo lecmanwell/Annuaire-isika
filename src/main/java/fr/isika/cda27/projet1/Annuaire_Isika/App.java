@@ -5,6 +5,7 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -14,7 +15,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	public void init() {
-		//initialisation données
+		// initialisation données
 		ReaderInitialText reader = new ReaderInitialText();
 		reader.readInitialText("src/main/resources/STAGIAIRES.don");
 
@@ -23,8 +24,10 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 
+		stage.getIcons().add(new Image(
+				"file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/isika.png"));
 		var label = new Label("Hello, ISIKA ");
-		var scene = new Scene(new StackPane(label), 640, 480);
+		var scene = new Scene(new StackPane(label), 1080, 768);
 
 		HomeView home = new HomeView(scene);
 
