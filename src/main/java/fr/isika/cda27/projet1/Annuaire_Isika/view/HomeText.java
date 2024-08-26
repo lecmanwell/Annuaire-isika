@@ -10,21 +10,17 @@ import javafx.scene.text.FontWeight;
 
 public class HomeText extends VBox {
 
-	String title;
-	String description;
-
-	public HomeText(String title, String description) {
+	public HomeText() {
 		super();
-		this.title = title;
-		this.description = description;
-		
+
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(20));
 
-		Label titleLabel = new Label(this.title);
+		Label titleLabel = new Label("Annuaire");
 		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 36));
 
-		Label descriptionLabel = new Label(this.description);
+		Label descriptionLabel = new Label(
+				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez nous");
 		descriptionLabel.setFont(Font.font("Futura", 16));
 		descriptionLabel.setWrapText(true);
 		descriptionLabel.setMaxWidth(300);
