@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -14,43 +15,38 @@ public class HeaderView extends HBox  {
 	HBox headerBox = new HBox();
 	
 	VBox stripesBoxL = new VBox();
-	Rectangle blueStripeL = new Rectangle(640, 200);
-	HBox whiteStripeL = new HBox();
-	HBox orangeStripeL = new HBox();
+	Rectangle blueStripeL = new Rectangle(465,12);
+	Rectangle whiteStripeL = new Rectangle(465,12);
+	Rectangle orangeStripeL = new Rectangle(465,12);
 	
 	VBox stripesBoxR = new VBox();
-	HBox blueStripeR = new HBox();
-	HBox whiteStripeR = new HBox();
-	HBox orangeStripeR = new HBox();
+	Rectangle blueStripeR = new Rectangle(465,12);
+	Rectangle whiteStripeR = new Rectangle(465,12);
+	Rectangle orangeStripeR = new Rectangle(465,12);
+
+	String imgPathLogo = "/Images/isikalogo.png";
 	
 	Label label;
-	
-
-	// Stripes container
-	private VBox stripesBox;
-	private HBox blueStripe;
-	private HBox whiteStripe;
-	private HBox orangeStripe;
-
-	Label headerLbl;
 
 	public HeaderView(Scene scene) {
-//	blueStripeL.setStyle("-fx-background-color: #144d65");
-	blueStripeL.setFill(Color.BLACK);
-	whiteStripeL.setStyle("-fx-background-color: #FFFFFF");
-	orangeStripeL.setStyle("-fx-background-color: #db754a");
+		
+	blueStripeL.setFill(Color.web("#144d65"));
+	whiteStripeL.setFill(Color.web("#FFFFFF"));
+	orangeStripeL.setFill(Color.web("#db754a"));
 	stripesBoxL.getChildren().addAll(blueStripeL,whiteStripeL,orangeStripeL);
+	stripesBoxL.setAlignment(Pos.CENTER);
 	
-	label = new Label("testtetsts");
-//	Image imgLogo = new Image("file:///Users/filabaca/EnvDev/EclipseWorkspaces/WorkspaceProjet/Annuaire-isika/src/main/resources/Images/isikalogo.png", true);
-//	ImageView imgViewLogo = new ImageView(imgLogo);
+	ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
+	imgViewLogo.setFitWidth(150);
+	imgViewLogo.setPreserveRatio(true);
 	
-	blueStripeR.setStyle("-fx-background-color: #144d65");
-	whiteStripeR.setStyle("-fx-background-color: #FFFFFF");
-	orangeStripeR.setStyle("-fx-background-color: #db754a");
+	blueStripeR.setFill(Color.web("#144d65"));
+	whiteStripeR.setFill(Color.web("#FFFFFF"));
+	orangeStripeR.setFill(Color.web("#db754a"));
 	stripesBoxR.getChildren().addAll(blueStripeR,whiteStripeR,orangeStripeR);
+	stripesBoxR.setAlignment(Pos.CENTER);
 	
-	headerBox.getChildren().addAll(stripesBoxL, label, stripesBoxR);
+	headerBox.getChildren().addAll(stripesBoxL, imgViewLogo, stripesBoxR);
 	this.getChildren().addAll(headerBox);
 
 	}
