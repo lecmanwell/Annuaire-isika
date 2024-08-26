@@ -6,6 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,10 +32,12 @@ public class HomeView extends VBox {
 		HeaderView header = new HeaderView(scene);
 
 		HBox pageCentrale = new HBox();
+		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
 		String imagePath = "/Images/imageCardHome.jpg";
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 		HomeText homeText = new HomeText();
 		homeText.setAlignment(Pos.CENTER);
+		
 
 		HBox.setHgrow(studentCard, Priority.ALWAYS);
 		HBox.setHgrow(homeText, Priority.ALWAYS);
@@ -42,8 +45,11 @@ public class HomeView extends VBox {
 		homeText.setMaxWidth(Double.MAX_VALUE);
 
 		pageCentrale.getChildren().addAll(studentCard, homeText);
+		
+		Footer footer = new Footer(scene);
+		footer.getChildren().add(footer.homeViewFooter());
 
-		this.getChildren().addAll(header, pageCentrale);
+		this.getChildren().addAll(header, pageCentrale, footer);
 		scene.setRoot(this);
 	}
 

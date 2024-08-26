@@ -2,6 +2,8 @@ package fr.isika.cda27.projet1.Annuaire_Isika;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -29,7 +31,9 @@ public class App extends Application {
 		var label = new Label("Hello, ISIKA ");
 		Scene scene = new Scene(new StackPane(label), stage.getMaxWidth(), stage.getMaxHeight());
 
-		HomeView home = new HomeView(scene);
+		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
+//		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
+//		HomeView home = new HomeView(scene);
 
 		stage.setScene(scene);
 		stage.show();

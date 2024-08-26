@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
 
 public class StudentListAdmin extends TableView {
 
@@ -36,9 +38,17 @@ public class StudentListAdmin extends TableView {
 
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<Student, Integer>("yearPromo"));
+		
+		TableColumn<Student, Void> colAction = new TableColumn<>("Actions");
+		Button btnModify = new Button("Modifier");
+		Button btnDelete = new Button("Supprimer");
+		VBox buttonBox = new VBox(btnModify, btnDelete);
+		buttonBox.setVisible(false);
+		this.setOnMouseEntered(event -> buttonBox.setVisible(true));
+        this.setOnMouseExited(event -> buttonBox.setVisible(false));
 
 		// On ajoute les colonnes à la tableView
-		tableView.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear);
+		tableView.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear, colAction);
 		this.getChildren().add(tableView);
 	}
 }
