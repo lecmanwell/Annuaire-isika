@@ -27,7 +27,7 @@ public class App extends Application {
 		stage.getIcons().add(new Image(
 				"file:///C:/EnvDev/Eclipse%20Workspace/AnnuaireProjetUn/Annuaire-isika/src/main/resources/Images/isika.png"));
 		var label = new Label("Hello, ISIKA ");
-		var scene = new Scene(new StackPane(label), 640, 480);
+		var scene = new Scene(new StackPane(label), 1080, 768);
 
 		HomeView home = new HomeView(scene);
 
