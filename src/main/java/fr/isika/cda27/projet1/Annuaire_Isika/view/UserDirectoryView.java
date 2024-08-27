@@ -20,10 +20,11 @@ public class UserDirectoryView extends VBox {
 		
 		VBox pageCentrale = new VBox();
 		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
+		
 		MultiSearch multiSearch = new MultiSearch(scene);
 		multiSearch.getChildren().add(multiSearch.multiSearchUser());
+		
 		UserDirectory userDirectory = new UserDirectory(scene);
-		userDirectory.getChildren().add(userDirectory.userdDirectory());
 		
 		pageCentrale.getChildren().addAll(multiSearch, userDirectory);
 		
