@@ -15,6 +15,44 @@ public class Student implements Comparable<Student> {
 	private static final int NBCHAR_FIRSTNAME = 30;
 	private static final int NBCHAR_LOCATION = 3;
 	private static final int NBCHAR_NAMEPROMO = 12;
+	public String getLastNameLong() {
+		return lastNameLong;
+	}
+
+	public void setLastNameLong( ) {
+		this.lastNameLong = this.getStudentLastNameLong();
+	}
+
+	public String getFirstNameLong() {
+		return firstNameLong;
+	}
+
+	public void setFirstNameLong( ) {
+		this.firstNameLong = this.getStudentFirstNameLong();
+	}
+
+	public String getLocationLong() {
+		return locationLong;
+	}
+
+	public void setLocationLong() {
+		
+		this.locationLong = this.getStudentLocationLong();
+	}
+
+	public String getNamePromoLong() {
+		return namePromoLong;
+	}
+
+	public void setNamePromoLong() {
+		this.namePromoLong = this.getStudentNamePromoLong();
+	}
+
+	private String lastNameLong;
+	private String	firstNameLong;
+	private String locationLong;
+	private String	namePromoLong;
+
 
 	public Student() {
 		super();
