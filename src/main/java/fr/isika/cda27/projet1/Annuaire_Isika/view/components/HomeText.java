@@ -28,11 +28,12 @@ public class HomeText extends VBox {
 		descriptionLabel.setAlignment(Pos.CENTER);
 		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 
-		Button btn = new Button("Accéder à l'annuaire");
-		btn.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
-		btn.setPrefWidth(200);
+	
+		CustomButton btn = new CustomButton();
+		Button btn1 = btn.goToDirectory();
 
-		this.getChildren().addAll(titleLabel, descriptionLabel, btn);
+
+		this.getChildren().addAll(titleLabel, descriptionLabel, btn1);
 
 	}
 

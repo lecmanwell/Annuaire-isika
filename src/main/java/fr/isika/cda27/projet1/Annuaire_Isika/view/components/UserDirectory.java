@@ -2,17 +2,22 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 
 public class UserDirectory extends GridPane {
 
 	
-	public UserDirectory() {
+	public UserDirectory(Scene scene) {
 		super();
+	}
+	
+	public GridPane userdDirectory() {
+	GridPane userDirectory = new GridPane();
 		this.setPadding(new Insets(20));
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(20));
-		this.setStyle("-fx-border-color: #000000; -fx-border-width: 1px; -fx-background-color: #ffffff;");
+		this.setStyle("-fx-border-color: #000000; -fx-border-width: 0px; -fx-background-color: #ffffff;");
 
 		StudentCard s = new StudentCard();
 		StudentCard st = new StudentCard();
@@ -34,6 +39,7 @@ public class UserDirectory extends GridPane {
 		this.add(student1, 2, 1);
 		this.add(student2, 3, 1);
 		this.add(student3, 4, 1);
+		return userDirectory;
 		
 	}
 	

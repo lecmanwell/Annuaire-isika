@@ -34,15 +34,15 @@ public class HomeView extends VBox {
 		super();
 		this.scene = scene;
 
-        double screenHeight = Screen.getPrimary().getBounds().getHeight();
-        double screenWidth = Screen.getPrimary().getBounds().getWidth();
-        
+		double screenHeight = Screen.getPrimary().getBounds().getHeight();
+		double screenWidth = Screen.getPrimary().getBounds().getWidth();
+
 		HeaderView header = new HeaderView(scene);
-        header.setPrefHeight(screenHeight * 0.2);
-        header.setMinHeight(screenHeight * 0.2);
-        header.setMaxHeight(screenHeight * 0.2);
-        header.setPrefWidth(screenWidth);
-        header.setAlignment(Pos.CENTER);
+		header.setPrefHeight(screenHeight * 0.2);
+		header.setMinHeight(screenHeight * 0.2);
+		header.setMaxHeight(screenHeight * 0.2);
+		header.setPrefWidth(screenWidth);
+		header.setAlignment(Pos.CENTER);
 
 		HBox pageCentrale = new HBox();
 //		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
@@ -58,21 +58,19 @@ public class HomeView extends VBox {
 		homeText.setPadding(new Insets(100));
 		homeText.setAlignment(Pos.CENTER);
 		pageCentrale.getChildren().addAll(studentCard, homeText);
-		
-		
 
 //		HBox.setHgrow(studentCard, Priority.ALWAYS);
 //		HBox.setHgrow(homeText, Priority.ALWAYS);
 //		studentCard.setMaxWidth(Double.MAX_VALUE);
 //		homeText.setMaxWidth(Double.MAX_VALUE);
 
-		
 		Footer footer = new Footer(scene);
-	       footer.setPrefHeight(screenHeight * 0.2);
-	        footer.setMinHeight(screenHeight * 0.2);
-	        footer.setMaxHeight(screenHeight * 0.2);
-	        footer.setPrefWidth(screenWidth);
-	        footer.setAlignment(Pos.CENTER);
+		footer.getChildren().add(footer.homeViewFooter());
+		footer.setPrefHeight(screenHeight * 0.2);
+		footer.setMinHeight(screenHeight * 0.2);
+		footer.setMaxHeight(screenHeight * 0.2);
+		footer.setPrefWidth(screenWidth);
+		footer.setAlignment(Pos.CENTER);
 
 		footer.getChildren().add(footer.homeViewFooter());
 
