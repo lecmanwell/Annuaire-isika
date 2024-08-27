@@ -1,5 +1,9 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.LoginAdmin;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentCard;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;

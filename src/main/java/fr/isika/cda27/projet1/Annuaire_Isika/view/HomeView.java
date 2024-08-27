@@ -2,6 +2,10 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Directory;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HomeText;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentCard;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

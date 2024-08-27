@@ -1,4 +1,4 @@
-package fr.isika.cda27.projet1.Annuaire_Isika.view;
+package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +12,6 @@ public class HomeText extends VBox {
 
 	public HomeText() {
 		super();
-
 		this.setAlignment(Pos.CENTER);
 //		this.setPadding(new Insets(20));
 
@@ -22,10 +21,12 @@ public class HomeText extends VBox {
 
 		Label descriptionLabel = new Label(
 				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez ISIKA.");
-		descriptionLabel.setFont(Font.font("Futura", 16));
+		descriptionLabel.setFont(Font.font("Futura", 20));
 		descriptionLabel.setWrapText(true);
 		descriptionLabel.setMaxWidth(300);
 		descriptionLabel.setPadding(new Insets(0, 0, 50, 0));
+		descriptionLabel.setAlignment(Pos.CENTER);
+		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 
 		Button btn = new Button("Accéder à l'annuaire");
 		btn.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");

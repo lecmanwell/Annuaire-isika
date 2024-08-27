@@ -1,4 +1,4 @@
-package fr.isika.cda27.projet1.Annuaire_Isika.view;
+package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.scene.control.Button;
 

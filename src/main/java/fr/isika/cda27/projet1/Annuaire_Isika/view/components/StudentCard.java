@@ -1,4 +1,4 @@
-package fr.isika.cda27.projet1.Annuaire_Isika.view;
+package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -9,6 +9,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -20,10 +21,9 @@ public class StudentCard extends GridPane {
 	String formationString;
 	String anneeFormationString;
 	String localisationString;
-
 	public StudentCard() {
 		super();
-		
+		this.setAlignment(Pos.CENTER);
 		Label lastNameLabel = new Label(this.lastNameString);
 		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 18));
 		
@@ -67,14 +67,17 @@ public class StudentCard extends GridPane {
 //		this.setPadding(new Insets(20));
 //		this.setHgap(10);
 //		this.setVgap(10);
+		this.setMaxWidth(Double.MAX_VALUE);
 		this.setAlignment(Pos.CENTER);
-		this.setStyle("-fx-border-color: black; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		this.setHeight(50);
+		this.setWidth(50);
+		this.setStyle("-fx-border-color: black; ; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 
 		// Parametrage photo
 		ImageView photo = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
-		photo.setFitHeight(150);
-		photo.setFitWidth(150);
-		photo.setStyle("-fx-border-color: black; -fx-border-radius: 15px;");
+		photo.setFitHeight(300);
+		photo.setFitWidth(300);
+		photo.setStyle("-fx-border-color: black; -fx-border-radius: 50px;");
 		photo.setPreserveRatio(true);
 
 		// Parametrage du label Nom
