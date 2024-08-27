@@ -3,6 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
@@ -41,9 +42,8 @@ public class HeaderViewGeneral extends HBox {
 	public HeaderViewGeneral(Scene scene) {
 		
 		double stripeHeightRatio = 0.015;
-		double stripesBoxWidthRatio = 0.57;
-		double logoWidthRatio = 0.12;
-//		double menuBoxWidthRatio = 0.3;
+		double stripesBoxWidthRatio = 0.48;
+		double logoWidthRatio = 0.16;
 		
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
 		imgViewLogo.fitWidthProperty().bind(scene.widthProperty().multiply(logoWidthRatio));
@@ -75,18 +75,13 @@ public class HeaderViewGeneral extends HBox {
 		separatorR.setMaxHeight(20);
 		
 		//Button Home
-		btnHome = new CustomButton();
-		btnHome.setStyle("-fx-background-color: transparent;");
+		btnHome = new CustomButton(scene).homeButtonTitle();
 		
 		//Button Directory
-		btnDirectory = new CustomButton();
-		btnDirectory.setStyle("-fx-background-color: transparent;");
+		btnDirectory = new CustomButton(scene).goToDirectoryTitle();
 		
 		//Buton Admin
-		btnAdmin = new CustomButton();
-//		btnAdmin.setFont(Font.font("Futura", FontWeight.BOLD, 18));
-		btnAdmin.setStyle("-fx-background-color: transparent;");
-		
+		btnAdmin = new CustomButton(scene).adminAccessTitle();
 		
 		
 		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);

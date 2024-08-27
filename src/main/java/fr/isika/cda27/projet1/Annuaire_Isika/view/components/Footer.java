@@ -17,7 +17,7 @@ public class Footer extends HBox {
 	ImageView logoLogOut = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogOut)));
 	Scene scene;
 	Region region = new Region();
-	CustomButton btn = new CustomButton();
+	CustomButton btn = new CustomButton(scene);
 
 	Button generateDocumentation = btn.generateDocumentation();
 	Button adminAccess = btn.adminAccess();
