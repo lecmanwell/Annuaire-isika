@@ -2,6 +2,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;

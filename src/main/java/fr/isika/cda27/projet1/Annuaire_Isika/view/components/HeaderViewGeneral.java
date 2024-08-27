@@ -75,15 +75,15 @@ public class HeaderViewGeneral extends HBox {
 		separatorR.setMaxHeight(20);
 		
 		//Button Home
-		btnHome = new CustomButton("Accueil");
+		btnHome = new CustomButton();
 		btnHome.setStyle("-fx-background-color: transparent;");
 		
 		//Button Directory
-		btnDirectory = new CustomButton("Annuaire");
+		btnDirectory = new CustomButton();
 		btnDirectory.setStyle("-fx-background-color: transparent;");
 		
 		//Buton Admin
-		btnAdmin = new CustomButton("Administrateur");
+		btnAdmin = new CustomButton();
 //		btnAdmin.setFont(Font.font("Futura", FontWeight.BOLD, 18));
 		btnAdmin.setStyle("-fx-background-color: transparent;");
 		
