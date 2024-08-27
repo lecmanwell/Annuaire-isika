@@ -1,6 +1,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
@@ -33,9 +34,10 @@ public class App extends Application {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), stage.getMaxWidth(), stage.getMaxHeight());
 
-		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
+//		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
 //		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
 //		HomeView home = new HomeView(scene);
+		AddStudentView addStudent = new AddStudentView(scene);
 
 		stage.setScene(scene);
 		stage.show();

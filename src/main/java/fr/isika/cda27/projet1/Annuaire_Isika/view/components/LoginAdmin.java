@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,35 +9,51 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class LoginAdmin extends GridPane {
+public class LoginAdmin extends VBox {
 
 	public LoginAdmin() {
 		super();
 		
-		this.setAlignment(Pos.CENTER);
-		this.setPadding(new Insets(20));
+		VBox loginVBox = new VBox(15);
+		loginVBox.setPadding(new Insets(140));
+	
 
-		Label titleLabel = new Label("Accès administrateur");
-		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 36));
-		Label adminIdentifiant = new Label("Identifiant");
-		TextField identifiantTxtField = new TextField();
-		Label adminMdp = new Label("Mot de passe");
-		PasswordField mdpTxtField = new PasswordField();
-		Button btn = new Button("Accéder à l'annuaire");
-		btn.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		//title
+		Label titleLbl = new Label("Accès administrateur");
+		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 40));
 		
+		//GridPane for the login components
+		GridPane gridLoginBox = new GridPane();
+		Label userNameLbl = new Label("Identifiant");
+		TextField userNameTextField = new TextField();
+		Label passwordLbl = new Label("Mot de passe");
+		PasswordField passwordField = new PasswordField();
+		//adding the components to the grid
+		gridLoginBox.add(userNameLbl,0,0);
+		gridLoginBox.add(userNameTextField,1,0);
+		gridLoginBox.add(passwordLbl,0,1);
+		gridLoginBox.add(passwordField,1,1);
+		gridLoginBox.setHgap(15);
+		gridLoginBox.setVgap(15);
+		gridLoginBox.setAlignment(Pos.CENTER);
 		
+		//HBox for the button
+		HBox btnAccessBox = new HBox();
+		Button btnAccess = new Button("Accéder à l'annuaire");
+		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		btnAccessBox.getChildren().add(btnAccess);
+		btnAccessBox.setAlignment(Pos.CENTER);
 		
-		this.add(titleLabel, 0, 0, 4, 2);
-		this.add(adminIdentifiant, 2, 3);
-		this.add(identifiantTxtField, 3, 3);
-		this.add(adminMdp, 2, 4);
-		this.add(mdpTxtField, 3, 4);
-		this.add(btn, 2, 5, 2, 1);
+		//adding all elements as children
+		loginVBox.getChildren().addAll(titleLbl, gridLoginBox, btnAccessBox);
+		this.getChildren().add(loginVBox);
+		
+
 	}
 
 	
