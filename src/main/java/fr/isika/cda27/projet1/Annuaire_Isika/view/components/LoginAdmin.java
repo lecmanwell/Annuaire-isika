@@ -20,12 +20,12 @@ public class LoginAdmin extends VBox {
 		super();
 		
 		VBox loginVBox = new VBox(15);
-		loginVBox.setPadding(new Insets(140));
+//		loginVBox.setPadding(new Insets(140));
 	
 
 		//title
 		Label titleLbl = new Label("Accès administrateur");
-		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 40));
+		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 36));
 		
 		//GridPane for the login components
 		GridPane gridLoginBox = new GridPane();

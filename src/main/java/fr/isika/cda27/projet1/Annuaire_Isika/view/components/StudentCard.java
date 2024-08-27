@@ -16,11 +16,8 @@ import javafx.scene.text.FontWeight;
 public class StudentCard extends GridPane {
 
 	String imagePath;
-	String lastNameString;
-	String firstNameString;
-	String formationString;
-	String anneeFormationString;
-	String localisationString;
+
+	
 	public StudentCard() {
 		super();
 		this.setAlignment(Pos.CENTER);
@@ -64,20 +61,20 @@ public class StudentCard extends GridPane {
 		this.anneeFormationString = anneeFormationString;
 		this.localisationString = localisationString;
 
-//		this.setPadding(new Insets(20));
+		this.setPadding(new Insets(20));
 //		this.setHgap(10);
 //		this.setVgap(10);
 		this.setMaxWidth(Double.MAX_VALUE);
 		this.setAlignment(Pos.CENTER);
 		this.setHeight(50);
 		this.setWidth(50);
-		this.setStyle("-fx-border-color: black; ; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		this.setStyle("-fx-border-color: black;-fx-border-radius: 30px;-fx-background-radius: 30px; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 
 		// Parametrage photo
 		ImageView photo = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
 		photo.setFitHeight(300);
 		photo.setFitWidth(300);
-		photo.setStyle("-fx-border-color: black; -fx-border-radius: 50px;");
+//		photo.setStyle("-fx-border-color: black; -fx-border-radius: 50px;");
 		photo.setPreserveRatio(true);
 
 		// Parametrage du label Nom
@@ -91,7 +88,6 @@ public class StudentCard extends GridPane {
 
 		HBox nameHBox = new HBox();
 		nameHBox.getChildren().addAll(lastNameLabel, firstNameLabel);
-		nameHBox.setPadding(new Insets(0, 0, 20, 0));
 		nameHBox.setSpacing(10);
 		
 		// Parametrage du label Formation
@@ -117,5 +113,51 @@ public class StudentCard extends GridPane {
 		this.setVgap(20);
 
 	}
+	
+	public String getLastNameString() {
+		return lastNameString;
+	}
+
+	public void setLastNameString(String lastNameString) {
+		this.lastNameString = lastNameString;
+	}
+
+	public String getFirstNameString() {
+		return firstNameString;
+	}
+
+	public void setFirstNameString(String firstNameString) {
+		this.firstNameString = firstNameString;
+	}
+
+	public String getFormationString() {
+		return formationString;
+	}
+
+	public void setFormationString(String formationString) {
+		this.formationString = formationString;
+	}
+
+	public String getAnneeFormationString() {
+		return anneeFormationString;
+	}
+
+	public void setAnneeFormationString(String anneeFormationString) {
+		this.anneeFormationString = anneeFormationString;
+	}
+
+	public String getLocalisationString() {
+		return localisationString;
+	}
+
+	public void setLocalisationString(String localisationString) {
+		this.localisationString = localisationString;
+	}
+
+	String lastNameString;
+	String firstNameString;
+	String formationString;
+	String anneeFormationString;
+	String localisationString;
 
 }
