@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class HeaderViewGeneral extends HBox {
 
@@ -18,9 +20,9 @@ public class HeaderViewGeneral extends HBox {
 
 	//stripes for the header view (general)
 	VBox stripesBox = new VBox();
-	Rectangle blueStripe = new Rectangle(465, 12);
-	Rectangle whiteStripe = new Rectangle(465, 12);
-	Rectangle orangeStripe = new Rectangle(465, 12);
+	Rectangle blueStripe = new Rectangle();
+	Rectangle whiteStripe = new Rectangle();
+	Rectangle orangeStripe = new Rectangle();
 	
 	//logo image path
 	String imgPathLogo = "/Images/isikalogo.png";
@@ -38,14 +40,29 @@ public class HeaderViewGeneral extends HBox {
 	//constructor for the header view (general)
 	public HeaderViewGeneral(Scene scene) {
 		
+		double stripeHeightRatio = 0.015;
+		double stripesBoxWidthRatio = 0.57;
+		double logoWidthRatio = 0.12;
+//		double menuBoxWidthRatio = 0.3;
+		
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
-		imgViewLogo.setFitWidth(150);
+		imgViewLogo.fitWidthProperty().bind(scene.widthProperty().multiply(logoWidthRatio));
 		imgViewLogo.setPreserveRatio(true);
 		
 		
 		blueStripe.setFill(javafx.scene.paint.Color.web("#144d65"));
 		whiteStripe.setFill(javafx.scene.paint.Color.web("#FFFFFF"));
 		orangeStripe.setFill(javafx.scene.paint.Color.web("#db754a"));
+		
+		blueStripe.widthProperty().bind(scene.widthProperty().multiply(stripesBoxWidthRatio));
+		blueStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
+
+		whiteStripe.widthProperty().bind(scene.widthProperty().multiply(stripesBoxWidthRatio));
+		whiteStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
+
+		orangeStripe.widthProperty().bind(scene.widthProperty().multiply(stripesBoxWidthRatio));
+		orangeStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
+		
 		
 		stripesBox.getChildren().addAll(blueStripe, whiteStripe, orangeStripe);
 		stripesBox.setAlignment(Pos.CENTER);
@@ -60,7 +77,6 @@ public class HeaderViewGeneral extends HBox {
 		//Button Home
 		btnHome = new CustomButton("Accueil");
 		btnHome.setStyle("-fx-background-color: transparent;");
-		System.out.println(btnHome.getStyle());
 		
 		//Button Directory
 		btnDirectory = new CustomButton("Annuaire");
@@ -68,13 +84,14 @@ public class HeaderViewGeneral extends HBox {
 		
 		//Buton Admin
 		btnAdmin = new CustomButton("Administrateur");
+//		btnAdmin.setFont(Font.font("Futura", FontWeight.BOLD, 18));
 		btnAdmin.setStyle("-fx-background-color: transparent;");
+		
 		
 		
 		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);
 		menuBox.setAlignment(Pos.CENTER);
-		menuBox.setStyle("-fx-font-family: 'Futura'; -fx-font-weight: 700;");
-		
+		menuBox.setStyle("-fx-font-family: 'Futura';");
 		
 		this.getChildren().addAll(imgViewLogo, stripesBox, menuBox);
 		
