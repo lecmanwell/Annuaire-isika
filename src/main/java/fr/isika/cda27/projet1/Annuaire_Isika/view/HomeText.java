@@ -14,19 +14,22 @@ public class HomeText extends VBox {
 		super();
 
 		this.setAlignment(Pos.CENTER);
-		this.setPadding(new Insets(20));
+//		this.setPadding(new Insets(20));
 
 		Label titleLabel = new Label("Annuaire");
-		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 36));
+		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 40));
+		titleLabel.setPadding(new Insets(0, 0, 50, 0));
 
 		Label descriptionLabel = new Label(
-				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez nous");
+				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez ISIKA.");
 		descriptionLabel.setFont(Font.font("Futura", 16));
 		descriptionLabel.setWrapText(true);
 		descriptionLabel.setMaxWidth(300);
+		descriptionLabel.setPadding(new Insets(0, 0, 50, 0));
 
 		Button btn = new Button("Accéder à l'annuaire");
 		btn.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		btn.setPrefWidth(200);
 
 		this.getChildren().addAll(titleLabel, descriptionLabel, btn);
 

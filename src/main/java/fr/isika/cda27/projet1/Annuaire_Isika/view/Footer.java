@@ -2,7 +2,10 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
@@ -17,16 +20,22 @@ public class Footer extends HBox {
 	Button backToDirectory = new Button("Retourner à l'annuaire");
 	Button adminLogIn = new Button("Accès administrateur");
 	Scene scene;
+	Region region = new Region();
 	
 	public Footer(Scene scene) {
 		super();
 		this.scene = scene;
-
+		this.setPadding(new Insets(60));
+		logoQuestion.setPreserveRatio(true);
+		logoQuestion.setFitWidth(25);
+		logoQuestion.setFitHeight(25);
+		
 	}
 
 	public HBox homeViewFooter() {
 		HBox homeViewFooter = new HBox();
-		homeViewFooter.getChildren().addAll(logoQuestion, docDirectory, adminLogIn);
+		HBox.setHgrow(region, Priority.ALWAYS);
+		homeViewFooter.getChildren().addAll(logoQuestion, docDirectory, region, adminLogIn);
 		return homeViewFooter;
 	}
 	public HBox homeLoginAdmin() {
