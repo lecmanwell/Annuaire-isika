@@ -1,5 +1,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class Directory {
@@ -7,6 +9,8 @@ public class Directory {
 	private static Directory instance;
 	private ArrayList<Student> studentsList;
 	private Tree tree;
+	private RandomAccessFile raf;
+	private TreeDAO treeDao;
 	
 	public Tree getTree() {
 		return tree;
@@ -19,6 +23,13 @@ public class Directory {
 	private Directory() {
 		this.studentsList = new ArrayList<Student>();
 		this.tree = new Tree();
+		this.treeDao = new	TreeDAO();
+		try {
+			this.raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static Directory getInstance() {
@@ -39,6 +50,8 @@ public class Directory {
 	
 	public void addStudentToTree(Student student) {
 		tree.insert(student);
+		treeDao.addToTree(student, raf);
+
 	}
 	
 	
