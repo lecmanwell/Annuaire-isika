@@ -1,7 +1,9 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
@@ -19,35 +21,34 @@ public class CustomButton extends Button {
 	}
 
 	public void generateDocumentation() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Comment fonction cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 		this.setOnAction((e) -> {
 			System.out.println("clicked");
-			
 		});
-//		return btn;
 
 	}
 
+	// Button to go to HomeViewAdmin
 	public void adminAccess() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Accès administrateur");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+
 		this.setOnAction((e) -> {
 			System.out.println("clicked on adminAcces");
-			
+			scene.setRoot(new HomeViewAdmin(this.scene));
+			System.out.println("check scene " + this.scene);
+
 		});
-//		return btn;
 
 	}
 
+	// Button to go to UserDirectoryView
 	public void goToDirectory() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Accéder à l'annuaire");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
-		
-		// go to page action
+
+		//
 		this.setOnAction((e) -> {
 			System.out.println("click");
 			scene.setRoot(new UserDirectoryView(this.scene));
@@ -55,56 +56,47 @@ public class CustomButton extends Button {
 
 	}
 
+	// Button to print to PDF the students
 	public void printDirectory() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Imprimer le PDF");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
-//		return btn;
-
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setPadding(new Insets(3, 20, 3, 20));
 	}
 
+	// Button to disconnect from the admin role
 	public void logOut() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Deconnexion");
-		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a;");
-//		return btn;
+		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
+		this.setPadding(new Insets(3, 20, 3, 20));
 
 	}
 
 	public void modifyStudent() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Modifier");
-//		return btn;
 
 	}
 
 	public void deleteStudent() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Supprimer");
-//		return btn;
 
 	}
 
 	public void addStudent() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Ajouter un stagiaire");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
 
-
 	}
 
+	// Button to go back to the HomeView from the HomeViewAdmin
 	public void back() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Retour");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-
-//		return btn;
 
 	}
 
 	// Buttons for the menu in HeaderViewGeneral
+
 	public void homeButtonTitle() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Accueil");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
@@ -124,7 +116,6 @@ public class CustomButton extends Button {
 	}
 
 	public void goToDirectoryTitle() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
@@ -145,7 +136,6 @@ public class CustomButton extends Button {
 	}
 
 	public void adminAccessTitle() {
-//		CustomButton btn = new CustomButton(this.scene);
 		this.setText("Administrateur");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));

@@ -39,8 +39,11 @@ public class UserDirectoryView extends BorderPane {
 		pageCentrale.getChildren().addAll(multiSearch, scrollpane);
 		
 		Footer footer = new Footer(scene);
-//		footer.getChildren().addAll(footer.userViewFooter());
 		footer.userViewFooter();
+//		footer.adminViewFooterList();
+		
+		
+		
 		this.setTop(header);
 		this.setBottom(footer);
 		this.setCenter(pageCentrale);
