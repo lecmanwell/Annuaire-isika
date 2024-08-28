@@ -62,6 +62,7 @@ public class StudentCard extends GridPane {
 		this.add(localisationLabel, 0, 3);
 		
 		this.setStyle("-fx-border-color: black;-fx-border-radius: 10px;-fx-background-radius: 10px; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+		this.setPadding(new Insets(10));
 //		this.setVgap(5);
 	}
 
