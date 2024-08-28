@@ -34,7 +34,7 @@ public class UserDirectoryView extends VBox {
 		footer.userViewFooter();
 		this.getChildren().addAll(header, pageCentrale, footer);
 		scene.setRoot(this);
-		
+		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}
 	
 	

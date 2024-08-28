@@ -71,6 +71,7 @@ public class HomeView extends BorderPane {
 		this.setBottom(footer);
 		this.setCenter(pageCentrale);
 		scene.setRoot(this);
+		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}
 
 }

@@ -53,6 +53,7 @@ public class AddStudentView extends VBox {
 		
 		this.getChildren().addAll(header, body, footer);
 		scene.setRoot(this);
+		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}
 
 }

@@ -67,6 +67,7 @@ public class HomeViewAdmin extends BorderPane {
 		this.setCenter(pageCentrale);
 
 		scene.setRoot(this);
+		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 
 	}
 }
