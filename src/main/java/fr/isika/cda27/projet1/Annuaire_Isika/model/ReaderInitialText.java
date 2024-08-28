@@ -64,7 +64,7 @@ public class ReaderInitialText {
 				default:
 					indice = 0;
 					dir.addStudentToList(student);
-//					dir.addStudentToTree(student);
+					dir.addStudentToTree(student);
 					student = new Student();
 					break;
 				}
@@ -74,10 +74,10 @@ public class ReaderInitialText {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
-		ArrayList<Student> arrayListTest = dir.getStudentsList();
-		for (Student stud : arrayListTest) {
-			dir.addStudentToTree(stud);
-		}
+//		ArrayList<Student> arrayListTest = dir.getStudentsList();
+//		for (Student stud : arrayListTest) {
+//			dir.addStudentToTree(stud);
+//		}
 		//Lecture fichier binaire pour nos tests
 		Node test = new Node();
 		test.readBinaryTest();
