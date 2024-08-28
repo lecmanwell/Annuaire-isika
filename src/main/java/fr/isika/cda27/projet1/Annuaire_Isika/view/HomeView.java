@@ -56,7 +56,7 @@ public class HomeView extends BorderPane {
 		String imagePath = "/Images/imageCardHome.jpg";
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 //		studentCard.setPadding(new Insets(100));
-		HomeText homeText = new HomeText();
+		HomeText homeText = new HomeText(this.scene);
 //		homeText.setPadding(new Insets(100));
 		homeText.setAlignment(Pos.CENTER);
 		

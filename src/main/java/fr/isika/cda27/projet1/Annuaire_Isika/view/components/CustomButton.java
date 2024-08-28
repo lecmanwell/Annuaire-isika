@@ -18,48 +18,56 @@ public class CustomButton extends Button {
 
 	}
 
-	public CustomButton generateDocumentation() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Comment fonction cet annuaire ?");
-		btn.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		return btn;
+	public void generateDocumentation() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Comment fonction cet annuaire ?");
+		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+		this.setOnAction((e) -> {
+			System.out.println("clicked");
+			
+		});
+//		return btn;
 
 	}
 
-	public CustomButton adminAccess() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Accès administrateur");
-		btn.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		return btn;
+	public void adminAccess() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Accès administrateur");
+		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+		this.setOnAction((e) -> {
+			System.out.println("clicked on adminAcces");
+			
+		});
+//		return btn;
 
 	}
 
-	public CustomButton goToDirectory() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Accéder à l'annuaire");
-		btn.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
+	public void goToDirectory() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Accéder à l'annuaire");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
 		
 		// go to page action
-		btn.setOnAction((e) -> {
-			scene.setRoot(new UserDirectoryView(scene));
+		this.setOnAction((e) -> {
+			System.out.println("click");
+			scene.setRoot(new UserDirectoryView(this.scene));
 		});
-		return btn;
 
 	}
 
-	public CustomButton printDirectory() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Imprimer le PDF");
-		btn.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
-		return btn;
+	public void printDirectory() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Imprimer le PDF");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
+//		return btn;
 
 	}
 
-	public CustomButton logOut() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Deconnexion");
-		btn.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a;");
-		return btn;
+	public void logOut() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Deconnexion");
+		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a;");
+//		return btn;
 
 	}
 
@@ -86,35 +94,34 @@ public class CustomButton extends Button {
 
 	}
 
-	public CustomButton back() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Retour");
-		btn.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+	public void back() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Retour");
+		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 
-		return btn;
+//		return btn;
 
 	}
 
 	// Buttons for the menu in HeaderViewGeneral
-	public CustomButton homeButtonTitle() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Accueil");
-		btn.setStyle("-fx-background-color: transparent;");
-		btn.setFont(Font.font("Futura", FontWeight.BOLD, 14));
+	public void homeButtonTitle() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Accueil");
+		this.setStyle("-fx-background-color: transparent;");
+		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
 
 		// hover effect
-		btn.setOnMouseEntered((e) -> {
-			btn.setTextFill(Color.web("#adb6b6"));
+		this.setOnMouseEntered((e) -> {
+			this.setTextFill(Color.web("#adb6b6"));
 		});
-		btn.setOnMouseExited((e) -> {
-			btn.setTextFill(Color.web("#333333"));
+		this.setOnMouseExited((e) -> {
+			this.setTextFill(Color.web("#333333"));
 		});
 
 		// go to page action
-		btn.setOnAction((e) -> {
+		this.setOnAction((e) -> {
 			scene.setRoot(new HomeView(scene));
 		});
-		return btn;
 	}
 
 	public CustomButton goToDirectoryTitle() {

@@ -14,8 +14,9 @@ public class HomeText extends VBox {
 	private Scene scene;
 	CustomButton btnDirectory;
 
-	public HomeText() {
+	public HomeText(Scene scene) {
 		super();
+		this.scene = scene;
 		this.setAlignment(Pos.CENTER);
 //		this.setPadding(new Insets(20));
 
@@ -32,7 +33,8 @@ public class HomeText extends VBox {
 		descriptionLabel.setAlignment(Pos.CENTER);
 		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 
-		btnDirectory = new CustomButton(scene).goToDirectory();
+		btnDirectory = new CustomButton(scene);
+		btnDirectory.goToDirectory();
 		
 		
 //		CustomButton btn = new CustomButton(scene);

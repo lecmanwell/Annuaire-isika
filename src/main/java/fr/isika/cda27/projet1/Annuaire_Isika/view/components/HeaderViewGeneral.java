@@ -18,6 +18,7 @@ import javafx.scene.text.FontWeight;
 public class HeaderViewGeneral extends HBox {
 
 	HBox headerBoxGrl = new HBox();
+	Scene scene;
 
 	//stripes for the header view (general)
 	VBox stripesBox = new VBox();
@@ -40,6 +41,7 @@ public class HeaderViewGeneral extends HBox {
 	
 	//constructor for the header view (general)
 	public HeaderViewGeneral(Scene scene) {
+		this.scene = scene;
 		
 		double stripeHeightRatio = 0.015;
 		double stripesBoxWidthRatio = 0.48;
@@ -75,7 +77,8 @@ public class HeaderViewGeneral extends HBox {
 		separatorR.setMaxHeight(20);
 		
 		//Button Home
-		btnHome = new CustomButton(scene).homeButtonTitle();
+		btnHome = new CustomButton(scene);
+		btnHome.homeButtonTitle();
 		
 		//Button Directory
 		btnDirectory = new CustomButton(scene).goToDirectoryTitle();

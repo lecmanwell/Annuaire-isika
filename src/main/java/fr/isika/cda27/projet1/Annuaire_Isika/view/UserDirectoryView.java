@@ -14,6 +14,7 @@ public class UserDirectoryView extends VBox {
 	
 	public UserDirectoryView(Scene scene) {
 		super();
+		System.out.println(scene);
 		this.scene = scene;
 		
 		HeaderViewGeneral header = new HeaderViewGeneral(scene);
