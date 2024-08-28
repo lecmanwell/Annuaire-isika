@@ -69,7 +69,6 @@ public class StudentCard extends GridPane {
 	public StudentCard(String imagePath, String lastNameString, String firstNameString, String formationString,
 			String anneeFormationString, String localisationString) {
 		super();
-		System.out.println("toudom");
 		this.imagePath = imagePath;
 		this.lastNameString = lastNameString;
 		this.firstNameString = firstNameString;

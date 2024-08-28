@@ -19,13 +19,11 @@ public class ReaderInitialText {
 		readTextFileAndAddStudent(filePath);
 
 //		Directory.getInstance().toString();
-		BinaryWriterReader br = new BinaryWriterReader();
-		br.readBinaryTest();
 	}
 	
 	public void readTextFileAndAddStudent(String filePath) {
 		
-		Directory dir = Directory.getInstance();
+		Directory dir = new Directory();
 		
 		try {
 			// Le fichier d'entrée
@@ -80,8 +78,11 @@ public class ReaderInitialText {
 		for (Student stud : arrayListTest) {
 			dir.addStudentToTree(stud);
 		}
-		
+		//Lecture fichier binaire pour nos tests
+		Node test = new Node();
+		test.readBinaryTest();
 	}
+	
 	
 
 }

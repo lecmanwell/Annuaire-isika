@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Directory {
 
-	private static Directory instance;
 	private ArrayList<Student> studentsList;
 //	private Tree tree;
 	private RandomAccessFile raf;
@@ -28,7 +27,7 @@ public class Directory {
 		this.studentsList = studentsList;
 	}
 
-	private Directory() {
+	public Directory() {
 		this.studentsList = new ArrayList<Student>();
 //		this.tree = new Tree();
 		this.treeDao = new	TreeDAO();
@@ -39,13 +38,6 @@ public class Directory {
 			e.printStackTrace();
 		}
 	}
-	
-	public static Directory getInstance() {
-		  if (instance == null) {
-	            instance = new Directory();
-	        }
-	        return instance;
-    }
 
 	public void addStudentToList(Student student) {
 		System.out.println("Stagiaire added to list: " + student.getLastName());
