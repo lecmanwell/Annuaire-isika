@@ -2,14 +2,15 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 
-public class AddStudentView extends VBox {
+public class AddStudentView extends BorderPane {
 	private Scene scene;
 
 	public AddStudentView(Scene scene) {
@@ -20,26 +21,18 @@ public class AddStudentView extends VBox {
 		double screenWidth = Screen.getPrimary().getBounds().getWidth();
 
 		// header
-		HeaderView header = new HeaderView(scene);
-		header.setPrefHeight(screenHeight * 0.2);
-		header.setMinHeight(screenHeight * 0.2);
-		header.setMaxHeight(screenHeight * 0.2);
+		HeaderViewGeneral header = new HeaderViewGeneral(scene);
+		header.setPrefHeight(screenHeight * 0.15);
+		header.setMinHeight(screenHeight * 0.15);
+		header.setMaxHeight(screenHeight * 0.15);
 		header.setPrefWidth(screenWidth);
 		header.setAlignment(Pos.CENTER);
 
 		// body container
-		VBox body = new VBox();
-		body.setPrefHeight(screenHeight * 0.6);
-		body.setMinHeight(screenHeight * 0.6);
-		body.setMaxHeight(screenHeight * 0.6);
-		body.setPrefWidth(screenWidth);
-		body.setAlignment(Pos.CENTER);
-		
-		//add student box
+		HBox body = new HBox();
 		AddStudent addStudent = new AddStudent();
-		
 		body.getChildren().add(addStudent);
-		
+		body.setAlignment(Pos.CENTER);
 
 		// footer
 		Footer footer = new Footer(scene);
@@ -47,11 +40,15 @@ public class AddStudentView extends VBox {
 //		footer.setMinHeight(screenHeight * 0.2);
 //		footer.setMaxHeight(screenHeight * 0.2);
 //		footer.setPrefWidth(screenWidth);
-//		footer.setAlignment(Pos.CENTER);
-		footer.homeViewFooter();
+		footer.adminViewFooterAddStudent();
+		footer.setAlignment(Pos.CENTER);
 //		footer.getChildren().add(footer.homeViewFooter());
+
+		//set gridpane structure
+		this.setTop(header);
+		this.setCenter(body);
+		this.setBottom(footer);
 		
-		this.getChildren().addAll(header, body, footer);
 		scene.setRoot(this);
 		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}

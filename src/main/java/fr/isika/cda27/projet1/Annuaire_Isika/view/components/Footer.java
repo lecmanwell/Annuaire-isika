@@ -39,6 +39,9 @@ public class Footer extends HBox {
 		btnprintPfd.printDirectory();
 		btnlogOut.logOut();
 		btnback.back();
+		logoLogOut.setPreserveRatio(true);
+		logoLogOut.setFitWidth(20);
+		logoLogOut.setFitHeight(20);
 		
 		
 	}
@@ -67,7 +70,7 @@ public class Footer extends HBox {
 //		return adminViewFooterList;
 	}
 
-	public void admninViewFooterAddStudent() {
+	public void adminViewFooterAddStudent() {
 //		HBox admninViewFooterAddStudent = new HBox();
 		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnback);
 //		return admninViewFooterAddStudent;
