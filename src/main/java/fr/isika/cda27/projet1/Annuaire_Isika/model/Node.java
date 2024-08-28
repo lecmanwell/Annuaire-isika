@@ -1,6 +1,8 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -148,7 +150,24 @@ public class Node {
 //			e.printStackTrace();
 //		}
 //	}
-
+public long findStudentPosition(RandomAccessFile raf, String nameSearch) throws IOException {
+	
+	String nameRead = "";
+	
+		while (raf.getFilePointer() < raf.length()) {
+			long indice = raf.getFilePointer();
+		for (int i = 0; i < Student.NBCHAR_LASTNAME;i++) {
+			nameRead += raf.readChar();
+		}
+			if (nameSearch.equalsIgnoreCase(nameRead.trim())) {
+				System.out.println("L'indice est : " + indice);
+			} else {
+				raf.seek(indice + NODE_SIZE_OCTET);
+			}
+		}		
+		return -1;
+	
+}
 //	public double findStudentPosition(Student student, RandomAccessFile raf) {
 //		double indice = -1;
 //		try {
@@ -238,6 +257,8 @@ public class Node {
 			for (Student student : stud) {
 				System.out.println(" ArrayList depuis le fichier binaire" + student);
 			}
+			findStudentPosition(rafR, "LACROIX");
+			
 
 //			while (rafR.getFilePointer() != rafR.length()) {
 //
