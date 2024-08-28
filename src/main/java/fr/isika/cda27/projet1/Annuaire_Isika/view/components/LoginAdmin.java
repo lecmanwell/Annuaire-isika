@@ -3,6 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -15,17 +16,20 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class LoginAdmin extends VBox {
+	
+	Scene scene;
 
-	public LoginAdmin() {
+	public LoginAdmin(Scene scene) {
 		super();
+		this.scene = scene;
 		
 		VBox loginVBox = new VBox(15);
-		loginVBox.setPadding(new Insets(140));
+//		loginVBox.setPadding(new Insets(140));
 	
 
 		//title
 		Label titleLbl = new Label("Accès administrateur");
-		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 40));
+		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 36));
 		
 		//GridPane for the login components
 		GridPane gridLoginBox = new GridPane();

@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class HeaderView extends HBox {
+	
+	Scene scene;
 
 	HBox headerBox = new HBox();
 
@@ -28,14 +30,19 @@ public class HeaderView extends HBox {
 	String imgPathLogo = "/Images/isikalogo.png";
 
 	Label label;
+	
+	
 
 	public HeaderView(Scene scene) {
-
+		super();
+		this.scene = scene;
+		
 		// ratios for the components of the header
 		double stripeHeightRatio = 0.015;
-		double stripesBoxWidthRatio = 0.45;
-		double logoWidthRatio = 0.1;
+		double stripesBoxWidthRatio = 0.40;
+		double logoWidthRatio = 0.20;
 
+		
 		// stripes for the left side
 		blueStripeL.setFill(Color.web("#144d65"));
 		whiteStripeL.setFill(Color.web("#FFFFFF"));

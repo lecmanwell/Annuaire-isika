@@ -14,7 +14,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 /**
  * JavaFX App
  */
@@ -30,14 +29,13 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) {
 
-		stage.setMaximized(true);
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
-		Scene scene = new Scene(new Pane(), stage.getMaxWidth(), stage.getMaxHeight());
+		Scene scene = new Scene(new Pane(), 800, 600);
 
 //		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
 //		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
-//		HomeView home = new HomeView(scene);
-		AddStudentView addStudent = new AddStudentView(scene);
+		HomeView home = new HomeView(scene);
+//		AddStudentView addStudent = new AddStudentView(scene);
 
 		stage.setScene(scene);
 		stage.show();

@@ -17,14 +17,14 @@ public class Footer extends HBox {
 	ImageView logoLogOut = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogOut)));
 	Scene scene;
 	Region region = new Region();
-	CustomButton btn = new CustomButton();
+	CustomButton btnGenerateDocumentation = new CustomButton(scene);
+	CustomButton btnadminAccess = new CustomButton(scene);
+	CustomButton btngoToDirectory = new CustomButton(scene);
+	CustomButton btnprintPfd = new CustomButton(scene);
+	CustomButton btnlogOut = new CustomButton(scene);
+	CustomButton btnback = new CustomButton(scene);
 
-	Button generateDocumentation = btn.generateDocumentation();
-	Button adminAccess = btn.adminAccess();
-	Button goToDirectory = btn.goToDirectory();
-	Button printPfd = btn.printDirectory();
-	Button logOut = btn.logOut();
-	Button back = btn.back();
+
 	
 	public Footer(Scene scene) {
 		super();
@@ -33,36 +33,44 @@ public class Footer extends HBox {
 		logoQuestion.setPreserveRatio(true);
 		logoQuestion.setFitWidth(20);
 		logoQuestion.setFitHeight(20);
+		btnGenerateDocumentation.generateDocumentation();
+		btnadminAccess.adminAccess();
+		btngoToDirectory.goToDirectory();
+		btnprintPfd.printDirectory();
+		btnlogOut.logOut();
+		btnback.back();
+		
 		
 	}
 
-	public HBox homeViewFooter() {
-		HBox homeViewFooter = new HBox();
-		homeViewFooter.getChildren().addAll(logoQuestion, generateDocumentation, adminAccess);
-		return homeViewFooter;
+	public void homeViewFooter() {
+//		HBox homeViewFooter = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation,btnadminAccess);
+//		return homeViewFooter;
 	}
-	public HBox homeLoginAdmin() {
-		HBox homeLoginAdmin = new HBox();
-		homeLoginAdmin.getChildren().addAll(logoQuestion, generateDocumentation, back);
-		return homeLoginAdmin;
-	}
-
-	public HBox userViewFooter() {
-		HBox userViewFooter = new HBox();
-		userViewFooter.getChildren().addAll(logoQuestion, generateDocumentation, printPfd);
-		return userViewFooter;
+	
+	public void homeLoginAdmin() {
+//		HBox homeLoginAdmin = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnback);
+//		return homeLoginAdmin;
 	}
 
-	public HBox adminViewFooterList() {
-		HBox adminViewFooterList = new HBox();
-		adminViewFooterList.getChildren().addAll(logoQuestion, generateDocumentation, logoLogOut, printPfd);
-		return adminViewFooterList;
+	public void userViewFooter() {
+//		HBox userViewFooter = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnprintPfd);
+//		return userViewFooter;
 	}
 
-	public HBox admninViewFooterAddStudent() {
-		HBox admninViewFooterAddStudent = new HBox();
-		admninViewFooterAddStudent.getChildren().addAll(logoQuestion, generateDocumentation, logoLogOut, back);
-		return admninViewFooterAddStudent;
+	public void adminViewFooterList() {
+//		HBox adminViewFooterList = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnprintPfd);
+//		return adminViewFooterList;
+	}
+
+	public void admninViewFooterAddStudent() {
+//		HBox admninViewFooterAddStudent = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnback);
+//		return admninViewFooterAddStudent;
 	}
 
 }

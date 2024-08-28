@@ -6,9 +6,11 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.UserDirectory;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-public class UserDirectoryView extends VBox {
+public class UserDirectoryView extends BorderPane {
 	
 	private Scene scene;
 	
@@ -19,18 +21,31 @@ public class UserDirectoryView extends VBox {
 		HeaderViewGeneral header = new HeaderViewGeneral(scene);
 		
 		VBox pageCentrale = new VBox();
-		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
-		MultiSearch multiSearch = new MultiSearch(scene);
-		multiSearch.getChildren().add(multiSearch.multiSearchUser());
-		UserDirectory userDirectory = new UserDirectory(scene);
-		userDirectory.getChildren().add(userDirectory.userdDirectory());
+		pageCentrale.setPadding(new Insets(20, 20, 0, 20));
 		
-		pageCentrale.getChildren().addAll(multiSearch, userDirectory);
+		MultiSearch multiSearch = new MultiSearch(scene);
+		multiSearch.multiSearchUser();
+//		multiSearch.getChildren().add(multiSearch.multiSearchUser());
+		
+		UserDirectory userDirectory = new UserDirectory(scene);
+		ScrollPane scrollpane = new ScrollPane();
+		System.out.println(scrollpane.viewportBoundsProperty());
+		userDirectory.setMinWidth(scrollpane.getWidth());
+		scrollpane.setContent(userDirectory);
+		scrollpane.setFitToWidth(true);
+		scrollpane.setFitToHeight(true);
+		scrollpane.setMinHeight(290);
+		
+		pageCentrale.getChildren().addAll(multiSearch, scrollpane);
 		
 		Footer footer = new Footer(scene);
-		footer.getChildren().add(footer.userViewFooter());
-		this.getChildren().addAll(header, pageCentrale, footer);
+//		footer.getChildren().addAll(footer.userViewFooter());
+		footer.userViewFooter();
+		this.setTop(header);
+		this.setBottom(footer);
+		this.setCenter(pageCentrale);
 		scene.setRoot(this);
+		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 		
 	}
 	
