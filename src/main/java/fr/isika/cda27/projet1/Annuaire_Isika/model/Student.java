@@ -10,119 +10,76 @@ public class Student implements Comparable<Student> {
 	private String location;
 	private String namePromo;
 	private int yearPromo;
-	private LinkedList<Student> listDoublon;
-	private static final int NBCHAR_LASTNAME = 30;
-	private static final int NBCHAR_FIRSTNAME = 30;
-	private static final int NBCHAR_LOCATION = 3;
-	private static final int NBCHAR_NAMEPROMO = 12;
-	public String getLastNameLong() {
-		return lastNameLong;
-	}
-
-	public void setLastNameLong( ) {
-		this.lastNameLong = this.getStudentLastNameLong();
-	}
-
-	public String getFirstNameLong() {
-		return firstNameLong;
-	}
-
-	public void setFirstNameLong( ) {
-		this.firstNameLong = this.getStudentFirstNameLong();
-	}
-
-	public String getLocationLong() {
-		return locationLong;
-	}
-
-	public void setLocationLong() {
+	public static final int NBCHAR_LASTNAME = 30;
+	public static final int NBCHAR_FIRSTNAME = 30;
+	public static final int NBCHAR_LOCATION = 3;
+	public static final int NBCHAR_NAMEPROMO = 12;
+	public static final int STUDENT_SIZE_OCTET = NBCHAR_LASTNAME*2 + NBCHAR_FIRSTNAME*2 + NBCHAR_LOCATION*2 + NBCHAR_NAMEPROMO*2 + 4;
+	
+	public Student(String lastName, String firstName, String location, String namePromo, int yearPromo) {
+		super();
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.location = location;
+		this.namePromo = namePromo;
+		this.yearPromo = yearPromo;
 		
-		this.locationLong = this.getStudentLocationLong();
 	}
-
-	public String getNamePromoLong() {
-		return namePromoLong;
-	}
-
-	public void setNamePromoLong() {
-		this.namePromoLong = this.getStudentNamePromoLong();
-	}
-
-	private String lastNameLong;
-	private String	firstNameLong;
-	private String locationLong;
-	private String	namePromoLong;
-
-
 	public Student() {
 		super();
 	}
-
-	public Student(String lastName, String firstName, String location, String namePromo, int yearPromo, LinkedList<Student> listDoublons) {
-		super();
-		this.lastName = lastName;
-		this.firstName = firstName;
-		this.location = location;
-		this.namePromo = namePromo;
-		this.yearPromo = yearPromo;
-		if (listDoublons != null) {
-			this.listDoublon = listDoublons;
-		}
-	}
-
+	
 	public String getLastName() {
 		return lastName;
 	}
-
+	
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
+	
 	public String getFirstName() {
 		return firstName;
 	}
-
+	
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
+	
 	public String getLocation() {
 		return location;
 	}
-
+	
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	
 	public String getNamePromo() {
 		return namePromo;
 	}
-
+	
 	public void setNamePromo(String namePromo) {
 		this.namePromo = namePromo;
 	}
-
+	
 	public int getYearPromo() {
 		return yearPromo;
 	}
-
+	
 	public void setYearPromo(int yearPromo) {
 		this.yearPromo = yearPromo;
 	}
-
-
-
+	
 	@Override
 	public String toString() {
 		return "Student [lastName=" + lastName + ", firstName=" + firstName + ", location=" + location + ", namePromo="
-				+ namePromo + ", yearPromo=" + yearPromo + ", listDoublon=" + listDoublon + "]";
+				+ namePromo + ", yearPromo=" + yearPromo + "]";
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(firstName, lastName, location, namePromo, yearPromo);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -136,53 +93,41 @@ public class Student implements Comparable<Student> {
 				&& Objects.equals(location, other.location) && Objects.equals(namePromo, other.namePromo)
 				&& yearPromo == other.yearPromo;
 	}
-
+	
 	@Override
 	public int compareTo(Student o) {
 		return this.getLastName().compareTo(o.getLastName());
 	}
 
-	public String getStudentLastNameLong() {
-		String studentLastNameLong = this.getLastName();
-		for (int i = studentLastNameLong.length(); i < NBCHAR_LASTNAME; i++) {
-			studentLastNameLong += " ";
+	public String getLastNameLong() {
+		String lastNameLong = this.lastName;
+		for (int i = this.lastName.length(); i < NBCHAR_LASTNAME; i++) {
+			lastNameLong += " ";
 		}
-		return studentLastNameLong;
-
-	}
-
-	public String getStudentFirstNameLong() {
-		String studentFIrstNameLong = this.getFirstName();
-		for (int i = studentFIrstNameLong.length(); i < NBCHAR_FIRSTNAME; i++) {
-			studentFIrstNameLong += " ";
+			return lastNameLong;
 		}
-		return studentFIrstNameLong;
-
+		
+	public String getFirstNameLong() {
+		String firstNameLong = this.firstName;
+		for (int i = this.firstName.length(); i < NBCHAR_FIRSTNAME; i++) {
+			firstNameLong += " "; 
+			}
+		return firstNameLong;
 	}
-
-	public String getStudentLocationLong() {
-		String studentLocationLong = this.getLocation();
-		for (int i = studentLocationLong.length(); i < NBCHAR_LOCATION; i++) {
-			studentLocationLong += " ";
+		
+	public String getLocationLong() {
+		String locationLong = this.location;
+		for (int i = this.location.length(); i < NBCHAR_LOCATION; i++) {
+			locationLong += " ";
 		}
-		return studentLocationLong;
-
+		return locationLong;
 	}
-
-	public String getStudentNamePromoLong() {
-		String studentNamePromoLong = this.getNamePromo();
-		for (int i = studentNamePromoLong.length(); i < NBCHAR_NAMEPROMO; i++) {
-			studentNamePromoLong += " ";
+	public String getNamePromoLong() {
+		String namePromoLong = this.namePromo;
+		for (int i = this.namePromo.length(); i < NBCHAR_NAMEPROMO; i++) {
+			namePromoLong += " ";
 		}
-		return studentNamePromoLong;
-
+		return namePromoLong;
 	}
 
-	public LinkedList<Student> getListDoublon() {
-		return listDoublon;
-	}
-
-	public void setListDoublon(LinkedList<Student> listDoublon) {
-		this.listDoublon = listDoublon;
-	}
 }

@@ -2,7 +2,6 @@ package fr.isika.cda27.projet1.Annuaire_Isika;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
@@ -23,8 +22,8 @@ public class App extends Application {
 
 	public void init() {
 		// initialisation données
-//		ReaderInitialText reader = new ReaderInitialText();
-//		reader.readInitialText("src/main/resources/STAGIAIRES.don");
+		ReaderInitialText reader = new ReaderInitialText();
+		reader.readInitialText("src/main/resources/testAnnuaireText.txt");
 
 	}
 
