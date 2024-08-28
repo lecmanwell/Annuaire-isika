@@ -33,13 +33,13 @@ public class HomeView extends BorderPane {
 //		header.setPrefWidth(screenWidth);
 		header.setAlignment(Pos.CENTER);
 
-		GridPane pageCentrale = new GridPane();
+		GridPane body = new GridPane();
 //		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
 //		pageCentrale.setPrefHeight(screenHeight * 0.6);
 //		pageCentrale.setMinHeight(screenHeight * 0.6);
 //		pageCentrale.setMaxHeight(screenHeight * 0.6);
 //		pageCentrale.setPrefWidth(screenWidth);
-		pageCentrale.setAlignment(Pos.CENTER);
+		body.setAlignment(Pos.CENTER);
 		String imagePath = "/Images/imageCardHome.jpg";
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 //		studentCard.setPadding(new Insets(100));
@@ -47,10 +47,10 @@ public class HomeView extends BorderPane {
 //		homeText.setPadding(new Insets(100));
 		homeText.setAlignment(Pos.CENTER);
 		
-		pageCentrale.add(studentCard, 1, 1);
-		pageCentrale.add(homeText, 2, 1);
-		pageCentrale.setPadding(new Insets(0, 50, 0, 50));
-		pageCentrale.setHgap(20);
+		body.add(studentCard, 1, 1);
+		body.add(homeText, 2, 1);
+		body.setPadding(new Insets(0, 50, 0, 50));
+		body.setHgap(20);
 
 //		HBox.setHgrow(studentCard, Priority.ALWAYS);
 //		HBox.setHgrow(homeText, Priority.ALWAYS);
@@ -59,17 +59,12 @@ public class HomeView extends BorderPane {
 
 		Footer footer = new Footer(scene);
 		footer.homeViewFooter();
-//		footer.setPrefHeight(screenHeight * 0.2);
-//		footer.setMinHeight(screenHeight * 0.2);
-//		footer.setMaxHeight(screenHeight * 0.2);
-//		footer.setPrefWidth(screenWidth);
-		footer.setAlignment(Pos.CENTER);
 
-//		footer.getChildren().add(footer.homeViewFooter());
-
+		
 		this.setTop(header);
 		this.setBottom(footer);
-		this.setCenter(pageCentrale);
+		this.setCenter(body);
+		
 		scene.setRoot(this);
 		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}

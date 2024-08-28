@@ -41,7 +41,8 @@ public class AddStudentView extends BorderPane {
 //		footer.setMaxHeight(screenHeight * 0.2);
 //		footer.setPrefWidth(screenWidth);
 		footer.adminViewFooterAddStudent();
-		footer.setAlignment(Pos.CENTER);
+		
+//		footer.setAlignment(Pos.CENTER);
 //		footer.getChildren().add(footer.homeViewFooter());
 
 		//set gridpane structure
