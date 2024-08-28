@@ -21,8 +21,8 @@ public class App extends Application {
 
 	public void init() {
 		// initialisation données
-//		ReaderInitialText reader = new ReaderInitialText();
-//		reader.readInitialText("src/main/resources/STAGIAIRES.don");
+		ReaderInitialText reader = new ReaderInitialText();
+		reader.readInitialText("src/main/resources/testAnnuaireText.txt");
 
 	}
 

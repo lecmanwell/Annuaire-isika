@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ReaderInitialText {
 
@@ -17,9 +18,9 @@ public class ReaderInitialText {
 		
 		readTextFileAndAddStudent(filePath);
 
-		Directory.getInstance().toString();
+//		Directory.getInstance().toString();
 		BinaryWriterReader br = new BinaryWriterReader();
-		br.readBinary();
+		br.readBinaryTest();
 	}
 	
 	public void readTextFileAndAddStudent(String filePath) {
@@ -65,7 +66,7 @@ public class ReaderInitialText {
 				default:
 					indice = 0;
 					dir.addStudentToList(student);
-					dir.addStudentToTree(student);
+//					dir.addStudentToTree(student);
 					student = new Student();
 					break;
 				}
@@ -75,6 +76,12 @@ public class ReaderInitialText {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
+		ArrayList<Student> arrayListTest = dir.getStudentsList();
+		for (Student stud : arrayListTest) {
+			dir.addStudentToTree(stud);
+		}
+		
 	}
+	
 
 }

@@ -75,6 +75,8 @@ public class MultiSearch extends GridPane {
 		this.setHgap(70);
 		this.setVgap(20);
 		this.setPadding(new Insets(0, 0, 20, 5));
+		this.setHeight(100);
+		this.setMaxHeight(120);
 //		return this;
 	}
 
