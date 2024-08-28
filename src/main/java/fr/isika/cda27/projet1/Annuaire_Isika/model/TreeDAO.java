@@ -3,17 +3,28 @@ package fr.isika.cda27.projet1.Annuaire_Isika.model;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
 public class TreeDAO {
 
 	private RandomAccessFile raf;
+	public static ArrayList<Student> students;
 
 	public TreeDAO() {
 		try {
+			ArrayList<Student> students = new ArrayList<Student>();
 			raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static ArrayList<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(ArrayList<Student> students) {
+		this.students = students;
 	}
 
 	public void addToTree(Student student) {

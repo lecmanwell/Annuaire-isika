@@ -2,6 +2,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Node {
@@ -206,40 +207,67 @@ public class Node {
 //
 //	}
 
+	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> stud) throws IOException {
+		raf.seek((int) indice * NODE_SIZE_OCTET);
+		Node displayStudent = new Node();
+		displayStudent = readNode(raf, indice);
+		
+		if (displayStudent.leftChild != -1) {
+			displayFromBinary(raf, displayStudent.leftChild, stud);
+		}
+		
+		stud.add(displayStudent.stud);
+		if (displayStudent.next != -1 ) {
+			displayFromBinary(raf, displayStudent.next, stud);
+		}
+		
+		if (displayStudent.rightChild != -1) {
+			displayFromBinary(raf, displayStudent.rightChild, stud);
+		}
+		return stud;
+
+	}
+
 	public Student readBinaryTest() {
 
 		try {
 			RandomAccessFile rafR = new RandomAccessFile("src/main/resources/binarySave.bin", "r");
 
-			while (rafR.getFilePointer() != rafR.length()) {
-
-				String studentLastName = "";
-				for (int i = 0; i < 30; i++) {
-					studentLastName += rafR.readChar();
-				}
-
-				String studentFirstName = "";
-				for (int i = 0; i < 30; i++) {
-					studentFirstName += rafR.readChar();
-				}
-				String studentLocation = "";
-				for (int i = 0; i < 3; i++) {
-					studentLocation += rafR.readChar();
-				}
-
-				String studentNamePromo = "";
-				for (int i = 0; i < 12; i++) {
-					studentNamePromo += rafR.readChar();
-				}
-
-				int studentYearPromo = rafR.readInt();
-				int leftChild = rafR.readInt();
-				int rightChild = rafR.readInt();
-				int doublon = rafR.readInt();
-				
-				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
-						+ " " + studentNamePromo + " " + studentYearPromo + " " + leftChild + " " + rightChild + " " + doublon);
+			ArrayList<Student> stud = new ArrayList<Student>();
+			displayFromBinary(rafR, 0, stud);
+			for (Student student : stud) {
+				System.out.println(" ArrayList depuis le fichier binaire" + student);
 			}
+
+//			while (rafR.getFilePointer() != rafR.length()) {
+//
+//				String studentLastName = "";
+//				for (int i = 0; i < 30; i++) {
+//					studentLastName += rafR.readChar();
+//				}
+//
+//				String studentFirstName = "";
+//				for (int i = 0; i < 30; i++) {
+//					studentFirstName += rafR.readChar();
+//				}
+//				String studentLocation = "";
+//				for (int i = 0; i < 3; i++) {
+//					studentLocation += rafR.readChar();
+//				}
+//
+//				String studentNamePromo = "";
+//				for (int i = 0; i < 12; i++) {
+//					studentNamePromo += rafR.readChar();
+//				}
+//
+//				int studentYearPromo = rafR.readInt();
+//				int leftChild = rafR.readInt();
+//				int rightChild = rafR.readInt();
+//				int doublon = rafR.readInt();
+//				
+//				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
+//						+ " " + studentNamePromo + " " + studentYearPromo + " " + leftChild + " " + rightChild + " " + doublon);
+//			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
