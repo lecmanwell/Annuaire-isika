@@ -41,6 +41,7 @@ public class HeaderViewGeneral extends HBox {
 	
 	//constructor for the header view (general)
 	public HeaderViewGeneral(Scene scene) {
+		super();
 		this.scene = scene;
 		
 		double stripeHeightRatio = 0.015;

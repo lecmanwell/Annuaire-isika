@@ -16,8 +16,6 @@ import javafx.scene.text.FontWeight;
 
 public class StudentCard extends GridPane {
 	
-
-
 	String imagePath;
 	String lastNameString;
 	String firstNameString;
@@ -26,16 +24,21 @@ public class StudentCard extends GridPane {
 	String localisationString;
 
 	
-	public StudentCard() {
+	public StudentCard(String name, String firstname,  String formation, String anneeFormation, String localisation) {
 		super();
+		this.lastNameString = name;
+		this.firstNameString = firstname;
+		this.formationString = formation;
+		this.anneeFormationString = anneeFormation;
+		this.localisationString = localisation;
 		this.setAlignment(Pos.CENTER);
 		Label lastNameLabel = new Label(this.lastNameString);
-		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 18));
+		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 12));
 		
 
 		// Parametrage du label Prénom
 		Label firstNameLabel = new Label(this.firstNameString);
-		firstNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 18));
+		firstNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 12));
 		
 		HBox nameHBox = new HBox();
 		nameHBox.getChildren().addAll(lastNameLabel, firstNameLabel);
@@ -52,16 +55,20 @@ public class StudentCard extends GridPane {
 		Label localisationLabel = new Label("Département : " + this.localisationString);
 		localisationLabel.setFont(Font.font("Futura", 14));
 		
-		this.add(nameHBox, 1, 3);
-		this.add(formationLabel, 1, 4);
-		this.add(anneeFormationLabel, 2, 4);
-		this.add(localisationLabel, 1, 5);
-		this.setVgap(30);
+		
+		this.add(nameHBox, 0, 0);
+		this.add(formationLabel, 0, 1);
+		this.add(anneeFormationLabel, 0,2);
+		this.add(localisationLabel, 0, 3);
+		
+		this.setStyle("-fx-border-color: black;-fx-border-radius: 10px;-fx-background-radius: 10px; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
+//		this.setVgap(5);
 	}
 
 	public StudentCard(String imagePath, String lastNameString, String firstNameString, String formationString,
 			String anneeFormationString, String localisationString) {
 		super();
+		System.out.println("toudom");
 		this.imagePath = imagePath;
 		this.lastNameString = lastNameString;
 		this.firstNameString = firstNameString;
@@ -162,4 +169,11 @@ public class StudentCard extends GridPane {
 		this.localisationString = localisationString;
 	}
 
+
+	@Override
+	public String toString() {
+		return "StudentCard [lastNameString=" + lastNameString + ", firstNameString=" + firstNameString
+				+ ", formationString=" + formationString + ", anneeFormationString=" + anneeFormationString
+				+ ", localisationString=" + localisationString + "]";
+	}
 }
