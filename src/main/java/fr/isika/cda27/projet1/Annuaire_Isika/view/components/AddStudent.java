@@ -27,22 +27,22 @@ public class AddStudent extends VBox {
 
 		// GridPane imput components
 		GridPane gridAddStudent = new GridPane();
-		
+
 		Label lastNameLbl = new Label("Nom");
 		TextField lastNameTextField = new TextField();
-		
+
 		Label firstNameLbl = new Label("Prénom");
 		TextField firstNameTextField = new TextField();
-		
+
 		Label promoLbl = new Label("Formation");
 		TextField promoTextField = new TextField();
-		
+
 		Label yearPromoLbl = new Label("Anne Formation");
 		TextField yearPromoTextField = new TextField();
-		
+
 		Label locationLbl = new Label("Localisation");
 		TextField locationTextField = new TextField();
-		
+
 		// adding the components to the grid
 		gridAddStudent.add(lastNameLbl, 0, 0);
 		gridAddStudent.add(lastNameTextField, 1, 0);
@@ -54,18 +54,21 @@ public class AddStudent extends VBox {
 		gridAddStudent.add(yearPromoTextField, 1, 3);
 		gridAddStudent.add(locationLbl, 0, 4);
 		gridAddStudent.add(locationTextField, 1, 4);
-		
-		//gap between components and center position
+
+		// gap between components and center position
 		gridAddStudent.setHgap(15);
 		gridAddStudent.setVgap(15);
 		gridAddStudent.setAlignment(Pos.CENTER);
-		
-		
-		
+
+//		
 		// HBox for the button
 		HBox btnValiderBox = new HBox();
-		Button btnValider = new Button("Valider");
-		btnValider.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		CustomButton btnValider = new CustomButton(null);
+		
+//		btnValider.addStudentFromFields(lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInput);
+        btnValider.addStudentFromFields(lastNameTextField, firstNameTextField, locationTextField, promoTextField, yearPromoTextField);
+
+		
 		btnValiderBox.getChildren().add(btnValider);
 		btnValiderBox.setAlignment(Pos.BOTTOM_RIGHT);
 
