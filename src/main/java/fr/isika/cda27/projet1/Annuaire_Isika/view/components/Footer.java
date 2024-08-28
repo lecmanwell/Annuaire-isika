@@ -43,33 +43,34 @@ public class Footer extends HBox {
 		
 	}
 
-	public HBox homeViewFooter() {
-		HBox homeViewFooter = new HBox();
-		homeViewFooter.getChildren().addAll(logoQuestion, btnGenerateDocumentation,btnadminAccess);
-		return homeViewFooter;
+	public void homeViewFooter() {
+//		HBox homeViewFooter = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation,btnadminAccess);
+//		return homeViewFooter;
 	}
-	public HBox homeLoginAdmin() {
-		HBox homeLoginAdmin = new HBox();
-		homeLoginAdmin.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnback);
-		return homeLoginAdmin;
-	}
-
-	public HBox userViewFooter() {
-		HBox userViewFooter = new HBox();
-		userViewFooter.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnprintPfd);
-		return userViewFooter;
+	
+	public void homeLoginAdmin() {
+//		HBox homeLoginAdmin = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnback);
+//		return homeLoginAdmin;
 	}
 
-	public HBox adminViewFooterList() {
-		HBox adminViewFooterList = new HBox();
-		adminViewFooterList.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnprintPfd);
-		return adminViewFooterList;
+	public void userViewFooter() {
+//		HBox userViewFooter = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, btnprintPfd);
+//		return userViewFooter;
 	}
 
-	public HBox admninViewFooterAddStudent() {
-		HBox admninViewFooterAddStudent = new HBox();
-		admninViewFooterAddStudent.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnback);
-		return admninViewFooterAddStudent;
+	public void adminViewFooterList() {
+//		HBox adminViewFooterList = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnprintPfd);
+//		return adminViewFooterList;
+	}
+
+	public void admninViewFooterAddStudent() {
+//		HBox admninViewFooterAddStudent = new HBox();
+		this.getChildren().addAll(logoQuestion, btnGenerateDocumentation, logoLogOut, btnback);
+//		return admninViewFooterAddStudent;
 	}
 
 }

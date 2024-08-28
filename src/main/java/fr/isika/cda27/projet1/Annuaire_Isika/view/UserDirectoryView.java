@@ -14,7 +14,6 @@ public class UserDirectoryView extends VBox {
 	
 	public UserDirectoryView(Scene scene) {
 		super();
-		System.out.println(scene);
 		this.scene = scene;
 		
 		HeaderViewGeneral header = new HeaderViewGeneral(scene);
@@ -23,14 +22,16 @@ public class UserDirectoryView extends VBox {
 		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
 		
 		MultiSearch multiSearch = new MultiSearch(scene);
-		multiSearch.getChildren().add(multiSearch.multiSearchUser());
+		multiSearch.multiSearchUser();
+//		multiSearch.getChildren().add(multiSearch.multiSearchUser());
 		
 		UserDirectory userDirectory = new UserDirectory(scene);
 		
 		pageCentrale.getChildren().addAll(multiSearch, userDirectory);
 		
 		Footer footer = new Footer(scene);
-		footer.getChildren().add(footer.userViewFooter());
+//		footer.getChildren().addAll(footer.userViewFooter());
+		footer.userViewFooter();
 		this.getChildren().addAll(header, pageCentrale, footer);
 		scene.setRoot(this);
 		

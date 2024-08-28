@@ -43,7 +43,7 @@ public class HomeViewAdmin extends BorderPane {
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 
 		// admin login box
-		LoginAdmin loginAdmin = new LoginAdmin();
+		LoginAdmin loginAdmin = new LoginAdmin(scene);
 		loginAdmin.setAlignment(Pos.CENTER);
 
 		pageCentrale.add(studentCard, 1, 1);
@@ -57,8 +57,10 @@ public class HomeViewAdmin extends BorderPane {
 //	        footer.setMaxHeight(screenHeight * 0.2);
 //	        footer.setPrefWidth(screenWidth);
 		footer.setAlignment(Pos.CENTER);
+		
 
-		footer.getChildren().add(footer.homeViewFooter());
+//		footer.getChildren().add(footer.homeViewFooter());
+		footer.homeViewFooter();
 
 		this.setTop(header);
 		this.setBottom(footer);

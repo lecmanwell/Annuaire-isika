@@ -81,10 +81,12 @@ public class HeaderViewGeneral extends HBox {
 		btnHome.homeButtonTitle();
 		
 		//Button Directory
-		btnDirectory = new CustomButton(scene).goToDirectoryTitle();
+		btnDirectory = new CustomButton(scene);
+		btnDirectory.goToDirectoryTitle();
 		
 		//Buton Admin
-		btnAdmin = new CustomButton(scene).adminAccessTitle();
+		btnAdmin = new CustomButton(scene);
+		btnAdmin.adminAccessTitle();
 		
 		
 		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);

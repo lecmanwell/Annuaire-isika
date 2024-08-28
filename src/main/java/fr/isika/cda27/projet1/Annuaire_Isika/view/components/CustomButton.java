@@ -71,26 +71,25 @@ public class CustomButton extends Button {
 
 	}
 
-	public CustomButton modifyStudent() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Modifier");
-		return btn;
+	public void modifyStudent() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Modifier");
+//		return btn;
 
 	}
 
-	public CustomButton deleteStudent() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Supprimer");
-		return btn;
+	public void deleteStudent() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Supprimer");
+//		return btn;
 
 	}
 
-	public CustomButton addStudent() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Ajouter un stagiaire");
-		btn.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
+	public void addStudent() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Ajouter un stagiaire");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
 
-		return btn;
 
 	}
 
@@ -124,40 +123,39 @@ public class CustomButton extends Button {
 		});
 	}
 
-	public CustomButton goToDirectoryTitle() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Annuaire");
-		btn.setStyle("-fx-background-color: transparent;");
-		btn.setFont(Font.font("Futura", FontWeight.BOLD, 14));
+	public void goToDirectoryTitle() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Annuaire");
+		this.setStyle("-fx-background-color: transparent;");
+		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
 
 		// hover effect
-		btn.setOnMouseEntered((e) -> {
-			btn.setTextFill(Color.web("#adb6b6"));
+		this.setOnMouseEntered((e) -> {
+			this.setTextFill(Color.web("#adb6b6"));
 		});
-		btn.setOnMouseExited((e) -> {
-			btn.setTextFill(Color.web("#333333"));
+		this.setOnMouseExited((e) -> {
+			this.setTextFill(Color.web("#333333"));
 		});
 
 		// go to page action
-		btn.setOnAction((e) -> {
+		this.setOnAction((e) -> {
 			scene.setRoot(new UserDirectoryView(scene));
 		});
-		return btn;
 
 	}
 
-	public CustomButton adminAccessTitle() {
-		CustomButton btn = new CustomButton(this.scene);
-		btn.setText("Administrateur");
-		btn.setStyle("-fx-background-color: transparent;");
-		btn.setFont(Font.font("Futura", FontWeight.BOLD, 14));
+	public void adminAccessTitle() {
+//		CustomButton btn = new CustomButton(this.scene);
+		this.setText("Administrateur");
+		this.setStyle("-fx-background-color: transparent;");
+		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
 
 		// hover effect
-		btn.setOnMouseEntered((e) -> {
-			btn.setTextFill(Color.web("#adb6b6"));
+		this.setOnMouseEntered((e) -> {
+			this.setTextFill(Color.web("#adb6b6"));
 		});
-		btn.setOnMouseExited((e) -> {
-			btn.setTextFill(Color.web("#333333"));
+		this.setOnMouseExited((e) -> {
+			this.setTextFill(Color.web("#333333"));
 		});
 
 		// go to page action. IT NEEDS TO BE FILLED WITH THE SCENE OF THE
@@ -165,7 +163,6 @@ public class CustomButton extends Button {
 //		btn.setOnAction((e) -> {
 //			scene.setRoot(new ----------(scene));
 //		});
-		return btn;
 
 	}
 

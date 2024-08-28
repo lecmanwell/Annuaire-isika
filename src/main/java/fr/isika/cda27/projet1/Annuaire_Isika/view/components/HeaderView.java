@@ -12,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class HeaderView extends HBox {
+	
+	Scene scene;
 
 	HBox headerBox = new HBox();
 
@@ -32,6 +34,8 @@ public class HeaderView extends HBox {
 	
 
 	public HeaderView(Scene scene) {
+		super();
+		this.scene = scene;
 		
 		// ratios for the components of the header
 		double stripeHeightRatio = 0.015;

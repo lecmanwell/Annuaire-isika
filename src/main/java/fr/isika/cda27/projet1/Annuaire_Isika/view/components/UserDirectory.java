@@ -18,7 +18,7 @@ public class UserDirectory extends GridPane {
 		
 		super();
 		this.scene = scene;
-		GridPane userDirectory = new GridPane();
+//		GridPane userDirectory = new GridPane();
 		this.setPadding(new Insets(20));
 		this.setAlignment(Pos.CENTER);
 		this.setPadding(new Insets(20));

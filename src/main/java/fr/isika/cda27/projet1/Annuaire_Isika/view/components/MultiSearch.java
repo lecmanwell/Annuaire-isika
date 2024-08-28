@@ -10,13 +10,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 public class MultiSearch extends GridPane {
+	
+	Scene scene;
 
 	public MultiSearch(Scene scene) {
 		super();
+		this.scene=scene;
 
 	}
-		public GridPane multiSearchUser() {
-		GridPane multisearchUser = new GridPane();
+	
+	public void multiSearchUser() {
+//		GridPane multisearchUser = new GridPane();
 		
 		TextField lastNameField = new TextField("Nom");
 		lastNameField.setPrefHeight(200);
@@ -63,19 +67,19 @@ public class MultiSearch extends GridPane {
 		departementChoiceBox.setPrefHeight(200);
 		departementChoiceBox.setPrefWidth(300);
 		
-		multisearchUser.add(lastNameField, 0, 0);
-		multisearchUser.add(firstNameField, 0, 1);
-		multisearchUser.add(formationComboBox, 1, 0);
-		multisearchUser.add(anneeFormationComboBox, 1, 1);
-		multisearchUser.add(departementChoiceBox, 2, 1);
-		multisearchUser.setHgap(70);
-		multisearchUser.setVgap(20);
-		multisearchUser.setPadding(new Insets(0, 0, 20, 5));
-		return multisearchUser;
+		this.add(lastNameField, 0, 0);
+		this.add(firstNameField, 0, 1);
+		this.add(formationComboBox, 1, 0);
+		this.add(anneeFormationComboBox, 1, 1);
+		this.add(departementChoiceBox, 2, 1);
+		this.setHgap(70);
+		this.setVgap(20);
+		this.setPadding(new Insets(0, 0, 20, 5));
+//		return this;
 	}
 
-		public GridPane multiSearchAdmin() {
-			GridPane multisearchAdmin = new GridPane();
+	public void multiSearchAdmin() {
+//			GridPane multisearchAdmin = new GridPane();
 			
 			TextField lastNameField = new TextField("Nom");
 			lastNameField.setPrefHeight(200);
@@ -127,15 +131,15 @@ public class MultiSearch extends GridPane {
 			btn.setPrefHeight(200);
 			btn.setPrefWidth(300);
 			
-			multisearchAdmin.add(lastNameField, 0, 0);
-			multisearchAdmin.add(firstNameField, 0, 1);
-			multisearchAdmin.add(formationComboBox, 1, 0);
-			multisearchAdmin.add(anneeFormationComboBox, 1, 1);
-			multisearchAdmin.add(departementChoiceBox, 2, 1);
-			multisearchAdmin.add(btn,  3, 1);
-			multisearchAdmin.setHgap(70);
-			multisearchAdmin.setVgap(20);
-			multisearchAdmin.setPadding(new Insets(0, 0, 20, 5));
-			return multisearchAdmin;
+			this.add(lastNameField, 0, 0);
+			this.add(firstNameField, 0, 1);
+			this.add(formationComboBox, 1, 0);
+			this.add(anneeFormationComboBox, 1, 1);
+			this.add(departementChoiceBox, 2, 1);
+			this.add(btn,  3, 1);
+			this.setHgap(70);
+			this.setVgap(20);
+			this.setPadding(new Insets(0, 0, 20, 5));
+//			return this;
 	}
 }

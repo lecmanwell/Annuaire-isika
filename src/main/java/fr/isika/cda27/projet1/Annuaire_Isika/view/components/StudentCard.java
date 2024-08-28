@@ -2,6 +2,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,8 +15,15 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class StudentCard extends GridPane {
+	
+
 
 	String imagePath;
+	String lastNameString;
+	String firstNameString;
+	String formationString;
+	String anneeFormationString;
+	String localisationString;
 
 	
 	public StudentCard() {
@@ -153,11 +161,5 @@ public class StudentCard extends GridPane {
 	public void setLocalisationString(String localisationString) {
 		this.localisationString = localisationString;
 	}
-
-	String lastNameString;
-	String firstNameString;
-	String formationString;
-	String anneeFormationString;
-	String localisationString;
 
 }

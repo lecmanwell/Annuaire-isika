@@ -43,12 +43,13 @@ public class AddStudentView extends VBox {
 
 		// footer
 		Footer footer = new Footer(scene);
-		footer.setPrefHeight(screenHeight * 0.2);
-		footer.setMinHeight(screenHeight * 0.2);
-		footer.setMaxHeight(screenHeight * 0.2);
-		footer.setPrefWidth(screenWidth);
-		footer.setAlignment(Pos.CENTER);
-		footer.getChildren().add(footer.homeViewFooter());
+//		footer.setPrefHeight(screenHeight * 0.2);
+//		footer.setMinHeight(screenHeight * 0.2);
+//		footer.setMaxHeight(screenHeight * 0.2);
+//		footer.setPrefWidth(screenWidth);
+//		footer.setAlignment(Pos.CENTER);
+		footer.homeViewFooter();
+//		footer.getChildren().add(footer.homeViewFooter());
 		
 		this.getChildren().addAll(header, body, footer);
 		scene.setRoot(this);
