@@ -289,27 +289,33 @@ public class Node {
 //
 //	}
 
-	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> stud)
-			throws IOException {
+
+	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> students) throws IOException {
+		System.out.println("begin display from tree");
+
 		raf.seek((int) indice * NODE_SIZE_OCTET);
 		Node displayStudent = new Node();
 		displayStudent = readNode(raf, indice);
 
 		if (displayStudent.leftChild != -1) {
-			displayFromBinary(raf, displayStudent.leftChild, stud);
+			displayFromBinary(raf, displayStudent.leftChild, students);
 		}
 
-		stud.add(displayStudent.stud);
-		if (displayStudent.next != -1) {
-			displayFromBinary(raf, displayStudent.next, stud);
+		
+		
+		students.add(displayStudent.stud);
+		if (displayStudent.next != -1 ) {
+			displayFromBinary(raf, displayStudent.next, students);
+
 		}
 
 		if (displayStudent.rightChild != -1) {
-			displayFromBinary(raf, displayStudent.rightChild, stud);
+			displayFromBinary(raf, displayStudent.rightChild, students);
 		}
-		return stud;
+		return students;
 
 	}
+
 
 	public Student readBinaryTest() {
 
@@ -360,4 +366,5 @@ public class Node {
 		}
 		return null;
 	}
+
 }
