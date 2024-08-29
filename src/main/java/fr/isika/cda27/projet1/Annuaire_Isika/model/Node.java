@@ -207,72 +207,27 @@ public class Node {
 //
 //	}
 
-	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> stud) throws IOException {
+	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> students) throws IOException {
+		System.out.println("begin display from tree");
 		raf.seek((int) indice * NODE_SIZE_OCTET);
 		Node displayStudent = new Node();
 		displayStudent = readNode(raf, indice);
 		
 		if (displayStudent.leftChild != -1) {
-			displayFromBinary(raf, displayStudent.leftChild, stud);
+			displayFromBinary(raf, displayStudent.leftChild, students);
 		}
 		
-		stud.add(displayStudent.stud);
+		
+		students.add(displayStudent.stud);
 		if (displayStudent.next != -1 ) {
-			displayFromBinary(raf, displayStudent.next, stud);
+			displayFromBinary(raf, displayStudent.next, students);
 		}
 		
 		if (displayStudent.rightChild != -1) {
-			displayFromBinary(raf, displayStudent.rightChild, stud);
+			displayFromBinary(raf, displayStudent.rightChild, students);
 		}
-		return stud;
+		return students;
 
 	}
 
-	public Student readBinaryTest() {
-
-		try {
-			RandomAccessFile rafR = new RandomAccessFile("src/main/resources/binarySave.bin", "r");
-
-			ArrayList<Student> stud = new ArrayList<Student>();
-			displayFromBinary(rafR, 0, stud);
-			for (Student student : stud) {
-				System.out.println(" ArrayList depuis le fichier binaire" + student);
-			}
-
-//			while (rafR.getFilePointer() != rafR.length()) {
-//
-//				String studentLastName = "";
-//				for (int i = 0; i < 30; i++) {
-//					studentLastName += rafR.readChar();
-//				}
-//
-//				String studentFirstName = "";
-//				for (int i = 0; i < 30; i++) {
-//					studentFirstName += rafR.readChar();
-//				}
-//				String studentLocation = "";
-//				for (int i = 0; i < 3; i++) {
-//					studentLocation += rafR.readChar();
-//				}
-//
-//				String studentNamePromo = "";
-//				for (int i = 0; i < 12; i++) {
-//					studentNamePromo += rafR.readChar();
-//				}
-//
-//				int studentYearPromo = rafR.readInt();
-//				int leftChild = rafR.readInt();
-//				int rightChild = rafR.readInt();
-//				int doublon = rafR.readInt();
-//				
-//				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
-//						+ " " + studentNamePromo + " " + studentYearPromo + " " + leftChild + " " + rightChild + " " + doublon);
-//			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-
-		}
-		return null;
-	}
 }

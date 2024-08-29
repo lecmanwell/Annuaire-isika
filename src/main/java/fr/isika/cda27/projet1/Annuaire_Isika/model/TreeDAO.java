@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class TreeDAO {
 
-	private RandomAccessFile raf;
+	private static RandomAccessFile raf;
 	public static ArrayList<Student> students;
 
 	public TreeDAO() {
 		try {
-			ArrayList<Student> students = new ArrayList<Student>();
+			students = new ArrayList<Student>();
 			raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -23,8 +23,8 @@ public class TreeDAO {
 		return students;
 	}
 
-	public void setStudents(ArrayList<Student> students) {
-		this.students = students;
+	public static RandomAccessFile getRaf() {
+		return raf;
 	}
 
 	public void addToTree(Student student) {
@@ -47,4 +47,20 @@ public class TreeDAO {
 			e.printStackTrace();
 		}
 	}
+
+	public static void setAlphaList() {
+		System.out.println("setalphalist");
+		Node node = new Node();
+		try {
+			node.displayFromBinary(raf, 0, students);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void setList() {
+
+	}
+
 }
