@@ -54,7 +54,7 @@ public class StudentListAdmin extends TableView {
 
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("yearPromo"));
-		colYear.setCellFactory(ChoiceBoxTableCell.<Student>forTableColumn(colYear));
+//		colYear.setCellFactory(ChoiceBoxTableCell.<Student>forTableColumn(colYear));
 
 		colYear.setPrefWidth(138);
 		
