@@ -58,9 +58,4 @@ public class TreeDAO {
 			e.printStackTrace();
 		}
 	}
-
-	public void setList() {
-
-	}
-
 }
