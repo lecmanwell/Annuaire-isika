@@ -1,7 +1,11 @@
 package fr.isika.cda27.projet1.Annuaire_Isika;
 
+import java.io.IOException;
+
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
@@ -22,7 +26,12 @@ public class App extends Application {
 	public void init() {
 		// initialisation données
 		ReaderInitialText reader = new ReaderInitialText();
-		reader.readInitialText("src/main/resources/testAnnuaireText.txt");
+		try {
+			reader.readInitialText("src/main/resources/testAnnuaireText.txt");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		TreeDAO.setAlphaList();
 
 	}
 
@@ -32,9 +41,10 @@ public class App extends Application {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), 800, 600);
 
+		AdminDirectoryView adminDirectoryView = new AdminDirectoryView(scene);
 //		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
 //		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
-		HomeView home = new HomeView(scene);
+//		HomeView home = new HomeView(scene);
 //		AddStudentView addStudent = new AddStudentView(scene);
 
 		stage.setScene(scene);

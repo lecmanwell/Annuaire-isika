@@ -42,7 +42,7 @@ public class Footer extends BorderPane {
 		
 		btnAdminAccess.adminAccess();
 		btngoToDirectory.goToDirectory();
-		btnPrintPfd.printDirectory();
+//		btnPrintPfd.printDirectory();
 		btnLogOut.logOut();
 		btnGoHome.back();
 		
@@ -58,6 +58,7 @@ public class Footer extends BorderPane {
 
 	//Footer for HomeView
 	public void homeViewFooter() {
+		
 		this.setLeft(iconAndDocBox);
 		this.setRight(btnAdminAccess);
 	}

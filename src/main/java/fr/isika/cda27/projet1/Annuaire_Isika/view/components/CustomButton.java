@@ -1,11 +1,27 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Year;
+import java.util.ArrayList;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,8 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class CustomButton extends Button {
-
+public class CustomButton extends Button {  
 	Scene scene;
 
 	public CustomButton(Scene scene) {
@@ -27,8 +42,21 @@ public class CustomButton extends Button {
 	public void generateDocumentation() {
 		this.setText("Comment fonction cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		this.setOnAction((e) -> {
-			System.out.println("clicked");
+		this.setOnAction((event) -> {
+			File pdfFile = new File("src/main/resources/javafx-generate-pdf.pdf");
+			if (pdfFile.exists()) {
+				if (Desktop.isDesktopSupported()) {
+					try {
+						Desktop.getDesktop().open(pdfFile);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				} else {
+					System.out.println("AWT Desktop n'est pas supporté sur ce système");
+				}
+			} else {
+				System.out.println("Le fichier PDF n'existe pas");
+			}
 		});
 
 	}
@@ -61,11 +89,16 @@ public class CustomButton extends Button {
 	}
 
 	// Button to print to PDF the students
-	public void printDirectory() {
+	public void printDirectory(ArrayList<Student> studentsArray) {
 		this.setText("Imprimer le PDF");
-		this.setStyle(
-				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
+		this.setOnAction((e) -> {
+			this.generatePDF();
+		});
+		
+		
+
 	}
 
 	// Button to disconnect from the admin role
@@ -73,6 +106,15 @@ public class CustomButton extends Button {
 		this.setText("Deconnexion");
 		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
+		this.setOnMouseEntered((e) -> {
+			this.setStyle("-fx-background-color: #db754a; -fx-text-fill: white; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
+		});
+		this.setOnMouseExited((e) -> {
+			this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
+		});
+		this.setOnAction((e) -> {
+			scene.setRoot(new HomeView(this.scene));
+		});
 	}
 
 	public void modifyStudent() {
@@ -165,5 +207,46 @@ public class CustomButton extends Button {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 	}
+	
+	
+	private void generatePDF() {
+        String dest = "stagiaires.pdf";
+        
+        try {
+            PdfWriter writer = new PdfWriter(dest);
+            PdfDocument pdf = new PdfDocument(writer);
+            Document document = new Document(pdf);
+
+            // Ajouter un titre
+            document.add(new Paragraph("Liste des Stagiaires"));
+
+            // Créer une table PDF
+            // Ajouter les en-têtes des colonnes
+            Table table = new Table(5);
+            table.addCell(new Cell().add(new Paragraph("Nom")));
+            table.addCell(new Cell().add(new Paragraph("Prénom")));
+            table.addCell(new Cell().add(new Paragraph("Département")));            
+            table.addCell(new Cell().add(new Paragraph("Formation")));
+            table.addCell(new Cell().add(new Paragraph("Année de Formation")));
+            ArrayList<Student> studentsArray = new ArrayList<Student>();
+//            		studentsArray = (ArrayList<Student>) this.getItems();
+            		
+            for (Student stagiaire : studentsArray) {
+                table.addCell(new Cell().add(new Paragraph(stagiaire.getLastName())));
+                table.addCell(new Cell().add(new Paragraph(stagiaire.getFirstName())));
+                table.addCell(new Cell().add(new Paragraph(stagiaire.getLocation())));
+                table.addCell(new Cell().add(new Paragraph(stagiaire.getNamePromo())));
+                table.addCell(new Cell().add(new Paragraph(String.valueOf(stagiaire.getYearPromo()))));
+            }
+
+            // Ajouter la table au document
+            document.add(table);
+
+            document.close();
+            System.out.println("PDF généré avec succès !");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        }
 
 }
