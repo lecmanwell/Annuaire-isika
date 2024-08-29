@@ -10,8 +10,9 @@ import java.util.LinkedList;
 public class Node {
 
 	private Student stud;
-	private int parent, leftChild, rightChild, next;
+	private int leftChild, rightChild, next;
 	public final static int NODE_SIZE_OCTET = Student.STUDENT_SIZE_OCTET + 3 * 4;
+	private ArrayList<Student> doublonFromIndice = new ArrayList<Student>();
 
 	public Node(Student stud) {
 		this.stud = stud;
@@ -150,24 +151,86 @@ public class Node {
 //			e.printStackTrace();
 //		}
 //	}
-public long findStudentPosition(RandomAccessFile raf, String nameSearch) throws IOException {
-	
-	String nameRead = "";
-	
-		while (raf.getFilePointer() < raf.length()) {
-			long indice = raf.getFilePointer();
-		for (int i = 0; i < Student.NBCHAR_LASTNAME;i++) {
-			nameRead += raf.readChar();
-		}
-			if (nameSearch.equalsIgnoreCase(nameRead.trim())) {
-				System.out.println("L'indice est : " + indice);
-			} else {
-				raf.seek(indice + NODE_SIZE_OCTET);
+	public int findStudentPosition(RandomAccessFile raf, String nameSearch) {
+
+		long indice = -1;
+		try {
+			raf.seek(0);
+			while (raf.getFilePointer() < raf.length()) {
+				String nameRead = "";
+				for (int i = 0; i < Student.NBCHAR_LASTNAME; i++) {
+					nameRead += raf.readChar();
+				}
+				System.out.println(nameRead);
+
+				if (nameRead.trim().equalsIgnoreCase(nameSearch.trim()) ) {
+					raf.seek(raf.getFilePointer() - Student.NBCHAR_LASTNAME * 2);
+					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
+					System.out.println("------L'indice du nom : " + nameSearch + " est à l'indice " + indice);
+					break;
+				} else {
+					raf.seek(raf.getFilePointer() + (NODE_SIZE_OCTET - Student.NBCHAR_LASTNAME * 2));
+					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
+//					nameRead = "";
+//					System.out.println(NODE_SIZE_OCTET);
+//					System.out.println(Student.STUDENT_SIZE_OCTET);
+					System.out.println("La pointeur est à l'endroit" + raf.getFilePointer());
+				}
+
 			}
-		}		
-		return -1;
+			System.out.println("Le nom n'existe pas dans l'annuaire");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return (int) indice;
+
+	}
 	
-}
+	
+	public ArrayList<Student> getListDoublonFromIndice (RandomAccessFile raf, int indice, ArrayList<Student> doublontest) {
+		
+		
+		try {
+			raf.seek((indice + 1) * NODE_SIZE_OCTET - 4);
+			int next = raf.readInt();
+			if (next != -1) {
+				// s'il a un next
+				//on le rentre dans la list
+				Node currentDoublon = new Node();
+				currentDoublon = readNode(raf, indice);
+				doublontest.add(currentDoublon.stud);
+				//on recupere le next
+				indice = currentDoublon.next;
+				// recursive à partir du next
+				getListDoublonFromIndice(raf, indice, doublontest);
+			} 
+			else { 
+				// le dernier doublon feuille (pas de next)
+				// on regarde la taille du tableau, si elle est pas null on l'ajoute au table
+				if (doublontest.size() != 0) {
+					Node lastCurrentDoublon = new Node();
+					lastCurrentDoublon = readNode(raf, indice);
+					doublontest.add(lastCurrentDoublon.stud);
+				}
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+		for (Student toto : doublontest) {
+			System.out.println("--------" + toto.toString());
+			
+		}
+		
+		return doublontest;
+		
+		
+	}
+
 //	public double findStudentPosition(Student student, RandomAccessFile raf) {
 //		double indice = -1;
 //		try {
@@ -226,26 +289,33 @@ public long findStudentPosition(RandomAccessFile raf, String nameSearch) throws 
 //
 //	}
 
-	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> stud) throws IOException {
+
+	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> students) throws IOException {
+		System.out.println("begin display from tree");
+
 		raf.seek((int) indice * NODE_SIZE_OCTET);
 		Node displayStudent = new Node();
 		displayStudent = readNode(raf, indice);
-		
+
 		if (displayStudent.leftChild != -1) {
-			displayFromBinary(raf, displayStudent.leftChild, stud);
+			displayFromBinary(raf, displayStudent.leftChild, students);
 		}
+
 		
-		stud.add(displayStudent.stud);
+		
+		students.add(displayStudent.stud);
 		if (displayStudent.next != -1 ) {
-			displayFromBinary(raf, displayStudent.next, stud);
+			displayFromBinary(raf, displayStudent.next, students);
+
 		}
-		
+
 		if (displayStudent.rightChild != -1) {
-			displayFromBinary(raf, displayStudent.rightChild, stud);
+			displayFromBinary(raf, displayStudent.rightChild, students);
 		}
-		return stud;
+		return students;
 
 	}
+
 
 	public Student readBinaryTest() {
 
@@ -257,8 +327,8 @@ public long findStudentPosition(RandomAccessFile raf, String nameSearch) throws 
 			for (Student student : stud) {
 				System.out.println(" ArrayList depuis le fichier binaire" + student);
 			}
-			findStudentPosition(rafR, "LACROIX");
-			
+//			findStudentPosition(rafR, "Lecocq");
+			getListDoublonFromIndice(rafR, 6 , stud);
 
 //			while (rafR.getFilePointer() != rafR.length()) {
 //
@@ -296,4 +366,5 @@ public long findStudentPosition(RandomAccessFile raf, String nameSearch) throws 
 		}
 		return null;
 	}
+
 }

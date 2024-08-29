@@ -4,11 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 public class ReaderInitialText {
 
-	public void readInitialText(String filePath) {
+	public void readInitialText(String filePath) throws IOException {
 
 		//test presence de fichiers txt ds le fichiers ressource
 		//si pas demander de telelcharger un fochier txt avec les students
@@ -17,11 +18,12 @@ public class ReaderInitialText {
 		//afficher alert si on affiche ce fichier
 		
 		readTextFileAndAddStudent(filePath);
-
+		
+			
 //		Directory.getInstance().toString();
 	}
 	
-	public void readTextFileAndAddStudent(String filePath) {
+	public void readTextFileAndAddStudent(String filePath) throws IOException {
 		
 		Directory dir = new Directory();
 		
@@ -74,15 +76,9 @@ public class ReaderInitialText {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
-//		ArrayList<Student> arrayListTest = dir.getStudentsList();
-//		for (Student stud : arrayListTest) {
-//			dir.addStudentToTree(stud);
-//		}
+		
 		//Lecture fichier binaire pour nos tests
-		Node test = new Node();
-		test.readBinaryTest();
+//		Node test = new Node();
+//		test.readBinaryTest();
 	}
-	
-	
-
 }
