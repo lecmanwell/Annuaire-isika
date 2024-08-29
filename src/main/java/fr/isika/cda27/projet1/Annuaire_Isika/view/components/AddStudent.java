@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,7 +19,7 @@ public class AddStudent extends VBox {
 	public AddStudent() {
 		super();
 
-		VBox addStudentVBox = new VBox(15);
+		VBox addStudentVBox = new VBox(10);
 //		addStudentVBox.setPadding(new Insets(300));
 
 		// title
@@ -60,17 +61,100 @@ public class AddStudent extends VBox {
 		gridAddStudent.setVgap(15);
 		gridAddStudent.setAlignment(Pos.CENTER);
 
-//		
 		// HBox for the button
-		HBox btnValiderBox = new HBox();
+		BorderPane btnValiderBox = new BorderPane();
+		Label studentAdded = new Label();
+		studentAdded.setFont(Font.font("Futura", 1));
 		CustomButton btnValider = new CustomButton(null);
-		
-//		btnValider.addStudentFromFields(lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInput);
-        btnValider.addStudentFromFields(lastNameTextField, firstNameTextField, locationTextField, promoTextField, yearPromoTextField);
+		btnValider.setOnAction((e) -> {
+			String lastNameInput = lastNameTextField.getText().trim().toUpperCase();
+			String firstNameInput = firstNameTextField.getText().trim();
+			String locationInput = locationTextField.getText().trim();
+			String namePromoInput = promoTextField.getText().trim();
+			String yearPromoInput = yearPromoTextField.getText().trim();
+			int yearPromoInt;
 
-		
-		btnValiderBox.getChildren().add(btnValider);
-		btnValiderBox.setAlignment(Pos.BOTTOM_RIGHT);
+			// if a field is empty, print an error
+			if (lastNameInput.isEmpty() || firstNameInput.isEmpty() || locationInput.isEmpty()
+					|| namePromoInput.isEmpty() || yearPromoInput.isEmpty()) {
+				System.err.println("something is empty");
+				return;
+			}
+
+			// if first or last name is not valid name, print an error
+			if (!(Validator.isValidName(lastNameInput, firstNameInput))) {
+				System.err.println("name can only contain: a-z, spaces, -, '");
+				return;
+			}
+
+			// if promo name is not valid, print error
+			if (!(Validator.isValidPromo(namePromoInput))) {
+				System.err.println("name promo can only contain: a-z, 0-9, spaces");
+				return;
+			}
+
+			// if special characters, print an error
+			if (Validator.containsSpecialCharacters(locationInput, yearPromoInput)) {
+				System.err.println("there cant be any special characters in year or location");
+				return;
+			}
+
+			// if year is not a valid year, print an error
+			if (Validator.isYear(yearPromoInput)) {
+				yearPromoInt = Integer.parseInt(yearPromoInput);
+			} else {
+				System.err.println("is not a valid year");
+				return;
+			}
+
+			// if last name <=30 chars
+			if (!(Validator.maxLength(lastNameInput, 30))) {
+				System.err.println("last name cant be longer than 30 chars");
+				return;
+			}
+
+			// if first name <=30 chars
+			if (!(Validator.maxLength(firstNameInput, 30))) {
+				System.err.println("first name cant be longer than 30 chars");
+				return;
+			}
+
+			// if location <= 3 chars
+			if (!(Validator.maxLength(locationInput, 3))) {
+				System.err.println("location cant be longer than 3 chars");
+				return;
+			}
+
+			// if namepromo <= chars
+			if (!(Validator.maxLength(namePromoInput, 12))) {
+				System.err.println("name promo cannot be longer than 12 chars");
+				return;
+			}
+
+			System.out.println("Nom:" + lastNameInput);
+			System.out.println("Prenom :" + firstNameInput);
+			System.out.println("Localisation :" + locationInput);
+			System.out.println("Promo :" + namePromoInput);
+			System.out.println("Anne Promo :" + yearPromoInput);
+
+			// resetting the fields
+			lastNameTextField.clear();
+			firstNameTextField.clear();
+			locationTextField.clear();
+			promoTextField.clear();
+			yearPromoTextField.clear();
+			studentAdded.setText("Nouveau stagiaire enregistré." + "\n" + lastNameInput + " " + firstNameInput + ", "
+					+ locationInput + "\nFormation : " + namePromoInput + " - " + yearPromoInput);
+
+		});
+
+//		btnValider.addStudentFromFields(lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInput);
+		btnValider.addStudentFromFields(lastNameTextField, firstNameTextField, locationTextField, promoTextField,
+				yearPromoTextField);
+
+//		btnValiderBox.getChildren().addAll(studentAdded, btnValider);
+		btnValiderBox.setLeft(studentAdded);
+		btnValiderBox.setCenter(btnValider);
 
 		// adding all elements as children
 		addStudentVBox.getChildren().addAll(titleLbl, gridAddStudent, btnValiderBox);
