@@ -71,10 +71,8 @@ public class CustomButton extends Button {
 	// Button to disconnect from the admin role
 	public void logOut() {
 		this.setText("Deconnexion");
-		this.setStyle(
-				"-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
+		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
-
 	}
 
 	public void modifyStudent() {
@@ -166,89 +164,6 @@ public class CustomButton extends Button {
 			TextField locationTextField, TextField promoTextField, TextField yearPromoTextField) {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
-
-		this.setOnAction((e) -> {
-			String lastNameInput = lastNameTextField.getText().trim().toUpperCase();
-			String firstNameInput = firstNameTextField.getText().trim();
-			String locationInput = locationTextField.getText().trim();
-			String namePromoInput = promoTextField.getText().trim();
-			String yearPromoInput = yearPromoTextField.getText().trim();
-			int yearPromoInt;
-
-			// if a field is empty, print an error
-			if (lastNameInput.isEmpty() || firstNameInput.isEmpty() || locationInput.isEmpty()
-					|| namePromoInput.isEmpty() || yearPromoInput.isEmpty()) {
-				System.err.println("something is empty");
-				return;
-			}
-
-			//if first or last name is not valid name, print an error
-			if (!(Validator.isValidName(lastNameInput, firstNameInput))) {
-				System.err.println("name can only contain: a-z, spaces, -, '");
-				return;
-			}
-			
-			
-			//if promo name is not valid, print error
-			if (!(Validator.isValidPromo(namePromoInput))) {
-				System.err.println("name promo can only contain: a-z, 0-9, spaces");
-				return;
-			}
-
-			// if special characters, print an error
-			if (Validator.containsSpecialCharacters(locationInput, yearPromoInput)) {
-				System.err.println("there cant be any special characters in year or location");
-				return;
-			}
-
-			// if year is not a valid year, print an error
-			if (Validator.isYear(yearPromoInput)) {
-				yearPromoInt = Integer.parseInt(yearPromoInput);
-			} else {
-				System.err.println("is not a valid year");
-				return;
-			}
-			
-
-			// if last name <=30 chars
-			if (!(Validator.maxLength(lastNameInput, 30))) {
-				System.err.println("last name cant be longer than 30 chars");
-				return;
-			}
-
-			// if first name <=30 chars
-			if (!(Validator.maxLength(firstNameInput, 30))) {
-				System.err.println("first name cant be longer than 30 chars");
-				return;
-			}
-
-			// if location <= 3 chars
-			if (!(Validator.maxLength(locationInput, 3))) {
-				System.err.println("location cant be longer than 3 chars");
-				return;
-			}
-
-			// if namepromo <= chars
-			if (!(Validator.maxLength(namePromoInput, 12))) {
-				System.err.println("name promo cannot be longer than 12 chars");
-				return;
-			}
-
-			System.out.println("Nom:" + lastNameInput);
-			System.out.println("Prenom :" + firstNameInput);
-			System.out.println("Localisation :" + locationInput);
-			System.out.println("Promo :" + namePromoInput);
-			System.out.println("Anne Promo :" + yearPromoInput);
-
-			// resetting the fields
-			lastNameTextField.clear();
-			firstNameTextField.clear();
-			locationTextField.clear();
-			promoTextField.clear();
-			yearPromoTextField.clear();
-
-		});
-
 	}
 
 }
