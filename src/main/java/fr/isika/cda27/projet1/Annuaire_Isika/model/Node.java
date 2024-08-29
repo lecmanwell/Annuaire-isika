@@ -1,6 +1,8 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -148,6 +150,42 @@ public class Node {
 //			e.printStackTrace();
 //		}
 //	}
+	public int findStudentPosition(RandomAccessFile raf, String nameSearch) {
+
+		long indice = -1;
+		try {
+			raf.seek(0);
+			while (raf.getFilePointer() < raf.length()) {
+				String nameRead = "";
+				for (int i = 0; i < Student.NBCHAR_LASTNAME; i++) {
+					nameRead += raf.readChar();
+				}
+				System.out.println(nameRead);
+
+				if (nameRead.trim().equalsIgnoreCase(nameSearch.trim())) {
+					raf.seek(raf.getFilePointer() - Student.NBCHAR_LASTNAME * 2);
+					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
+					System.out.println("------L'indice du nom : " + nameSearch + " est à l'indice " + indice);
+					break;
+				} else {
+					raf.seek(raf.getFilePointer() + (NODE_SIZE_OCTET - Student.NBCHAR_LASTNAME * 2));
+					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
+//					nameRead = "";
+//					System.out.println(NODE_SIZE_OCTET);
+//					System.out.println(Student.STUDENT_SIZE_OCTET);
+					System.out.println("La pointeur est à l'endroit" + raf.getFilePointer());
+				}
+
+			}
+			System.out.println("Le nom n'existe pas dans l'annuaire");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return (int) indice;
+
+	}
 
 //	public double findStudentPosition(Student student, RandomAccessFile raf) {
 //		double indice = -1;
@@ -207,27 +245,81 @@ public class Node {
 //
 //	}
 
+
 	public ArrayList<Student> displayFromBinary(RandomAccessFile raf, int indice, ArrayList<Student> students) throws IOException {
 		System.out.println("begin display from tree");
+
 		raf.seek((int) indice * NODE_SIZE_OCTET);
 		Node displayStudent = new Node();
 		displayStudent = readNode(raf, indice);
-		
+
 		if (displayStudent.leftChild != -1) {
 			displayFromBinary(raf, displayStudent.leftChild, students);
 		}
+
 		
 		
 		students.add(displayStudent.stud);
 		if (displayStudent.next != -1 ) {
 			displayFromBinary(raf, displayStudent.next, students);
+
 		}
-		
+
 		if (displayStudent.rightChild != -1) {
 			displayFromBinary(raf, displayStudent.rightChild, students);
 		}
 		return students;
 
+	}
+
+
+	public Student readBinaryTest() {
+
+		try {
+			RandomAccessFile rafR = new RandomAccessFile("src/main/resources/binarySave.bin", "r");
+
+			ArrayList<Student> stud = new ArrayList<Student>();
+			displayFromBinary(rafR, 0, stud);
+			for (Student student : stud) {
+				System.out.println(" ArrayList depuis le fichier binaire" + student);
+			}
+			findStudentPosition(rafR, "Lecocq");
+
+//			while (rafR.getFilePointer() != rafR.length()) {
+//
+//				String studentLastName = "";
+//				for (int i = 0; i < 30; i++) {
+//					studentLastName += rafR.readChar();
+//				}
+//
+//				String studentFirstName = "";
+//				for (int i = 0; i < 30; i++) {
+//					studentFirstName += rafR.readChar();
+//				}
+//				String studentLocation = "";
+//				for (int i = 0; i < 3; i++) {
+//					studentLocation += rafR.readChar();
+//				}
+//
+//				String studentNamePromo = "";
+//				for (int i = 0; i < 12; i++) {
+//					studentNamePromo += rafR.readChar();
+//				}
+//
+//				int studentYearPromo = rafR.readInt();
+//				int leftChild = rafR.readInt();
+//				int rightChild = rafR.readInt();
+//				int doublon = rafR.readInt();
+//				
+//				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
+//						+ " " + studentNamePromo + " " + studentYearPromo + " " + leftChild + " " + rightChild + " " + doublon);
+//			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+
+		}
+		return null;
 	}
 
 }
