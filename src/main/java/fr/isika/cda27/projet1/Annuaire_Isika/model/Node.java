@@ -150,42 +150,42 @@ public class Node {
 //			e.printStackTrace();
 //		}
 //	}
-	public long findStudentPosition(RandomAccessFile raf, String nameSearch)  {
+	public int findStudentPosition(RandomAccessFile raf, String nameSearch) {
 
-		long indice = 0;
+		long indice = -1;
 		try {
-			raf.seek(indice);
-			String nameRead = "";
+			raf.seek(0);
 			while (raf.getFilePointer() < raf.length()) {
-				for (int i = 0; i < Student.NBCHAR_LASTNAME ; i++) {
+				String nameRead = "";
+				for (int i = 0; i < Student.NBCHAR_LASTNAME; i++) {
 					nameRead += raf.readChar();
 				}
 				System.out.println(nameRead);
-				
+
 				if (nameRead.trim().equalsIgnoreCase(nameSearch.trim())) {
-				raf.seek(raf.getFilePointer() - Student.NBCHAR_LASTNAME * 2);
-				indice = raf.getFilePointer() / NODE_SIZE_OCTET;
-				return indice;
-				} else {
-					raf.seek(raf.getFilePointer() + (NODE_SIZE_OCTET- Student.NBCHAR_LASTNAME  * 2));
+					raf.seek(raf.getFilePointer() - Student.NBCHAR_LASTNAME * 2);
 					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
-					System.out.println(NODE_SIZE_OCTET);
-					System.out.println(Student.STUDENT_SIZE_OCTET);
+					System.out.println("------L'indice du nom : " + nameSearch + " est à l'indice " + indice);
+					break;
+				} else {
+					raf.seek(raf.getFilePointer() + (NODE_SIZE_OCTET - Student.NBCHAR_LASTNAME * 2));
+					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
+//					nameRead = "";
+//					System.out.println(NODE_SIZE_OCTET);
+//					System.out.println(Student.STUDENT_SIZE_OCTET);
 					System.out.println("La pointeur est à l'endroit" + raf.getFilePointer());
 				}
-				
-				
-				
-				System.out.println("------L'indice du nom : " + nameSearch + " est à l'indice " + indice);
+
 			}
+			System.out.println("Le nom n'existe pas dans l'annuaire");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return indice;
-		
-	}
 
+		return (int) indice;
+
+	}
 
 //	public double findStudentPosition(Student student, RandomAccessFile raf) {
 //		double indice = -1;
@@ -277,7 +277,7 @@ public class Node {
 			for (Student student : stud) {
 				System.out.println(" ArrayList depuis le fichier binaire" + student);
 			}
-			findStudentPosition(rafR, "CHONE");
+			findStudentPosition(rafR, "Lecocq");
 
 //			while (rafR.getFilePointer() != rafR.length()) {
 //
