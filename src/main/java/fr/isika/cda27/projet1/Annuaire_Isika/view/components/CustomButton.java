@@ -1,5 +1,8 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import java.time.LocalDate;
+import java.time.Year;
+
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
@@ -165,63 +168,84 @@ public class CustomButton extends Button {
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 
 		this.setOnAction((e) -> {
-			String lastNameInput = lastNameTextField.getText().trim();
+			String lastNameInput = lastNameTextField.getText().trim().toUpperCase();
 			String firstNameInput = firstNameTextField.getText().trim();
 			String locationInput = locationTextField.getText().trim();
 			String namePromoInput = promoTextField.getText().trim();
 			String yearPromoInput = yearPromoTextField.getText().trim();
+			int yearPromoInt;
 
 			// if a field is empty, print an error
 			if (lastNameInput.isEmpty() || firstNameInput.isEmpty() || locationInput.isEmpty()
 					|| namePromoInput.isEmpty() || yearPromoInput.isEmpty()) {
-				System.out.println("something is empty");
+				System.err.println("something is empty");
+				return;
+			}
+
+			//if first or last name is not valid name, print an error
+			if (!(Validator.isValidName(lastNameInput, firstNameInput))) {
+				System.err.println("name can only contain: a-z, spaces, -, '");
 				return;
 			}
 			
-			//if there are spaces, print an error
-			if (Validator.containsSpace(lastNameInput,firstNameInput, locationInput, namePromoInput, yearPromoInput)) {
-				System.out.println("there cant be any spaces");
+			
+			//if promo name is not valid, print error
+			if (!(Validator.isValidPromo(namePromoInput))) {
+				System.err.println("name promo can only contain: a-z, 0-9, spaces");
+				return;
+			}
+
+			// if special characters, print an error
+			if (Validator.containsSpecialCharacters(locationInput, yearPromoInput)) {
+				System.err.println("there cant be any special characters in year or location");
+				return;
+			}
+
+			// if year is not a valid year, print an error
+			if (Validator.isYear(yearPromoInput)) {
+				yearPromoInt = Integer.parseInt(yearPromoInput);
+			} else {
+				System.err.println("is not a valid year");
+				return;
 			}
 			
-			if (Validator.containsNumbers(lastNameInput, firstNameInput)) {
-				System.out.println("there cannot be any numbers");
+
+			// if last name <=30 chars
+			if (!(Validator.maxLength(lastNameInput, 30))) {
+				System.err.println("last name cant be longer than 30 chars");
+				return;
 			}
-			
-			if (Validator.containsSpecialCharacters(lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInput)) {
-				System.out.println("there cannot be any special characters");
+
+			// if first name <=30 chars
+			if (!(Validator.maxLength(firstNameInput, 30))) {
+				System.err.println("first name cant be longer than 30 chars");
+				return;
 			}
-			
-			
-//			
-//			System.out.println("Nom:" + lastNameInput);
-//			System.out.println("Prenom :" + firstNameInput);
-//			System.out.println("Localisation :" + locationInput);
-//			System.out.println("Promo :" + namePromoInput);
-//			System.out.println("Anne Promo :" + yearPromoInput);
-			
-			//all of them
-			//filled, no spaces,no numbers(except for year), no special characters
-			
-			//last name and first name:
-			//max length : 30 each
-			
-			//location
-			//max length : 3
-            
-            //promo
-            //max length: 12
-            
-            //yearPromo
-            // only numbers, max length: 4,  parse Int to store it
-            
-//            // resetting the fields, put that in the case that everything is corrrect
-//            lastNameTextField.clear();
-//            firstNameTextField.clear();
-//            locationTextField.clear();
-//            promoTextField.clear();
-//            yearPromoTextField.clear();
-			
-			
+
+			// if location <= 3 chars
+			if (!(Validator.maxLength(locationInput, 3))) {
+				System.err.println("location cant be longer than 3 chars");
+				return;
+			}
+
+			// if namepromo <= chars
+			if (!(Validator.maxLength(namePromoInput, 12))) {
+				System.err.println("name promo cannot be longer than 12 chars");
+				return;
+			}
+
+			System.out.println("Nom:" + lastNameInput);
+			System.out.println("Prenom :" + firstNameInput);
+			System.out.println("Localisation :" + locationInput);
+			System.out.println("Promo :" + namePromoInput);
+			System.out.println("Anne Promo :" + yearPromoInput);
+
+			// resetting the fields
+			lastNameTextField.clear();
+			firstNameTextField.clear();
+			locationTextField.clear();
+			promoTextField.clear();
+			yearPromoTextField.clear();
 
 		});
 
