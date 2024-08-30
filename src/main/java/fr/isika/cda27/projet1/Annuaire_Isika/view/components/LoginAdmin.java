@@ -46,7 +46,7 @@ public class LoginAdmin extends VBox {
 		gridLoginBox.setVgap(15);
 		gridLoginBox.setAlignment(Pos.CENTER);
 		
-		//HBox for the button
+		//HBox for the button		
 		HBox btnAccessBox = new HBox();
 		Button btnAccess = new Button("Accéder à l'annuaire");
 		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");

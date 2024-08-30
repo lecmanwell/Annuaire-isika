@@ -52,7 +52,7 @@ public class HomeViewAdmin extends BorderPane {
 		pageCentrale.setHgap(20);
 
 		Footer footer = new Footer(scene);
-		footer.homeLoginAdmin();
+		footer.footerHomeViewAdmin();
 
 		this.setTop(header);
 		this.setBottom(footer);

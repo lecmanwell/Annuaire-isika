@@ -5,87 +5,150 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
+
+import java.util.ArrayList;
+
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 
 public class Footer extends BorderPane {
-
-	String imgPathLogoQuestion = "/Images/questionMark.png";
-	String imgPathLogOut = "/Images/logOut.png";
-	ImageView iconQuestion = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogoQuestion)));
-	ImageView iconLogOut = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogOut)));
+	
 	Scene scene;
-	Region region = new Region();
-	CustomButton btnGenerateDocumentation = new CustomButton(scene);
-	CustomButton btnAdminAccess = new CustomButton(scene);
-	CustomButton btngoToDirectory = new CustomButton(scene);
-	CustomButton btnPrintPfd = new CustomButton(scene);
-	CustomButton btnLogOut = new CustomButton(scene);
-	CustomButton btnGoHome = new CustomButton(scene);
-	HBox iconAndDocBox = new HBox();
-	HBox logOutAndPrintBtns = new HBox();
-
+	
+	CustomButton btnGenerateDocumentation;
+	CustomButton btnGoBackHome;
+	CustomButton btnAdminAccess;
+	CustomButton btnPrintPfd;
+	CustomButton btnLogOut;
+	StudentListAdmin tableView;
+	
+//	CustomButton btnGoToDirectory;
+	
+	HBox iconAndDocBox;
+	HBox logOutAndPrintBox;
+	
 	
 	public Footer(Scene scene) {
-		super();
 		this.scene = scene;
 		this.setPadding(new Insets(60, 60, 60, 60));
+	}
+	public Footer(Scene scene,  StudentListAdmin tableView) {
+		this.scene = scene;
+		this.setPadding(new Insets(60, 60, 60, 60));
+		this.tableView = tableView;
+	}
+	//method to create the left part of the footer: the icon and the buton for doc
+	
+	public HBox createIconAndDocBox() {
+	String imgPathIconQuestion = "/Images/questionMark.png";
+	ImageView iconQuestion = new ImageView(new Image(getClass().getResourceAsStream(imgPathIconQuestion)));
+	iconQuestion.setPreserveRatio(true);
+	iconQuestion.setFitWidth(20);
+	iconQuestion.setFitHeight(20);
+	
+	btnGenerateDocumentation = new CustomButton(scene);
+	btnGenerateDocumentation.generateDocumentation();
+	
+	iconAndDocBox = new HBox();
+	iconAndDocBox.getChildren().addAll(iconQuestion, btnGenerateDocumentation);
+	iconAndDocBox.setAlignment(Pos.CENTER);
+	
+	return iconAndDocBox;
+	}
+	
+	
+	//method to create the right box of footer: btnLogOut and printPdf
+	public HBox createLogOutAndPrintBox() {
 		
-		//Question mark Icon and Documentation button for the use of the app
-		iconQuestion.setPreserveRatio(true);
-		iconQuestion.setFitWidth(20);
-		iconQuestion.setFitHeight(20);
-		btnGenerateDocumentation.generateDocumentation();
-		iconAndDocBox.getChildren().addAll(iconQuestion, btnGenerateDocumentation);
-		iconAndDocBox.setAlignment(Pos.CENTER);
-		
-		btnAdminAccess.adminAccess();
-		btngoToDirectory.goToDirectory();
-//		btnPrintPfd.printDirectory();
+		btnLogOut = new CustomButton(scene);
 		btnLogOut.logOut();
-		btnGoHome.back();
 		
-		//style for log out icon
-		iconLogOut.setPreserveRatio(true);
-		iconLogOut.setFitWidth(20);
-		iconLogOut.setFitHeight(20);
+		btnPrintPfd = new CustomButton(scene);
+		btnPrintPfd.printDirectory(tableView);
 		
-		//
-		logOutAndPrintBtns.getChildren().addAll(btnLogOut,btnPrintPfd);
+		logOutAndPrintBox = new HBox();
+		logOutAndPrintBox.getChildren().addAll(btnLogOut,btnPrintPfd);
 		
-	}
-
-	//Footer for HomeView
-	public void homeViewFooter() {
-		
-		this.setLeft(iconAndDocBox);
-		this.setRight(btnAdminAccess);
+		return logOutAndPrintBox;
 	}
 	
-	//Footer for HomeViewAdmin
-	public void homeLoginAdmin() {
-		this.setLeft(iconAndDocBox);
-		this.setRight(btnGoHome);
-	}
-
-	//Footer for UserDirectoryView
-	public void userViewFooter() {
-		this.setLeft(iconAndDocBox);
-		this.setRight(btnPrintPfd);
-	}
-
 	
-	//Footer for AdminDirectoryView
-	public void adminViewFooterList() {
-		this.setLeft(iconAndDocBox);
-		this.setRight(logOutAndPrintBtns);
+	public void footerHomeView() {
+		BorderPane footerHomeView = new BorderPane();
+		
+		btnAdminAccess = new CustomButton(scene);
+		btnAdminAccess.adminAccess();
+		
+		HBox iconAndDocBox = createIconAndDocBox();
+		
+		footerHomeView.setLeft(iconAndDocBox);
+		footerHomeView.setRight(btnAdminAccess);
+		
+		this.getChildren().add(footerHomeView);
+		
 	}
-
-	//Footer for AddStudentView
-	public void adminViewFooterAddStudent() {
-		setLeft(iconAndDocBox);
-		setRight(btnLogOut);
+	
+	
+	public void footerHomeViewAdmin () {
+		BorderPane footerHomeViewAdmin = new BorderPane();
+		
+		btnGoBackHome = new CustomButton(scene);
+		btnGoBackHome.backToHome();
+		
+		HBox iconAndDocBox = createIconAndDocBox();
+		
+		footerHomeViewAdmin.setLeft(iconAndDocBox);
+		footerHomeViewAdmin.setRight(btnGoBackHome);
+		
+		this.getChildren().add(footerHomeViewAdmin);
 	}
-
+	
+	public void footerUserDirectoryView() {
+		BorderPane footerUserDirectoryView = new BorderPane();
+		
+		btnPrintPfd = new CustomButton(scene);
+		btnPrintPfd.printDirectory(this.tableView);
+		
+		HBox iconAndDocBox = createIconAndDocBox();
+		
+		footerUserDirectoryView.setLeft(iconAndDocBox);
+		footerUserDirectoryView.setRight(btnPrintPfd);
+		
+		this.getChildren().add(footerUserDirectoryView);
+		
+	}
+	
+	public void footerAddStudentView() {
+		BorderPane footerAddStudentView = new BorderPane();
+		
+		btnLogOut = new CustomButton(scene);
+		btnLogOut.logOut();
+		
+		HBox iconAndDocBox = createIconAndDocBox();
+		
+		footerAddStudentView.setLeft(iconAndDocBox);
+		footerAddStudentView.setRight(btnLogOut);
+		
+		this.getChildren().add(footerAddStudentView);
+		
+	}
+	
+	
+	
+	public void footerAdminDirectoryView() {
+		BorderPane footerAdminDirectoryView = new BorderPane();
+		
+		HBox iconAndDocBox = createIconAndDocBox();
+		footerAdminDirectoryView.setLeft(iconAndDocBox);
+		
+		HBox logOutAndPrintBox = createLogOutAndPrintBox();
+		this.getChildren().addAll(footerAdminDirectoryView,logOutAndPrintBox);
+		
+		footerAdminDirectoryView.setRight(logOutAndPrintBox);
+		
+		
+	}
+	
 }

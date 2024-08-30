@@ -38,8 +38,8 @@ private Scene scene;
 		
 		pageCentrale.getChildren().addAll(multiSearch, scrollpane);
 		
-		Footer footer = new Footer(scene);
-		footer.userViewFooter();
+		Footer footer = new Footer(scene, userDirectory);
+		footer.footerAdminDirectoryView();
 //		footer.adminViewFooterList();
 		
 		

@@ -58,7 +58,7 @@ public class HomeView extends BorderPane {
 //		homeText.setMaxWidth(Double.MAX_VALUE);
 
 		Footer footer = new Footer(scene);
-		footer.homeViewFooter();
+		footer.footerHomeView();
 
 		
 		this.setTop(header);

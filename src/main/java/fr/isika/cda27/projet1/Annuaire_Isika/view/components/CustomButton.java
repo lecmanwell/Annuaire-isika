@@ -67,9 +67,7 @@ public class CustomButton extends Button {
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 
 		this.setOnAction((e) -> {
-			System.out.println("clicked on adminAcces");
 			scene.setRoot(new HomeViewAdmin(this.scene));
-			System.out.println("check scene " + this.scene);
 
 		});
 
@@ -82,19 +80,23 @@ public class CustomButton extends Button {
 
 		//
 		this.setOnAction((e) -> {
-			System.out.println("click");
 			scene.setRoot(new UserDirectoryView(this.scene));
 		});
 
 	}
 
 	// Button to print to PDF the students
-	public void printDirectory(ArrayList<Student> studentsArray) {
+	public void printDirectory(StudentListAdmin tableView) {
 		this.setText("Imprimer le PDF");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
 		this.setOnAction((e) -> {
-			this.generatePDF();
+			try {
+				this.generatePDF(tableView);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		
 		
@@ -134,9 +136,14 @@ public class CustomButton extends Button {
 	}
 
 	// Button to go back to the HomeView from the HomeViewAdmin
-	public void back() {
+	public void backToHome() {
 		this.setText("Retour");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
+		
+		this.setOnAction((e) -> {
+			scene.setRoot(new HomeView(scene));
+		});
+		
 
 	}
 
@@ -194,11 +201,9 @@ public class CustomButton extends Button {
 			this.setTextFill(Color.web("#333333"));
 		});
 
-		// go to page action. IT NEEDS TO BE FILLED WITH THE SCENE OF THE
-		// ADMINDIRECTORYVIEW
-//		btn.setOnAction((e) -> {
-//			scene.setRoot(new ----------(scene));
-//		});
+		this.setOnAction((e) -> {
+			scene.setRoot(new HomeViewAdmin(scene));
+		});
 
 	}
 
@@ -209,7 +214,7 @@ public class CustomButton extends Button {
 	}
 	
 	
-	private void generatePDF() {
+	private void generatePDF(StudentListAdmin tableView) throws IOException {
         String dest = "stagiaires.pdf";
         
         try {
@@ -228,8 +233,7 @@ public class CustomButton extends Button {
             table.addCell(new Cell().add(new Paragraph("Département")));            
             table.addCell(new Cell().add(new Paragraph("Formation")));
             table.addCell(new Cell().add(new Paragraph("Année de Formation")));
-            ArrayList<Student> studentsArray = new ArrayList<Student>();
-//            		studentsArray = (ArrayList<Student>) this.getItems();
+            ArrayList<Student> studentsArray = new ArrayList<Student>(tableView.getItems());
             		
             for (Student stagiaire : studentsArray) {
                 table.addCell(new Cell().add(new Paragraph(stagiaire.getLastName())));
@@ -241,8 +245,10 @@ public class CustomButton extends Button {
 
             // Ajouter la table au document
             document.add(table);
-
             document.close();
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().open(new File(dest));
+            }
             System.out.println("PDF généré avec succès !");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
