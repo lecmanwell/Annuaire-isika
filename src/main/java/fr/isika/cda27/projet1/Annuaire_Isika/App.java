@@ -23,8 +23,12 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+	TreeDAO tree;
+	
 	public void init() {
 //		 initialisation données
+		
+		this.tree = new TreeDAO();
 		ReaderInitialText reader = new ReaderInitialText();
 		try {
 			reader.readInitialText("src/main/resources/testAnnuaireText.txt");
@@ -32,7 +36,6 @@ public class App extends Application {
 
 			e.printStackTrace();
 		}
-		TreeDAO.setAlphaList();
 
 
 
@@ -44,12 +47,11 @@ public class App extends Application {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), 800, 600);
 
-		AdminDirectoryView adminDirectoryView = new AdminDirectoryView(scene);
-//		UserDirectoryView userDirectoryView = new UserDirectoryView(scene);
+		AdminDirectoryView adminDirectoryView = new AdminDirectoryView(scene, this.tree);
+		UserDirectoryView userDirectoryView = new UserDirectoryView(scene, tree);
 //		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
 //		HomeView home = new HomeView(scene);
 //		AddStudentView addStudent = new AddStudentView(scene);
-		AdminDirectoryView adminListView = new AdminDirectoryView(scene);
 
 		stage.setScene(scene);
 		stage.show();

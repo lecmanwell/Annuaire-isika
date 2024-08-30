@@ -1,7 +1,9 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,16 +14,18 @@ import javafx.stage.Screen;
 
 public class AddStudentView extends BorderPane {
 	private Scene scene;
+	private TreeDAO tree;
 
-	public AddStudentView(Scene scene) {
+	public AddStudentView(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
 
 		double screenHeight = Screen.getPrimary().getBounds().getHeight();
 		double screenWidth = Screen.getPrimary().getBounds().getWidth();
 
 		// header
-		HeaderViewGeneral header = new HeaderViewGeneral(scene);
+		HeaderViewAdmin header = new HeaderViewAdmin(scene);
 		header.setPrefHeight(screenHeight * 0.15);
 		header.setMinHeight(screenHeight * 0.15);
 		header.setMaxHeight(screenHeight * 0.15);
@@ -30,7 +34,7 @@ public class AddStudentView extends BorderPane {
 
 		// body container
 		HBox body = new HBox();
-		AddStudent addStudent = new AddStudent();
+		AddStudent addStudent = new AddStudent(tree);
 		body.getChildren().add(addStudent);
 		body.setAlignment(Pos.CENTER);
 

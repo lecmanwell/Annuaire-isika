@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class TreeDAO {
 
 	private static RandomAccessFile raf;
-	public static ArrayList<Student> students;
+	public ArrayList<Student> students;
 
 	public TreeDAO() {
 		try {
@@ -19,7 +19,7 @@ public class TreeDAO {
 		}
 	}
 
-	public static ArrayList<Student> getStudents() {
+	public ArrayList<Student> getStudents() {
 		return students;
 	}
 
@@ -48,13 +48,13 @@ public class TreeDAO {
 		}
 	}
 
-	public static void setAlphaList() {
+	public ArrayList<Student> setAlphaList() {
 		Node node = new Node();
 		try {
-			node.displayFromBinary(raf, 0, students);
+			node.displayFromBinary(raf, 0, this.students);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return this.students;
 	}
 }

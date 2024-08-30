@@ -17,6 +17,8 @@ import com.itextpdf.layout.element.Table;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
@@ -32,10 +34,12 @@ import javafx.scene.text.FontWeight;
 
 public class CustomButton extends Button {  
 	Scene scene;
+	TreeDAO tree;
 
 	public CustomButton(Scene scene) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
 
 	}
 
@@ -80,7 +84,7 @@ public class CustomButton extends Button {
 
 		//
 		this.setOnAction((e) -> {
-			scene.setRoot(new UserDirectoryView(this.scene));
+			scene.setRoot(new UserDirectoryView(this.scene, tree));
 		});
 
 	}
@@ -124,10 +128,6 @@ public class CustomButton extends Button {
 
 	}
 
-	public void deleteStudent() {
-		this.setText("Supprimer");
-
-	}
 
 	public void addStudent() {
 		this.setText("Ajouter un stagiaire");
@@ -183,10 +183,12 @@ public class CustomButton extends Button {
 
 		// go to page action
 		this.setOnAction((e) -> {
-			scene.setRoot(new UserDirectoryView(scene));
+			scene.setRoot(new UserDirectoryView(scene, tree));
 		});
 
 	}
+	
+	
 
 	public void adminAccessTitle() {
 		this.setText("Administrateur");
@@ -254,5 +256,38 @@ public class CustomButton extends Button {
             e.printStackTrace();
         }
         }
+	
+	public void goToAddStudent() {
+		this.setText("Ajouter Stagiaire");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setPrefHeight(200);
+		this.setPrefWidth(315);
+		this.setPadding(new Insets(3, 20, 3, 20));
+		
+		this.setOnAction((e) -> {
+			scene.setRoot(new AddStudentView(scene, tree));
+		});
+
+	}
+	
+	public void goToDirectoryAdmin() {
+		this.setText("Annuaire");
+		this.setStyle("-fx-background-color: transparent;");
+		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
+
+		// hover effect
+		this.setOnMouseEntered((e) -> {
+			this.setTextFill(Color.web("#adb6b6"));
+		});
+		this.setOnMouseExited((e) -> {
+			this.setTextFill(Color.web("#333333"));
+		});
+
+		// go to page action
+		this.setOnAction((e) -> {
+			scene.setRoot(new AdminDirectoryView(scene, tree));
+		});
+
+	}
 
 }

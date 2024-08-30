@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 
 public class HomeText extends VBox {
 	
@@ -22,14 +23,15 @@ public class HomeText extends VBox {
 
 		Label titleLabel = new Label("Annuaire");
 		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 40));
-		titleLabel.setPadding(new Insets(0, 0, 50, 0));
+		titleLabel.setPadding(new Insets(0, 0, 20, 0));
 
 		Label descriptionLabel = new Label(
 				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez ISIKA.");
-		descriptionLabel.setFont(Font.font("Futura", 20));
+		descriptionLabel.setFont(Font.font("Futura", 17));
+		descriptionLabel.setTextAlignment(TextAlignment.CENTER);
 		descriptionLabel.setWrapText(true);
 		descriptionLabel.setMaxWidth(300);
-		descriptionLabel.setPadding(new Insets(0, 0, 50, 0));
+		descriptionLabel.setPadding(new Insets(0, 0, 20, 0));
 		descriptionLabel.setAlignment(Pos.CENTER);
 		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 

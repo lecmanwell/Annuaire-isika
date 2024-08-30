@@ -1,6 +1,8 @@
 
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -16,8 +18,11 @@ import javafx.scene.text.FontWeight;
 
 public class AddStudent extends VBox {
 
-	public AddStudent() {
+	TreeDAO tree;
+	
+	public AddStudent(TreeDAO tree) {
 		super();
+		this.tree = tree;
 
 		VBox addStudentVBox = new VBox(10);
 //		addStudentVBox.setPadding(new Insets(300));
@@ -130,7 +135,8 @@ public class AddStudent extends VBox {
 				System.err.println("name promo cannot be longer than 12 chars");
 				return;
 			}
-
+			Student student = new Student (lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInt);
+			tree.addToTree(student);
 			System.out.println("Nom:" + lastNameInput);
 			System.out.println("Prenom :" + firstNameInput);
 			System.out.println("Localisation :" + locationInput);

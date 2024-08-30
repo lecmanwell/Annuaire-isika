@@ -6,6 +6,7 @@ module fr.isika.cda27.projet1.Annuaire_Isika {
 	requires pdfa;
 	requires kernel;
 	requires layout;
+	requires io;
 	exports fr.isika.cda27.projet1.Annuaire_Isika.model;
     exports fr.isika.cda27.projet1.Annuaire_Isika;
 }

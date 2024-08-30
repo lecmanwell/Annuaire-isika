@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
@@ -13,10 +14,11 @@ import javafx.scene.layout.VBox;
 public class UserDirectoryView extends BorderPane {
 	
 	private Scene scene;
-	
-	public UserDirectoryView(Scene scene) {
+	TreeDAO tree;
+	public UserDirectoryView(Scene scene,TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
 		
 		HeaderViewGeneral header = new HeaderViewGeneral(scene);
 		

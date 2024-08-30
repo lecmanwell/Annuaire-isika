@@ -3,19 +3,14 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
-public class HeaderViewGeneral extends HBox {
+public class HeaderViewAdmin extends HBox {
 
 	HBox headerBoxGrl = new HBox();
 	Scene scene;
@@ -37,10 +32,7 @@ public class HeaderViewGeneral extends HBox {
 	Separator separatorL = new Separator();
 	Separator separatorR = new Separator();
 
-	
-	
-	//constructor for the header view (general)
-	public HeaderViewGeneral(Scene scene) {
+	public HeaderViewAdmin(Scene scene) {
 		super();
 		this.scene = scene;
 		
@@ -83,7 +75,7 @@ public class HeaderViewGeneral extends HBox {
 		
 		//Button Directory
 		btnDirectory = new CustomButton(scene);
-		btnDirectory.goToDirectoryTitle();
+		btnDirectory.goToDirectoryAdmin();
 		
 		//Buton Admin
 		btnAdmin = new CustomButton(scene);
@@ -97,5 +89,5 @@ public class HeaderViewGeneral extends HBox {
 		this.getChildren().addAll(imgViewLogo, stripesBox, menuBox);
 		
 	}
-	
+
 }
