@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.login.Admin;
@@ -21,10 +22,11 @@ import javafx.scene.text.Text;
 public class LoginAdmin extends VBox {
 	
 	Scene scene;
-
+	TreeDAO tree;
 	public LoginAdmin(Scene scene) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
 		
 		VBox loginVBox = new VBox(15);
 //		loginVBox.setPadding(new Insets(140));
@@ -58,7 +60,7 @@ public class LoginAdmin extends VBox {
 			
 //			go to Admin pages
 			if (Admin.validateAdmin(usernameInput, passwordInput)) {
-				scene.setRoot(new AdminDirectoryView(scene));
+				scene.setRoot(new AdminDirectoryView(scene, tree));
 			} else {
 				//display error or something to know the password username was wrong
 				titleLbl.setText("Identifiant ou mot de passe incorrect");

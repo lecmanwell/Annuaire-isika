@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
@@ -14,12 +15,14 @@ import javafx.scene.layout.VBox;
 public class AdminDirectoryView extends BorderPane {
 	
 private Scene scene;
+	TreeDAO tree;
 	
-	public AdminDirectoryView(Scene scene) {
+	public AdminDirectoryView(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
 		
-		HeaderViewGeneral header = new HeaderViewGeneral(scene);
+		HeaderViewAdmin header = new HeaderViewAdmin(scene);
 		
 		VBox pageCentrale = new VBox();
 		pageCentrale.setPadding(new Insets(20, 20, 0, 20));
@@ -28,7 +31,7 @@ private Scene scene;
 		multiSearch.multiSearchUser();
 //		multiSearch.getChildren().add(multiSearch.multiSearchUser());
 		
-		StudentListAdmin userDirectory = new StudentListAdmin(scene);
+		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
 		scrollpane.setContent(userDirectory);
