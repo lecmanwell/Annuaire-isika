@@ -19,68 +19,80 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
+/**
+ * Représente une vue de connexion pour les administrateurs. Cette classe
+ * affiche une interface utilisateur permettant à un administrateur de se
+ * connecter en entrant un identifiant et un mot de passe. Si les informations
+ * sont correctes, l'administrateur est redirigé vers la vue de l'annuaire
+ * administrateur. Sinon, un message d'erreur est affiché.
+ */
+
 public class LoginAdmin extends VBox {
-	
+
 	Scene scene;
 	TreeDAO tree;
+
+	/**
+	 * Construit une instance de LoginAdmin avec la scène spécifiée.
+	 *
+	 * @param scene La scène dans laquelle ce composant sera utilisé.
+	 */
 	public LoginAdmin(Scene scene) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-		
-		VBox loginVBox = new VBox(15);
-//		loginVBox.setPadding(new Insets(140));
-	
 
-		//title
+		VBox loginVBox = new VBox(15);
+
+		// Création du titre
 		Label titleLbl = new Label("Accès administrateur");
 		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 36));
-		
-		//GridPane for the login components
+
+		// Création de la grille pour les composants de connexion
 		GridPane gridLoginBox = new GridPane();
 		Label userNameLbl = new Label("Identifiant");
 		TextField userNameTextField = new TextField();
 		Label passwordLbl = new Label("Mot de passe");
 		PasswordField passwordField = new PasswordField();
-		//adding the components to the grid
-		gridLoginBox.add(userNameLbl,0,0);
-		gridLoginBox.add(userNameTextField,1,0);
-		gridLoginBox.add(passwordLbl,0,1);
-		gridLoginBox.add(passwordField,1,1);
+
+		// Ajout des composants à la grille
+		gridLoginBox.add(userNameLbl, 0, 0);
+		gridLoginBox.add(userNameTextField, 1, 0);
+		gridLoginBox.add(passwordLbl, 0, 1);
+		gridLoginBox.add(passwordField, 1, 1);
 		gridLoginBox.setHgap(15);
 		gridLoginBox.setVgap(15);
 		gridLoginBox.setAlignment(Pos.CENTER);
-		
+
+		// Création du bouton d'accès
 		Button btnAccess = new Button("Accéder à l'annuaire");
 		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 		btnAccess.setOnAction((e) -> {
 			Admin admin = new Admin();
 			String usernameInput = userNameTextField.getText();
 			String passwordInput = passwordField.getText();
-			
-//			go to Admin pages
+
+			// Validation des informations d'identification et redirection
 			if (Admin.validateAdmin(usernameInput, passwordInput)) {
 				scene.setRoot(new AdminDirectoryView(scene, tree));
 			} else {
-				//display error or something to know the password username was wrong
+				// Affichage d'un message d'erreur en cas d'identifiant ou mot de passe
+				// incorrect
 				titleLbl.setText("Identifiant ou mot de passe incorrect");
 				titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 28));
 			}
-			
+
 		});
-		
-		
-		//HBox for the button
+
+		// Création de la boîte pour le bouton d'accès
 		HBox btnAccessBox = new HBox();
 		btnAccessBox.getChildren().add(btnAccess);
 		btnAccessBox.setAlignment(Pos.CENTER);
-		
-		//adding all elements as children
+
+		// Ajout de tous les éléments comme enfants du VBox principal
 		loginVBox.getChildren().addAll(titleLbl, gridLoginBox, btnAccessBox);
 		this.getChildren().add(loginVBox);
-		
 
 	}
 
-	
 }

@@ -7,60 +7,106 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
+/**
+ * La classe ReaderInitialText est responsable de la lecture d'un fichier texte
+ * contenant des informations sur les étudiants, et de leur ajout à un annuaire
+ * (Directory).
+ */
+
 public class ReaderInitialText {
+
+	/**
+	 * Méthode permettant de lire le fichier initial à partir du chemin de fichier
+	 * spécifié et d'ajouter les étudiants au répertoire. Cette méthode vérifie
+	 * d'abord la présence d'un fichier texte dans le répertoire des ressources, et
+	 * le lit ensuite pour ajouter les informations des étudiants à l'annuaire.
+	 *
+	 * @param filePath Le chemin du fichier à lire.
+	 * @throws IOException Si une erreur d'entrée/sortie se produit lors de la
+	 *                     lecture du fichier.
+	 */
 
 	public void readInitialText(String filePath) throws IOException {
 
-		//test presence de fichiers txt ds le fichiers ressource
-		//si pas demander de telelcharger un fochier txt avec les students
-		
-		//test si ficheir de sauvegarde present
-		//afficher alert si on affiche ce fichier
-		
+		// test presence de fichiers txt ds le fichiers ressource
+		// si pas demander de telelcharger un fochier txt avec les students
+
+		// test si ficheir de sauvegarde present
+		// afficher alert si on affiche ce fichier
+
+		File file = new File(filePath);
+
+		// if file exists and is a file
+		if (file.exists() && file.isFile()) {
+			// if file is txt file read it
+			if (filePath.endsWith(".txt")) {
+				readTextFileAndAddStudent(filePath);
+			} else {
+				System.err.println("lle fichier n'est pas un fichier texte.");
+			}
+		} else {
+			// If the text file does not exist, check for a binary file
+			if(filePath.endsWith(".bin")) {
+				
+			}else {
+				System.out.println("Aucun fichier texte ou binaire valide.");
+			}
+		}
+
 		readTextFileAndAddStudent(filePath);
-		
-			
+
 //		Directory.getInstance().toString();
 	}
-	
+
+	/**
+	 * Méthode permettant de lire un fichier texte à partir du chemin spécifié et
+	 * d'ajouter les informations des étudiants au répertoire.
+	 *
+	 * @param filePath Le chemin du fichier texte à lire.
+	 * @throws IOException Si une erreur d'entrée/sortie se produit lors de la
+	 *                     lecture du fichier.
+	 */
+
 	public void readTextFileAndAddStudent(String filePath) throws IOException {
-		
+
 		Directory dir = new Directory();
-		
+
 		try {
 			// Le fichier d'entrée
 			File file = new File(filePath);
-			// Créer l'objet File Reader
+			// Création de l'objet FileReader
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String line;
 			Student student = new Student();
 			int indice = 0;
+			// Lecture ligne par ligne du fichier texte et ajout des informations des
+			// étudiants
 			while ((line = br.readLine()) != null) {
 				switch (indice) {
 				case 0:
 					student.setLastName(line);
 					indice++;
 					break;
-					
-                case 1:
-                	student.setFirstName(line);
-                    indice++;
-                    break;
-                    
-                case 2:
-                	student.setLocation(line);
-                    indice++;
-                    break;
-                    
-                case 3:
-                	student.setNamePromo(line);
-                    indice++;
-                    break;
-                    
-                case 4:
-                	student.setYearPromo(Integer.parseInt(line));
-                    indice++;
+
+				case 1:
+					student.setFirstName(line);
+					indice++;
+					break;
+
+				case 2:
+					student.setLocation(line);
+					indice++;
+					break;
+
+				case 3:
+					student.setNamePromo(line);
+					indice++;
+					break;
+
+				case 4:
+					student.setYearPromo(Integer.parseInt(line));
+					indice++;
 					break;
 
 				default:
@@ -76,8 +122,8 @@ public class ReaderInitialText {
 			e.printStackTrace();
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
-		
-		//Lecture fichier binaire pour nos tests
+
+		// Lecture d'un fichier binaire pour les tests
 		Node test = new Node();
 		test.readBinaryTest();
 	}
