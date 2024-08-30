@@ -1,5 +1,8 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.login.Admin;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -46,10 +49,27 @@ public class LoginAdmin extends VBox {
 		gridLoginBox.setVgap(15);
 		gridLoginBox.setAlignment(Pos.CENTER);
 		
-		//HBox for the button		
-		HBox btnAccessBox = new HBox();
 		Button btnAccess = new Button("Accéder à l'annuaire");
 		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		btnAccess.setOnAction((e) -> {
+			Admin admin = new Admin();
+			String usernameInput = userNameTextField.getText();
+			String passwordInput = passwordField.getText();
+			
+//			go to Admin pages
+			if (Admin.validateAdmin(usernameInput, passwordInput)) {
+				scene.setRoot(new AdminDirectoryView(scene));
+			} else {
+				//display error or something to know the password username was wrong
+				titleLbl.setText("Identifiant ou mot de passe incorrect");
+				titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 28));
+			}
+			
+		});
+		
+		
+		//HBox for the button
+		HBox btnAccessBox = new HBox();
 		btnAccessBox.getChildren().add(btnAccess);
 		btnAccessBox.setAlignment(Pos.CENTER);
 		

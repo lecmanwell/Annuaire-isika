@@ -72,13 +72,7 @@ public class StudentListAdmin extends TableView {
 		
 		TableColumn<Student, Void> colAction = new TableColumn<>("Actions");
 		colAction.setPrefWidth(65);
-//		Button btnModify = new Button("Modifier");
-//		Button btnDelete = new Button("Supprimer");
-//		VBox buttonBox = new VBox(btnModify, btnDelete);
-//		buttonBox.setVisible(false);
-//		this.setOnMouseEntered(event -> buttonBox.setVisible(true));
-//        this.setOnMouseExited(event -> buttonBox.setVisible(false));
-//        buttonBox.getChildren().addAll(btnModify, btnDelete);
+
 
 		// On ajoute les colonnes à la tableView
 		this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear, colAction);
@@ -86,43 +80,4 @@ public class StudentListAdmin extends TableView {
 		
 	}
 	
-//	private void generatePDF() {
-//        String dest = "stagiaires.pdf";
-//
-//        try {
-//            PdfWriter writer = new PdfWriter(dest);
-//            PdfDocument pdf = new PdfDocument(writer);
-//            Document document = new Document(pdf);
-//
-//            // Ajouter un titre
-//            document.add(new Paragraph("Liste des Stagiaires"));
-//
-//            // Créer une table PDF
-//            // Ajouter les en-têtes des colonnes
-//            Table table = new Table(5);
-//            table.addCell(new Cell().add(new Paragraph("Nom")));
-//            table.addCell(new Cell().add(new Paragraph("Prénom")));
-//            table.addCell(new Cell().add(new Paragraph("Département")));            
-//            table.addCell(new Cell().add(new Paragraph("Formation")));
-//            table.addCell(new Cell().add(new Paragraph("Année de Formation")));
-//           
-//            ArrayList<Student> studentsArray = new ArrayList<Student>();
-//            		studentsArray = (ArrayList<Student>) this.getItems();
-//            for (Student stagiaire : studentsArray) {
-//                table.addCell(new Cell().add(new Paragraph(stagiaire.getLastName())));
-//                table.addCell(new Cell().add(new Paragraph(stagiaire.getFirstName())));
-//                table.addCell(new Cell().add(new Paragraph(stagiaire.getLocation())));
-//                table.addCell(new Cell().add(new Paragraph(stagiaire.getNamePromo())));
-//                table.addCell(new Cell().add(new Paragraph(String.valueOf(stagiaire.getYearPromo()))));
-//            }
-//
-//            // Ajouter la table au document
-//            document.add(table);
-//
-//            document.close();
-//            System.out.println("PDF généré avec succès !");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        }
 }
