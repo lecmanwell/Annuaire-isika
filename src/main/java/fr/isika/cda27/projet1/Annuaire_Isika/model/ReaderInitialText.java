@@ -78,7 +78,7 @@ public class ReaderInitialText {
 		}
 		
 		//Lecture fichier binaire pour nos tests
-//		Node test = new Node();
-//		test.readBinaryTest();
+		Node test = new Node();
+		test.readBinaryTest();
 	}
 }

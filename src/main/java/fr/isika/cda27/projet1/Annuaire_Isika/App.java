@@ -24,14 +24,17 @@ import javafx.stage.Stage;
 public class App extends Application {
 
 	public void init() {
-		// initialisation données
+//		 initialisation données
 		ReaderInitialText reader = new ReaderInitialText();
 		try {
 			reader.readInitialText("src/main/resources/testAnnuaireText.txt");
 		} catch (IOException e) {
+
 			e.printStackTrace();
 		}
 		TreeDAO.setAlphaList();
+
+
 
 	}
 
@@ -46,6 +49,7 @@ public class App extends Application {
 //		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
 //		HomeView home = new HomeView(scene);
 //		AddStudentView addStudent = new AddStudentView(scene);
+		AdminDirectoryView adminListView = new AdminDirectoryView(scene);
 
 		stage.setScene(scene);
 		stage.show();

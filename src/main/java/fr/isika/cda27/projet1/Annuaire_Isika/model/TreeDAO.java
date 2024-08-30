@@ -49,7 +49,6 @@ public class TreeDAO {
 	}
 
 	public static void setAlphaList() {
-		System.out.println("setalphalist");
 		Node node = new Node();
 		try {
 			node.displayFromBinary(raf, 0, students);

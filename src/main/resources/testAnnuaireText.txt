@@ -64,3 +64,21 @@ David
 ATOD 12
 2011
 *
+ROIGNANT
+Pierre-Yves
+77
+AI 95
+2015
+*
+LECLERC
+Dominique
+75
+AI 61
+2003
+*
+BOUCHET
+Laurent
+91
+ATOD 19 CP
+2013
+*
