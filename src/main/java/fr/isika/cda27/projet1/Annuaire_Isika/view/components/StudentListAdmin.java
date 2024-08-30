@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javafx.util.Callback;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -14,19 +16,23 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public class StudentListAdmin extends TableView {
 
 	public ObservableList<Student> myObservableArrayList;
 	Scene scene;
 	TreeDAO tree;
-	
+	String iconPath = "/Images/trashIcon.png";
+
 	public ObservableList<Student> getMyObservableArrayList() {
 		return myObservableArrayList;
 	}
 
 
 	// On instancie une TableView que l'on bind à notre liste observable
+	@SuppressWarnings("unchecked")
 	public StudentListAdmin(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
@@ -63,22 +69,29 @@ public class StudentListAdmin extends TableView {
 
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("yearPromo"));
+		colYear.setCellFactory(column -> new ChoiceBoxTableCell());
 //		colYear.setCellFactory(ChoiceBoxTableCell.<Student>forTableColumn(colYear));
 		colYear.setPrefWidth(138);
 
 	
 		TableColumn<Student, Void> colAction = new TableColumn<>("");
+		ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream(iconPath)));
+		trashIcon.setFitHeight(15);
+		trashIcon.setFitWidth(15);
+
 		colAction.setCellFactory(new Callback<>() {
 			@Override
 			public TableCell<Student, Void> call(final TableColumn<Student, Void> param) {
 				return new TableCell<>() {
-					private final Button deleteButton = new Button("Supprimer");
+					private final Button deleteButton = new Button();
 					{
+						deleteButton.setGraphic(trashIcon);
 						deleteButton.setOnAction((e) -> {
 							Student student = getTableView().getItems().get(getIndex());
 							myObservableArrayList.remove(student);
 						});
 					}
+
 					@Override
 					protected void updateItem(Void item, boolean empty) {
 						  super.updateItem(item, empty);
@@ -104,27 +117,7 @@ public class StudentListAdmin extends TableView {
 			
 			
 			
-			
-//			private final Button deleteButton = new Button("Supprimer");
-//			{
-//				deleteButton.setOnAction((e) -> {
-//					Student student = getTableView.getItems().get(getIndex());
-//					this.getItems().remove(student);
-//				});
-//			}
-//			@Override
-//			protected void updateItem(Void item, boolean empty) {
-//				super.updateItem(item, empty);
-//				if (empty) {
-//					setGraphic(null);
-//				} else {
-//					if (this.getSelectionModel().getSelectedIndex() == getIndex()) {
-//						setGraphic(deleteButton);
-//					} else {
-//						setGraphic(null);
-//					}
-//				}
-//			}
+
 	
 		
 		 
@@ -137,6 +130,32 @@ public class StudentListAdmin extends TableView {
 		this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear, colAction);
 		this.setEditable(true);
 		
+
+		this.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Student>() {
+
+			@Override
+			public void changed(ObservableValue<? extends Student> observable, Student oldValue, Student newValue) {
+				if (newValue != null) {
+					colNom.setOnEditCommit((e) -> {
+						newValue.setLastName(e.getNewValue());
+					});
+					colPrenom.setOnEditCommit((e) -> {
+						newValue.setFirstName(e.getNewValue());
+					});
+					colNamePromo.setOnEditCommit((e) -> {
+						newValue.setNamePromo(e.getNewValue());
+					});
+					colLocation.setOnEditCommit((e) -> {
+						newValue.setLocation(e.getNewValue());
+					});
+			
+				}
+			}				
+			
+		});
+		
+		
+
 	}
 	
 }
