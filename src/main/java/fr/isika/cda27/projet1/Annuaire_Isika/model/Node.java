@@ -25,7 +25,6 @@ public class Node {
 		super();
 	}
 
-	
 	public Node(Student stud, int left, int right, int next) {
 		this.stud = stud;
 		this.leftChild = left;
@@ -36,11 +35,11 @@ public class Node {
 	public Student getStud() {
 		return stud;
 	}
-	
+
 	public void setStud(Student stud) {
 		this.stud = stud;
 	}
-	
+
 	public Node readNode(RandomAccessFile raf, int indice) throws IOException {
 		// Read the data of a node from the binary file
 		raf.seek((long) indice * Node.NODE_SIZE_OCTET);
@@ -163,50 +162,51 @@ public class Node {
 
 	public void updateStudent(Student oldStudent, Student student, RandomAccessFile raf) throws IOException {
 
-		//on recupere l'indice de la premiere occurence de clé
+		// on recupere l'indice de la premiere occurence de clé
 		int indice = findStudentPosition(raf, oldStudent.getLastName());
-		
-		//on compare en entier avec avec le student trouver à l'indice donné
+
+		// on compare en entier avec avec le student trouver à l'indice donné
 		Node node = new Node();
-		node = readNode(raf,indice);
-		//si egaux, on est sur le bon student et on le modifie
+		node = readNode(raf, indice);
+		// si egaux, on est sur le bon student et on le modifie
 		if (node.stud.equals(oldStudent)) {
 			writeStudent(student, raf, indice);
 		} else {
-			//sinon on recupére tous les doublons et on itére sur cette list pour trouver le bon doublons et son indice
+			// sinon on recupére tous les doublons et on itére sur cette list pour trouver
+			// le bon doublons et son indice
 			ArrayList<Node> doublons = new ArrayList<Node>();
 			doublons = getListNodeDoublonFromIndice(raf, indice, doublons);
-			//le premier de la liste à déjà été check et n'est pas le bon
+			// le premier de la liste à déjà été check et n'est pas le bon
 
 			int indicePrecedent = node.next;
-			
+
 			for (Node doublon : doublons) {
-				
-                if (doublon.stud.equals(oldStudent)) {
-                	writeStudent(student, raf, indicePrecedent);
-                	break;
-                } else {
-                	indicePrecedent = node.next;
-                }
-            }			 
+
+				if (doublon.stud.equals(oldStudent)) {
+					writeStudent(student, raf, indicePrecedent);
+					break;
+				} else {
+					indicePrecedent = node.next;
+				}
+			}
 		}
 	}
-	
+
 	public void removeStudent(Student student, RandomAccessFile raf) throws IOException {
 		int indice = findStudentPosition(raf, student.getLastName());
 		Node nodeToRemove = readNode(raf, indice);
-		
+
 		// cas feuille trouver son pere et mettre l'enfant à -1
-		//aucun child et pas de next
-		if ((nodeToRemove.leftChild == -1 || nodeToRemove.rightChild == -1) && nodeToRemove.next ==-1 ){
+		// aucun child et pas de next
+		if (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild == -1 && nodeToRemove.next == -1) {
 			System.out.println("cas feuuille");
 
-			//recuperation indice parent
+			// recuperation indice parent
 			int indiceParent = findParent(indice, raf);
-			//lecture du noeud
+			// lecture du noeud
 			Node nodeParent = new Node();
 			nodeParent = readNode(raf, indiceParent);
-			//ou est le bon child
+			// ou est le bon child
 			if (nodeParent.leftChild == indice) {
 				raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET);
 				raf.writeInt(-1);
@@ -216,44 +216,130 @@ public class Node {
 				raf.writeInt(-1);
 			}
 		}
-		
-		//cas doublons
+
+		// cas doublons
 		// on arrive sur le premier des doublons sur l'arbre
 		if (nodeToRemove.next != -1) {
-			
+
 			System.out.println("cas doublons");
-			//cas particulier du premier de la liste chainé
-			
-			
+			// cas particulier du premier de la liste chainé
+
 			int indiceParent = findParent(indice, raf);
 			removeStudentDoublons(student, indice, raf, indiceParent);
 		}
+
+		// cas où juste un fils
+		if ((nodeToRemove.leftChild != -1 && nodeToRemove.rightChild == -1)
+				|| (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild != -1) && nodeToRemove.next == -1) {
+			// recuperation indice parent
+			int indiceParent = findParent(indice, raf);
+
+			// lecture du noeud
+			Node nodeParent = new Node();
+			nodeParent = readNode(raf, indiceParent);
+
+			// on se place sur le parent et on change son fils gauche
+			raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET);
+
+			if (nodeParent.leftChild == indice) {
+				if (nodeToRemove.leftChild != -1) {
+
+					raf.writeInt(nodeToRemove.leftChild);
+				} else {
+					raf.writeInt(nodeToRemove.rightChild);
+				}
+			}
+
+			if (nodeParent.rightChild == indice) {
+				raf.seek(raf.getFilePointer() + 4);
+				if (nodeToRemove.leftChild != -1) {
+					raf.writeInt(nodeToRemove.leftChild);
+				} else {
+					raf.writeInt(nodeToRemove.rightChild);
+				}
+			}
+		}
+		
+		//cas deux enfants!
+//		on recupere le parent, et on compare la valeur clé avec les enfants du node à remove,
+		if (nodeToRemove.leftChild != -1 && nodeToRemove.rightChild != -1 && nodeToRemove.next == -1) {
+			
+			
+			removeTwoChildrent(indice, nodeToRemove, raf);
+			
+		}
+		
+		
 	}
 	
 	
-	
-	public void removeStudentDoublons(Student student, int indice, RandomAccessFile raf, int indiceParent) throws IOException {
+	public void removeTwoChildrent(int indiceNodetoremove, Node nodeToRemove, RandomAccessFile raf) throws IOException {
+		
+		int indiceParent = findParent(indiceNodetoremove, raf);
+		Node nodeLeft = readNode(raf, nodeToRemove.leftChild);
+		Node nodeRight = readNode(raf, nodeToRemove.rightChild);
+		Node nodeParent = readNode(raf, indiceParent);
+		int resultleft = nodeLeft.stud.compareTo(nodeParent.stud);
+		int resultright = nodeRight.stud.compareTo(nodeParent.stud);
+
+		//cas ou le nodetoremove st l'enfant gauche du parent
+		if (nodeParent.leftChild == indiceNodetoremove) {
+			//ca ou il le left child prend la place du nodeToremove
+			
+				raf.seek(indiceNodetoremove * NODE_SIZE_OCTET);
+				writeStudent(nodeRight.stud, raf, indiceNodetoremove);
+				
+				
+				if (nodeRight.rightChild == -1 && nodeRight.leftChild == -1) {
+					
+					removeStudent(nodeToRemove.stud, raf);
+				}
+				else {
+					removeTwoChildrent(nodeToRemove.rightChild, nodeRight, raf);
+				}
+			
+		}
+		
+//		System.out.println("nodeLeft :"+ nodeLeft.stud.toString());
+//		System.out.println("nodeRight :"+ nodeRight.stud.toString());
+//		System.out.println("nodeParent :"+ nodeParent.stud.toString());
+//		System.out.println("result left :"+ resultleft);
+//		System.out.println("result right :"+ resultright);
+		
+	}
+
+	public void removeStudentDoublons(Student student, int indice, RandomAccessFile raf, int indiceParent)
+			throws IOException {
 		Node node = new Node();
 		node = readNode(raf, indice);
-		System.out.println("show node comparer "+ node.stud.toString());
-		
+
 		if (node.stud.equals(student)) {
-			System.out.println("remove student :" +student.toString());
-			System.out.println("indice parent :" +indiceParent);
-			
-			raf.seek(indiceParent * Student.STUDENT_SIZE_OCTET + 8);
-			raf.writeInt(node.next);
-		} else  if(node.next != -1){
+
+			// cas doublon avec enfant
+
+			if (node.leftChild != 1 || node.rightChild != -1) {
+				// on ecrase ses valeurs apr le node next
+				Node nodeNext = readNode(raf, node.next);
+				writeStudent(nodeNext.stud, raf, indice);
+				raf.seek(raf.getFilePointer() + 8);
+				raf.writeInt(nodeNext.next);
+			} else {
+
+				raf.seek((indiceParent + 1) * NODE_SIZE_OCTET - 4);
+
+				raf.writeInt(node.next);
+			}
+
+		} else if (node.next != -1) {
 			System.out.println("recursive launch");
 			removeStudentDoublons(student, node.next, raf, indice);
 		}
 	}
-	
-	
+
 	public int findParent(int indice, RandomAccessFile raf) {
-		int indiceFound=-1;
+		int indiceFound = -1;
 		System.out.println("findparent");
-	
+
 		try {
 			raf.seek(0);
 			int indiceIterate = 0;
@@ -261,16 +347,16 @@ public class Node {
 				Node node = new Node();
 				node = readNode(raf, indiceIterate);
 				if (node.leftChild == indice || node.rightChild == indice) {
-					indiceFound = (int)raf.getFilePointer()/NODE_SIZE_OCTET -1;
+					indiceFound = (int) raf.getFilePointer() / NODE_SIZE_OCTET - 1;
 					break;
-				} 
+				}
 				indiceIterate++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		System.out.println(indiceFound);
-		
+
 		return indiceFound;
 	}
 
@@ -329,16 +415,15 @@ public class Node {
 					doublontest.add(lastCurrentDoublon.stud);
 				}
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return doublontest;
 	}
-	
-	public ArrayList<Node> getListNodeDoublonFromIndice(RandomAccessFile raf, int indice,
-			ArrayList<Node> doublontest) {
+
+	public ArrayList<Node> getListNodeDoublonFromIndice(RandomAccessFile raf, int indice, ArrayList<Node> doublontest) {
 		try {
 			raf.seek((indice + 1) * NODE_SIZE_OCTET - 4);
 			int next = raf.readInt();
@@ -361,11 +446,11 @@ public class Node {
 					doublontest.add(lastCurrentDoublon);
 				}
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return doublontest;
 	}
 
@@ -423,9 +508,12 @@ public class Node {
 			Student oldStud = new Student("ROIGNANT", "Pierre-Yves", "77", "AI 95", 2015);
 			Student newStudent = new Student("ROIGNANT", "Martine", "92", "ATOD 24 CP", 2012);
 			updateStudent(oldStud, newStudent, rafR);
-			Student studentToRemove = new Student("ROIGNANT", "Martine", "92", "ATOD 24 CP", 2012);
-			removeStudent(studentToRemove, rafR);
-			
+
+			Student studentToRemoveFeuille = new Student("PUCELLE", "David", "75", "ATOD 12", 2011);
+			Student studentToRemove1Child = new Student("GARIJO", "Rosie", "75", "AI 79", 2011);
+			Student studentToRemove1Child1 = new Student("NOUAR", "Adel", "94", "ATOD 5", 2009);
+			Student studentToRemove2Child = new Student("AUGEREAU", "Kévin", "76", "AI 78", 2010);
+			removeStudent(studentToRemove2Child, rafR);
 
 			System.out.println("lecture fichier");
 			rafR.seek(0);
@@ -465,7 +553,7 @@ public class Node {
 			e.printStackTrace();
 
 		}
-		
+
 		return null;
 	}
 
