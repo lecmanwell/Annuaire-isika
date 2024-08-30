@@ -3,6 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

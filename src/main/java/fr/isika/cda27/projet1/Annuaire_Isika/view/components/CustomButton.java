@@ -265,7 +265,7 @@ public class CustomButton extends Button {
 		this.setPadding(new Insets(3, 20, 3, 20));
 		
 		this.setOnAction((e) -> {
-			scene.setRoot(new AddStudentView(scene));
+			scene.setRoot(new AddStudentView(scene, tree));
 		});
 
 	}
@@ -285,7 +285,7 @@ public class CustomButton extends Button {
 
 		// go to page action
 		this.setOnAction((e) -> {
-			scene.setRoot(new AdminDirectoryView(scene));
+			scene.setRoot(new AdminDirectoryView(scene, tree));
 		});
 
 	}
