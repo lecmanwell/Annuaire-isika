@@ -32,9 +32,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class CustomButton extends Button {  
+/**
+ * Classe représentant un bouton personnalisé pour l'application. Cette classe
+ * permet de créer différents boutons avec des styles et actions spécifiques.
+ */
+
+public class CustomButton extends Button {
 	Scene scene;
 	TreeDAO tree;
+
+	/**
+	 * Constructeur pour initialiser un bouton personnalisé avec la scène.
+	 * 
+	 * @param scene La scène dans laquelle le bouton sera utilisé.
+	 */
 
 	public CustomButton(Scene scene) {
 		super();
@@ -42,6 +53,12 @@ public class CustomButton extends Button {
 		this.tree = tree;
 
 	}
+
+	/**
+	 * Configure le bouton pour générer de la documentation en PDF et l'ouvrir. Le
+	 * bouton affiche le texte "Comment fonctionne cet annuaire ?" et ouvre le
+	 * fichier PDF lorsqu'il est cliqué.
+	 */
 
 	public void generateDocumentation() {
 		this.setText("Comment fonction cet annuaire ?");
@@ -65,7 +82,12 @@ public class CustomButton extends Button {
 
 	}
 
-	// Button to go to HomeViewAdmin
+	/**
+	 * Configure le bouton pour accéder à la vue administrateur (HomeViewAdmin). Le
+	 * bouton affiche le texte "Accès administrateur" et change la scène pour la vue
+	 * administrateur lorsqu'il est cliqué.
+	 */
+
 	public void adminAccess() {
 		this.setText("Accès administrateur");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
@@ -77,7 +99,13 @@ public class CustomButton extends Button {
 
 	}
 
-	// Button to go to UserDirectoryView
+	/**
+	 * Configure le bouton pour accéder à l'annuaire des utilisateurs
+	 * (UserDirectoryView). Le bouton affiche le texte "Accéder à l'annuaire" et
+	 * change la scène pour la vue de l'annuaire des utilisateurs lorsqu'il est
+	 * cliqué.
+	 */
+
 	public void goToDirectory() {
 		this.setText("Accéder à l'annuaire");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
@@ -89,10 +117,18 @@ public class CustomButton extends Button {
 
 	}
 
-	// Button to print to PDF the students
+	/**
+	 * Configure le bouton pour imprimer la liste des étudiants au format PDF. Le
+	 * bouton affiche le texte "Imprimer le PDF" et appelle la méthode
+	 * {@link #generatePDF(StudentListAdmin)} lorsqu'il est cliqué.
+	 * 
+	 * @param tableView La vue de la liste des étudiants à imprimer.
+	 */
+
 	public void printDirectory(StudentListAdmin tableView) {
 		this.setText("Imprimer le PDF");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setStyle(
+				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
 		this.setOnAction((e) -> {
 			try {
@@ -102,21 +138,26 @@ public class CustomButton extends Button {
 				e1.printStackTrace();
 			}
 		});
-		
-		
 
 	}
 
-	// Button to disconnect from the admin role
+	/**
+	 * Configure le bouton pour la déconnexion. Le bouton affiche le texte
+	 * "Déconnexion" et change la scène pour la vue d'accueil lorsqu'il est cliqué.
+	 */
+
 	public void logOut() {
 		this.setText("Deconnexion");
-		this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
+		this.setStyle(
+				"-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
 		this.setOnMouseEntered((e) -> {
-			this.setStyle("-fx-background-color: #db754a; -fx-text-fill: white; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
+			this.setStyle(
+					"-fx-background-color: #db754a; -fx-text-fill: white; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
 		});
 		this.setOnMouseExited((e) -> {
-			this.setStyle("-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
+			this.setStyle(
+					"-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
 		});
 		this.setOnAction((e) -> {
 			scene.setRoot(new HomeView(this.scene));
@@ -128,33 +169,39 @@ public class CustomButton extends Button {
 
 	}
 
-
 	public void addStudent() {
 		this.setText("Ajouter un stagiaire");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
 
 	}
 
-	// Button to go back to the HomeView from the HomeViewAdmin
+	/**
+	 * Configure le bouton pour revenir à la vue d'accueil depuis la vue d'accueil
+	 * administrateur. Le bouton affiche le texte "Retoura l'accueil" et change la
+	 * scène pour la vue d'accueil lorsqu'il est cliqué.
+	 */
+
 	public void backToHome() {
-		this.setText("Retour");
+		this.setText("Retour a l'accueil");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-		
+
 		this.setOnAction((e) -> {
 			scene.setRoot(new HomeView(scene));
 		});
-		
 
 	}
 
-	// Buttons for the menu in HeaderViewGeneral
+	/**
+	 * Configure le bouton pour afficher "Accueil" dans le menu de l'en-tête
+	 * général. Le bouton affiche le texte "Accueil" et change la scène pour la vue
+	 * d'accueil lorsqu'il est cliqué.
+	 */
 
 	public void homeButtonTitle() {
 		this.setText("Accueil");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
 
-		// hover effect
 		this.setOnMouseEntered((e) -> {
 			this.setTextFill(Color.web("#adb6b6"));
 		});
@@ -162,18 +209,21 @@ public class CustomButton extends Button {
 			this.setTextFill(Color.web("#333333"));
 		});
 
-		// go to page action
 		this.setOnAction((e) -> {
 			scene.setRoot(new HomeView(scene));
 		});
 	}
 
+	/**
+	 * Configure le bouton pour afficher "Annuaire" dans le menu de l'en-tête
+	 * général. Le bouton affiche le texte "Annuaire" et change la scène pour la vue
+	 * de l'annuaire des utilisateurs lorsqu'il est cliqué.
+	 */
+
 	public void goToDirectoryTitle() {
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
-
-		// hover effect
 		this.setOnMouseEntered((e) -> {
 			this.setTextFill(Color.web("#adb6b6"));
 		});
@@ -181,21 +231,22 @@ public class CustomButton extends Button {
 			this.setTextFill(Color.web("#333333"));
 		});
 
-		// go to page action
 		this.setOnAction((e) -> {
 			scene.setRoot(new UserDirectoryView(scene, tree));
 		});
 
 	}
-	
-	
+
+	/**
+	 * Configure le bouton pour afficher "Administrateur" dans le menu de l'en-tête
+	 * général. Le bouton affiche le texte "Administrateur" et change la scène pour
+	 * la vue administrateur lorsqu'il est cliqué.
+	 */
 
 	public void adminAccessTitle() {
 		this.setText("Administrateur");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
-
-		// hover effect
 		this.setOnMouseEntered((e) -> {
 			this.setTextFill(Color.web("#adb6b6"));
 		});
@@ -209,67 +260,98 @@ public class CustomButton extends Button {
 
 	}
 
+	/**
+	 * Configure le bouton pour valider l'ajout d'un stagiaire depuis les champs de
+	 * texte. Le bouton affiche le texte "Valider" et change le style du bouton.
+	 * 
+	 * @param lastNameTextField  Champ de texte pour le nom de famille.
+	 * @param firstNameTextField Champ de texte pour le prénom.
+	 * @param locationTextField  Champ de texte pour la localisation.
+	 * @param promoTextField     Champ de texte pour la promotion.
+	 * @param yearPromoTextField Champ de texte pour l'année de la promotion.
+	 */
+
 	public void addStudentFromFields(TextField lastNameTextField, TextField firstNameTextField,
 			TextField locationTextField, TextField promoTextField, TextField yearPromoTextField) {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 	}
-	
-	
+
+	/**
+	 * Génère un fichier PDF contenant la liste des étudiants à partir de la vue
+	 * fournie. Le PDF est enregistré sous le nom "stagiaires.pdf" et est ouvert
+	 * automatiquement après la création.
+	 * 
+	 * @param tableView La vue de la liste des étudiants à imprimer.
+	 * @throws IOException Si une erreur se produit lors de la création du fichier
+	 *                     PDF.
+	 */
+
 	private void generatePDF(StudentListAdmin tableView) throws IOException {
-        String dest = "stagiaires.pdf";
-        
-        try {
-            PdfWriter writer = new PdfWriter(dest);
-            PdfDocument pdf = new PdfDocument(writer);
-            Document document = new Document(pdf);
+		String dest = "stagiaires.pdf";
 
-            // Ajouter un titre
-            document.add(new Paragraph("Liste des Stagiaires"));
+		try {
+			PdfWriter writer = new PdfWriter(dest);
+			PdfDocument pdf = new PdfDocument(writer);
+			Document document = new Document(pdf);
 
-            // Créer une table PDF
-            // Ajouter les en-têtes des colonnes
-            Table table = new Table(5);
-            table.addCell(new Cell().add(new Paragraph("Nom")));
-            table.addCell(new Cell().add(new Paragraph("Prénom")));
-            table.addCell(new Cell().add(new Paragraph("Département")));            
-            table.addCell(new Cell().add(new Paragraph("Formation")));
-            table.addCell(new Cell().add(new Paragraph("Année de Formation")));
-            ArrayList<Student> studentsArray = new ArrayList<Student>(tableView.getItems());
-            		
-            for (Student stagiaire : studentsArray) {
-                table.addCell(new Cell().add(new Paragraph(stagiaire.getLastName())));
-                table.addCell(new Cell().add(new Paragraph(stagiaire.getFirstName())));
-                table.addCell(new Cell().add(new Paragraph(stagiaire.getLocation())));
-                table.addCell(new Cell().add(new Paragraph(stagiaire.getNamePromo())));
-                table.addCell(new Cell().add(new Paragraph(String.valueOf(stagiaire.getYearPromo()))));
-            }
+			// Ajouter un titre
+			document.add(new Paragraph("Liste des Stagiaires"));
 
-            // Ajouter la table au document
-            document.add(table);
-            document.close();
-            if (Desktop.isDesktopSupported()) {
-                Desktop.getDesktop().open(new File(dest));
-            }
-            System.out.println("PDF généré avec succès !");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        }
-	
+			// Créer une table PDF
+			Table table = new Table(5);
+			table.addCell(new Cell().add(new Paragraph("Nom")));
+			table.addCell(new Cell().add(new Paragraph("Prénom")));
+			table.addCell(new Cell().add(new Paragraph("Département")));
+			table.addCell(new Cell().add(new Paragraph("Formation")));
+			table.addCell(new Cell().add(new Paragraph("Année de Formation")));
+			ArrayList<Student> studentsArray = new ArrayList<Student>(tableView.getItems());
+
+			for (Student stagiaire : studentsArray) {
+				table.addCell(new Cell().add(new Paragraph(stagiaire.getLastName())));
+				table.addCell(new Cell().add(new Paragraph(stagiaire.getFirstName())));
+				table.addCell(new Cell().add(new Paragraph(stagiaire.getLocation())));
+				table.addCell(new Cell().add(new Paragraph(stagiaire.getNamePromo())));
+				table.addCell(new Cell().add(new Paragraph(String.valueOf(stagiaire.getYearPromo()))));
+			}
+
+			// Ajouter la table au document
+			document.add(table);
+			document.close();
+			if (Desktop.isDesktopSupported()) {
+				Desktop.getDesktop().open(new File(dest));
+			}
+			System.out.println("PDF généré avec succès !");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Configure le bouton pour accéder à la vue d'ajout d'un stagiaire. Le bouton
+	 * affiche le texte "Ajouter Stagiaire" et change la scène pour la vue d'ajout
+	 * d'un stagiaire lorsqu'il est cliqué.
+	 */
 	public void goToAddStudent() {
 		this.setText("Ajouter Stagiaire");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setStyle(
+				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPrefHeight(200);
 		this.setPrefWidth(315);
 		this.setPadding(new Insets(3, 20, 3, 20));
-		
+
 		this.setOnAction((e) -> {
 			scene.setRoot(new AddStudentView(scene, tree));
 		});
 
 	}
-	
+
+	/**
+	 * Configure le bouton pour accéder à l'annuaire administrateur. Le bouton
+	 * affiche le texte "Annuaire" et change la scène pour la vue de l'annuaire
+	 * administrateur lorsqu'il est cliqué.
+	 */
+
 	public void goToDirectoryAdmin() {
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");

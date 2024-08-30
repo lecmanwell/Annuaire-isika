@@ -11,24 +11,41 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Classe représentant la vue du répertoire des utilisateurs. Cette vue affiche
+ * un en-tête, un espace de recherche et un répertoire des utilisateurs avec une
+ * barre de défilement.
+ */
 public class UserDirectoryView extends BorderPane {
-	
+
 	private Scene scene;
 	TreeDAO tree;
-	public UserDirectoryView(Scene scene,TreeDAO tree) {
+
+	/**
+	 * Constructeur de la classe. Initialise la vue du répertoire des utilisateurs
+	 * en créant l'en-tête, l'espace de recherche et le répertoire des utilisateurs.
+	 *
+	 * @param scene La scène à laquelle cette vue est attachée.
+	 * @param tree  L'objet {@code TreeDAO} utilisé pour accéder aux données des
+	 *              utilisateurs.
+	 */
+	public UserDirectoryView(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-		
+
+		// Création de l'en-tête général
 		HeaderViewGeneral header = new HeaderViewGeneral(scene);
-		
-		VBox pageCentrale = new VBox();
-		pageCentrale.setPadding(new Insets(20, 20, 0, 20));
-		
+
+		// Conteneur principal pour la page centrale
+		VBox body = new VBox();
+		body.setPadding(new Insets(20, 20, 0, 20));
+
+		// Création de l'espace de recherche
 		MultiSearch multiSearch = new MultiSearch(scene);
 		multiSearch.multiSearchUser();
-//		multiSearch.getChildren().add(multiSearch.multiSearchUser());
-		
+
+		// Création du répertoire des utilisateurs avec une barre de défilement
 		UserDirectory userDirectory = new UserDirectory(scene);
 		ScrollPane scrollpane = new ScrollPane();
 		System.out.println(scrollpane.viewportBoundsProperty());
@@ -37,23 +54,24 @@ public class UserDirectoryView extends BorderPane {
 		scrollpane.setFitToWidth(true);
 		scrollpane.setFitToHeight(true);
 		scrollpane.setMinHeight(290);
-		
-		pageCentrale.getChildren().addAll(multiSearch, scrollpane);
-		
+
+		// Ajout de l'espace de recherche et du répertoire des utilisateurs à la page
+		// centrale
+		body.getChildren().addAll(multiSearch, scrollpane);
+
+		// Création du pied de page
 		Footer footer = new Footer(scene);
 		footer.footerUserDirectoryView();
-//		footer.adminViewFooterList();
-		
-		
-		
+
+		// Configuration de la vue
 		this.setTop(header);
 		this.setBottom(footer);
-		this.setCenter(pageCentrale);
+		this.setCenter(body);
+
+		// Définition de la racine de la scène et du style de la police
 		scene.setRoot(this);
 		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
-		
+
 	}
-	
-	
 
 }

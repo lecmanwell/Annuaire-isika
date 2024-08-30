@@ -47,11 +47,11 @@ public class App extends Application {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), 800, 600);
 
-		AdminDirectoryView adminDirectoryView = new AdminDirectoryView(scene, this.tree);
-		UserDirectoryView userDirectoryView = new UserDirectoryView(scene, tree);
-//		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
+//		AdminDirectoryView adminDirectoryView = new AdminDirectoryView(scene, tree);
+//		UserDirectoryView userDirectoryView = new UserDirectoryView(scene, tree);
+		HomeViewAdmin adminHome = new HomeViewAdmin(scene);
 //		HomeView home = new HomeView(scene);
-//		AddStudentView addStudent = new AddStudentView(scene);
+//		AddStudentView addStudent = new AddStudentView(scene, tree);
 
 		stage.setScene(scene);
 		stage.show();

@@ -14,6 +14,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * Représente une carte d'étudiant affichée dans l'interface.
+ * La carte contient les informations d'un étudiant, telles que le nom, le prénom,
+ * la formation, l'année de formation, et la localisation. Elle peut également afficher
+ * une photo de l'étudiant.
+ */
+
+
 public class StudentCard extends GridPane {
 	
 	String imagePath;
@@ -23,6 +31,17 @@ public class StudentCard extends GridPane {
 	String anneeFormationString;
 	String localisationString;
 
+	
+    /**
+     * Constructeur pour créer une carte d'étudiant sans image.
+     *
+     * @param name Nom de l'étudiant.
+     * @param firstname Prénom de l'étudiant.
+     * @param formation Formation de l'étudiant.
+     * @param anneeFormation Année de formation de l'étudiant.
+     * @param localisation Localisation de l'étudiant.
+     */
+	
 	
 	public StudentCard(String name, String firstname,  String formation, String anneeFormation, String localisation) {
 		super();
@@ -63,8 +82,18 @@ public class StudentCard extends GridPane {
 		
 		this.setStyle("-fx-border-color: black;-fx-border-radius: 10px;-fx-background-radius: 10px; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
 		this.setPadding(new Insets(10));
-//		this.setVgap(5);
 	}
+	
+    /**
+     * Constructeur pour créer une carte d'étudiant avec une image.
+     *
+     * @param imagePath Chemin de l'image de l'étudiant.
+     * @param lastName Nom de l'étudiant.
+     * @param firstName Prénom de l'étudiant.
+     * @param formation Formation de l'étudiant.
+     * @param anneeFormation Année de formation de l'étudiant.
+     * @param localisation Localisation de l'étudiant.
+     */
 
 	public StudentCard(String imagePath, String lastNameString, String firstNameString, String formationString,
 			String anneeFormationString, String localisationString) {
@@ -77,8 +106,6 @@ public class StudentCard extends GridPane {
 		this.localisationString = localisationString;
 
 		this.setPadding(new Insets(20));
-//		this.setHgap(10);
-//		this.setVgap(10);
 		this.setMaxWidth(Double.MAX_VALUE);
 		this.setAlignment(Pos.CENTER);
 		this.setHeight(50);
@@ -89,15 +116,14 @@ public class StudentCard extends GridPane {
 		ImageView photo = new ImageView(new Image(getClass().getResourceAsStream(imagePath)));
 		photo.setFitHeight(300);
 		photo.setFitWidth(300);
-//		photo.setStyle("-fx-border-color: black; -fx-border-radius: 50px;");
 		photo.setPreserveRatio(true);
 
-		// Parametrage du label Nom
+		// Paramétrage du label Nom
 		Label lastNameLabel = new Label(this.lastNameString);
 		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 25));
 		lastNameLabel.setText(lastNameString.toUpperCase());
 
-		// Parametrage du label Prénom
+		 // Paramétrage du label Prénom
 		Label firstNameLabel = new Label(this.firstNameString);
 		firstNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 25));
 
@@ -105,11 +131,11 @@ public class StudentCard extends GridPane {
 		nameHBox.getChildren().addAll(lastNameLabel, firstNameLabel);
 		nameHBox.setSpacing(10);
 		
-		// Parametrage du label Formation
+		// Paramétrage du label Formation
 		Label formationLabel = new Label(this.formationString);
 		formationLabel.setFont(Font.font("Futura", 14));
 
-		// Parametrage du label Année de formation
+		// Paramétrage du label Année de formation
 		Label anneeFormationLabel = new Label(this.anneeFormationString);
 		anneeFormationLabel.setFont(Font.font("Futura", 14));
 		
@@ -117,7 +143,7 @@ public class StudentCard extends GridPane {
 		formationHBox.getChildren().addAll(formationLabel, anneeFormationLabel);
 		formationHBox.setSpacing(20);
 
-		// Parametrage du label Departement
+		// Paramétrage du label Département
 		Label localisationLabel = new Label("Département : " + this.localisationString);
 		localisationLabel.setFont(Font.font("Futura", 14));
 
@@ -128,6 +154,12 @@ public class StudentCard extends GridPane {
 		this.setVgap(20);
 
 	}
+	
+	
+/**
+ * Getters et setters pour les attributs de la carte d'étudiant.'	
+ */
+		
 	
 	public String getLastNameString() {
 		return lastNameString;
@@ -169,7 +201,9 @@ public class StudentCard extends GridPane {
 		this.localisationString = localisationString;
 	}
 
-
+    /**
+     * Retourne une représentation sous forme de chaîne de caractères de la carte de l'étudiant.
+     */
 	@Override
 	public String toString() {
 		return "StudentCard [lastNameString=" + lastNameString + ", firstNameString=" + firstNameString

@@ -11,6 +11,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+
+/**
+ * Classe représentant l'en-tête de l'application pour l'accueil.
+ * Cet en-tête est composé de bandes colorées sur les côtés, d'un logo centré et est redimensionné en fonction de la taille de la scène.
+ */
+
 public class HeaderView extends HBox {
 	
 	Scene scene;
@@ -32,18 +38,22 @@ public class HeaderView extends HBox {
 	Label label;
 	
 	
-
+    /**
+     * Constructeur de la classe.
+     *
+     * @param scene La scène à laquelle cet en-tête est attaché.
+     */
 	public HeaderView(Scene scene) {
 		super();
 		this.scene = scene;
 		
-		// ratios for the components of the header
+		// Ratios pour les composants de l'en-tête
 		double stripeHeightRatio = 0.015;
 		double stripesBoxWidthRatio = 0.40;
 		double logoWidthRatio = 0.20;
 
 		
-		// stripes for the left side
+		// Création des bandes pour le côté gauche
 		blueStripeL.setFill(Color.web("#144d65"));
 		whiteStripeL.setFill(Color.web("#FFFFFF"));
 		orangeStripeL.setFill(Color.web("#db754a"));
@@ -60,12 +70,12 @@ public class HeaderView extends HBox {
 		stripesBoxL.getChildren().addAll(blueStripeL, whiteStripeL, orangeStripeL);
 		stripesBoxL.setAlignment(Pos.CENTER);
 
-		// logo
+		// Création du logo
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
 		imgViewLogo.fitWidthProperty().bind(scene.widthProperty().multiply(logoWidthRatio));
 		imgViewLogo.setPreserveRatio(true);
 
-		// stripes for the right side
+		// Création des bandes pour le côté droit
 		blueStripeR.setFill(Color.web("#144d65"));
 		whiteStripeR.setFill(Color.web("#FFFFFF"));
 		orangeStripeR.setFill(Color.web("#db754a"));
@@ -82,7 +92,7 @@ public class HeaderView extends HBox {
 		stripesBoxR.getChildren().addAll(blueStripeR, whiteStripeR, orangeStripeR);
 		stripesBoxR.setAlignment(Pos.CENTER);
 
-		// add components to the header
+		// Ajout des composants à l'en-tête
 		headerBox.getChildren().addAll(stripesBoxL, imgViewLogo, stripesBoxR);
 		headerBox.setAlignment(Pos.CENTER);
 		this.getChildren().addAll(headerBox);

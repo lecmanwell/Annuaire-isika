@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
-
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HomeText;
@@ -13,58 +13,60 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
+/**
+ * Vue principale de l'application, représentant la page d'accueil. Cette vue
+ * affiche un en-tête, un corps avec une carte d'étudiant et du texte, ainsi
+ * qu'un pied de page. Elle définit également le style de la scène.
+ */
 
 public class HomeView extends BorderPane {
 
 	private Scene scene;
+	private TreeDAO tree;
+
+	/**
+	 * Constructeur de la classe.
+	 * 
+	 * @param scene La scène à laquelle cette vue est attachée.
+	 */
 
 	public HomeView(Scene scene) {
 		super();
 		this.scene = scene;
-		
-//		double screenHeight = this.scene.getHeight();
-//		double screenWidth = this.scene.getWidth();
-		
+		this.tree = tree;
 
+		// Création de l'en-tête
 		HeaderView header = new HeaderView(scene);
-//		header.setPrefHeight(screenHeight * 0.2);
-//		header.setMinHeight(screenHeight * 0.2);
-//		header.setMaxHeight(screenHeight * 0.2);
-//		header.setPrefWidth(screenWidth);
 		header.setAlignment(Pos.CENTER);
 
+		// Création du corps avec une carte d'étudiant et du texte d'accueil
 		GridPane body = new GridPane();
-//		pageCentrale.setPadding(new Insets(20, 20, 20, 20));
-//		pageCentrale.setPrefHeight(screenHeight * 0.6);
-//		pageCentrale.setMinHeight(screenHeight * 0.6);
-//		pageCentrale.setMaxHeight(screenHeight * 0.6);
-//		pageCentrale.setPrefWidth(screenWidth);
 		body.setAlignment(Pos.CENTER);
+
+		// Création d'une carte d'étudiant avec des informations fictives
 		String imagePath = "/Images/imageCardHome.jpg";
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
-//		studentCard.setPadding(new Insets(100));
+
+		// Création du texte d'accueil
 		HomeText homeText = new HomeText(this.scene);
-//		homeText.setPadding(new Insets(100));
 		homeText.setAlignment(Pos.CENTER);
-		
+
+		// Ajout des composants au GridPane
 		body.add(studentCard, 1, 1);
 		body.add(homeText, 2, 1);
 		body.setPadding(new Insets(0, 50, 0, 50));
 		body.setHgap(20);
 
-//		HBox.setHgrow(studentCard, Priority.ALWAYS);
-//		HBox.setHgrow(homeText, Priority.ALWAYS);
-//		studentCard.setMaxWidth(Double.MAX_VALUE);
-//		homeText.setMaxWidth(Double.MAX_VALUE);
-
+		// Création du pied de page
 		Footer footer = new Footer(scene);
 		footer.footerHomeView();
 
-		
+		// Configuration du BorderPane
 		this.setTop(header);
 		this.setBottom(footer);
 		this.setCenter(body);
-		
+
+		// Définition de la racine de la scène
 		scene.setRoot(this);
 		scene.getRoot().setStyle("-fx-font-family: 'Futura'");
 	}

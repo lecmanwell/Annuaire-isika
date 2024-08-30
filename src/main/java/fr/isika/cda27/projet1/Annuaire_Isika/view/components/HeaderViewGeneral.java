@@ -15,21 +15,26 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+/**
+ * Classe représentant l'en-tête général de l'application. Cet en-tête est
+ * composé de bandes colorées, d'un logo centré et d'un menu de navigation.
+ */
+
 public class HeaderViewGeneral extends HBox {
 
 	HBox headerBoxGrl = new HBox();
 	Scene scene;
 
-	//stripes for the header view (general)
+	// Bandes pour l'en-tête général
 	VBox stripesBox = new VBox();
 	Rectangle blueStripe = new Rectangle();
 	Rectangle whiteStripe = new Rectangle();
 	Rectangle orangeStripe = new Rectangle();
-	
-	//logo image path
+
+	// Chemin de l'image du logo
 	String imgPathLogo = "/Images/isikalogo.png";
 
-	//menu box
+	// container pour le menu de navigation
 	HBox menuBox = new HBox();
 	CustomButton btnHome;
 	CustomButton btnDirectory;
@@ -37,26 +42,32 @@ public class HeaderViewGeneral extends HBox {
 	Separator separatorL = new Separator();
 	Separator separatorR = new Separator();
 
-	
-	
-	//constructor for the header view (general)
+	/**
+	 * Constructeur de la classe. Initialise l'en-tête général en créant les bandes
+	 * colorées, le logo et le menu de navigation.
+	 *
+	 * @param scene La scène à laquelle cet en-tête est attaché.
+	 */
+
 	public HeaderViewGeneral(Scene scene) {
 		super();
 		this.scene = scene;
-		
+
+		// Ratios pour les composants de l'en-tête'
 		double stripeHeightRatio = 0.015;
 		double stripesBoxWidthRatio = 0.48;
 		double logoWidthRatio = 0.16;
-		
+
+		// Création du logo
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
 		imgViewLogo.fitWidthProperty().bind(scene.widthProperty().multiply(logoWidthRatio));
 		imgViewLogo.setPreserveRatio(true);
-		
-		
+
+		// Création des bandes colorées
 		blueStripe.setFill(javafx.scene.paint.Color.web("#144d65"));
 		whiteStripe.setFill(javafx.scene.paint.Color.web("#FFFFFF"));
 		orangeStripe.setFill(javafx.scene.paint.Color.web("#db754a"));
-		
+
 		blueStripe.widthProperty().bind(scene.widthProperty().multiply(stripesBoxWidthRatio));
 		blueStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
 
@@ -65,37 +76,34 @@ public class HeaderViewGeneral extends HBox {
 
 		orangeStripe.widthProperty().bind(scene.widthProperty().multiply(stripesBoxWidthRatio));
 		orangeStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
-		
-		
+
 		stripesBox.getChildren().addAll(blueStripe, whiteStripe, orangeStripe);
 		stripesBox.setAlignment(Pos.CENTER);
-		
-		//Separator lines
+
+		/// Création des séparateurs
 		separatorL.setOrientation(Orientation.VERTICAL);
 		separatorL.setMaxHeight(20);
-		
+
 		separatorR.setOrientation(Orientation.VERTICAL);
 		separatorR.setMaxHeight(20);
-		
-		//Button Home
+
+		// Création des boutons de navigation
 		btnHome = new CustomButton(scene);
 		btnHome.homeButtonTitle();
-		
-		//Button Directory
+
 		btnDirectory = new CustomButton(scene);
 		btnDirectory.goToDirectoryTitle();
-		
-		//Buton Admin
+
 		btnAdmin = new CustomButton(scene);
 		btnAdmin.adminAccessTitle();
-		
-		
+
 		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);
 		menuBox.setAlignment(Pos.CENTER);
 		menuBox.setStyle("-fx-font-family: 'Futura';");
-		
+
+		// Ajout des composants à l'en-tête
 		this.getChildren().addAll(imgViewLogo, stripesBox, menuBox);
-		
+
 	}
-	
+
 }
