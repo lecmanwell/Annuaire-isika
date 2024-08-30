@@ -30,7 +30,7 @@ public class Directory {
 	public Directory() {
 		this.studentsList = new ArrayList<Student>();
 //		this.tree = new Tree();
-		this.treeDao = new	TreeDAO();
+//		this.treeDao = new	TreeDAO();
 		try {
 			this.raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
 		} catch (FileNotFoundException e) {
