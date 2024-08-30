@@ -200,21 +200,7 @@ public class Node {
 		// aucun child et pas de next
 		if (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild == -1 && nodeToRemove.next == -1) {
 			System.out.println("cas feuuille");
-
-			// recuperation indice parent
-			int indiceParent = findParent(indice, raf);
-			// lecture du noeud
-			Node nodeParent = new Node();
-			nodeParent = readNode(raf, indiceParent);
-			// ou est le bon child
-			if (nodeParent.leftChild == indice) {
-				raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET);
-				raf.writeInt(-1);
-			}
-			if (nodeParent.rightChild == indice) {
-				raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET + 4);
-				raf.writeInt(-1);
-			}
+			removeLeaf(indice, raf);
 		}
 
 		// cas doublons
@@ -232,7 +218,42 @@ public class Node {
 		if ((nodeToRemove.leftChild != -1 && nodeToRemove.rightChild == -1)
 				|| (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild != -1) && nodeToRemove.next == -1) {
 			// recuperation indice parent
+			
+			removeNodeWithOneChild(indice, raf, nodeToRemove);
+
+		}
+		
+		//cas deux enfants!
+//		on recupere le parent, et on compare la valeur clé avec les enfants du node à remove,
+		if (nodeToRemove.leftChild != -1 && nodeToRemove.rightChild != -1 && nodeToRemove.next == -1) {
+			
+			
+			removeTwoChildrent(indice, nodeToRemove, raf);
+			
+		}
+		
+		
+	}
+	
+	public void removeLeaf(int indice, RandomAccessFile raf) throws IOException {
+		// recuperation indice parent
 			int indiceParent = findParent(indice, raf);
+			// lecture du noeud
+			Node nodeParent = new Node();
+			nodeParent = readNode(raf, indiceParent);
+			// ou est le bon child
+			if (nodeParent.leftChild == indice) {
+				raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET);
+				raf.writeInt(-1);
+			}
+			if (nodeParent.rightChild == indice) {
+				raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET + 4);
+				raf.writeInt(-1);
+			}
+	}
+	
+	 public void removeNodeWithOneChild(int indice, RandomAccessFile raf, Node nodeToRemove) throws IOException  {
+		 int indiceParent = findParent(indice, raf);
 
 			// lecture du noeud
 			Node nodeParent = new Node();
@@ -258,19 +279,7 @@ public class Node {
 					raf.writeInt(nodeToRemove.rightChild);
 				}
 			}
-		}
-		
-		//cas deux enfants!
-//		on recupere le parent, et on compare la valeur clé avec les enfants du node à remove,
-		if (nodeToRemove.leftChild != -1 && nodeToRemove.rightChild != -1 && nodeToRemove.next == -1) {
-			
-			
-			removeTwoChildrent(indice, nodeToRemove, raf);
-			
-		}
-		
-		
-	}
+	 }
 	
 	
 	public void removeTwoChildrent(int indiceNodetoremove, Node nodeToRemove, RandomAccessFile raf) throws IOException {
@@ -292,7 +301,9 @@ public class Node {
 				
 				if (nodeRight.rightChild == -1 && nodeRight.leftChild == -1) {
 					
-					removeStudent(nodeToRemove.stud, raf);
+					raf.seek(indiceParent * NODE_SIZE_OCTET + Student.STUDENT_SIZE_OCTET + 4);
+					raf.write(-1);
+					
 				}
 				else {
 					removeTwoChildrent(nodeToRemove.rightChild, nodeRight, raf);
@@ -513,7 +524,7 @@ public class Node {
 			Student studentToRemove1Child = new Student("GARIJO", "Rosie", "75", "AI 79", 2011);
 			Student studentToRemove1Child1 = new Student("NOUAR", "Adel", "94", "ATOD 5", 2009);
 			Student studentToRemove2Child = new Student("AUGEREAU", "Kévin", "76", "AI 78", 2010);
-			removeStudent(studentToRemove2Child, rafR);
+			removeStudent(studentToRemoveFeuille, rafR);
 
 			System.out.println("lecture fichier");
 			rafR.seek(0);

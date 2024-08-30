@@ -16,22 +16,33 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+
+/**
+ * Classe représentant une vue pour ajouter un nouveau stagiaire. 
+ * Cette vue fournit un formulaire pour saisir les informations du stagiaire 
+ * et un bouton pour valider l'ajout du stagiaire.
+ */
 public class AddStudent extends VBox {
 
 	TreeDAO tree;
+	
+    /**
+     * Constructeur de la classe.
+     * 
+     * @param tree L'objet {@link TreeDAO} utilisé pour ajouter le stagiaire à la base de données.
+     */
 	
 	public AddStudent(TreeDAO tree) {
 		super();
 		this.tree = tree;
 
 		VBox addStudentVBox = new VBox(10);
-//		addStudentVBox.setPadding(new Insets(300));
 
-		// title
+		// Création du titre
 		Label titleLbl = new Label("Ajouter nouveau stagiaire");
 		titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 40));
 
-		// GridPane imput components
+		// Création du GridPane pour les champs de saisie
 		GridPane gridAddStudent = new GridPane();
 
 		Label lastNameLbl = new Label("Nom");
@@ -49,7 +60,7 @@ public class AddStudent extends VBox {
 		Label locationLbl = new Label("Localisation");
 		TextField locationTextField = new TextField();
 
-		// adding the components to the grid
+		// Ajout des composants au GridPane
 		gridAddStudent.add(lastNameLbl, 0, 0);
 		gridAddStudent.add(lastNameTextField, 1, 0);
 		gridAddStudent.add(firstNameLbl, 0, 1);
@@ -61,12 +72,12 @@ public class AddStudent extends VBox {
 		gridAddStudent.add(locationLbl, 0, 4);
 		gridAddStudent.add(locationTextField, 1, 4);
 
-		// gap between components and center position
+		// Configuration des espacements entre les composants et alignement
 		gridAddStudent.setHgap(15);
 		gridAddStudent.setVgap(15);
 		gridAddStudent.setAlignment(Pos.CENTER);
 
-		// HBox for the button
+		// Création de la BorderPane pour le bouton de validation
 		BorderPane btnValiderBox = new BorderPane();
 		Label studentAdded = new Label();
 		studentAdded.setFont(Font.font("Futura", 1));
@@ -79,62 +90,56 @@ public class AddStudent extends VBox {
 			String yearPromoInput = yearPromoTextField.getText().trim();
 			int yearPromoInt;
 
-			// if a field is empty, print an error
+			// Validation des champs de saisie
 			if (lastNameInput.isEmpty() || firstNameInput.isEmpty() || locationInput.isEmpty()
 					|| namePromoInput.isEmpty() || yearPromoInput.isEmpty()) {
-				System.err.println("something is empty");
+				System.err.println("Certains champs sont vides.");
 				return;
 			}
 
-			// if first or last name is not valid name, print an error
 			if (!(Validator.isValidName(lastNameInput, firstNameInput))) {
-				System.err.println("name can only contain: a-z, spaces, -, '");
+				System.err.println("Les noms ne peuvent contenir que des lettres, espaces, -, '");
 				return;
 			}
 
-			// if promo name is not valid, print error
 			if (!(Validator.isValidPromo(namePromoInput))) {
-				System.err.println("name promo can only contain: a-z, 0-9, spaces");
+				System.err.println("La formation ne peut contenir que des lettres, chiffres et espaces.");
 				return;
 			}
 
-			// if special characters, print an error
 			if (Validator.containsSpecialCharacters(locationInput, yearPromoInput)) {
-				System.err.println("there cant be any special characters in year or location");
+				System.err.println("La localisation et l'année de formation ne doivent pas contenir de caractères spéciaux.");
 				return;
 			}
 
-			// if year is not a valid year, print an error
 			if (Validator.isYear(yearPromoInput)) {
 				yearPromoInt = Integer.parseInt(yearPromoInput);
 			} else {
-				System.err.println("is not a valid year");
+				System.err.println("L'année de formation n'est pas valide.");
 				return;
 			}
 
-			// if last name <=30 chars
 			if (!(Validator.maxLength(lastNameInput, 30))) {
-				System.err.println("last name cant be longer than 30 chars");
+				System.err.println("Le nom ne peut pas dépasser 30 caractères.");
 				return;
 			}
 
-			// if first name <=30 chars
 			if (!(Validator.maxLength(firstNameInput, 30))) {
-				System.err.println("first name cant be longer than 30 chars");
+				System.err.println("Le prénom ne peut pas dépasser 30 caractères.");
 				return;
 			}
 
-			// if location <= 3 chars
 			if (!(Validator.maxLength(locationInput, 3))) {
-				System.err.println("location cant be longer than 3 chars");
+				System.err.println("La localisation ne peut pas dépasser 3 caractères.");
 				return;
 			}
 
-			// if namepromo <= chars
 			if (!(Validator.maxLength(namePromoInput, 12))) {
-				System.err.println("name promo cannot be longer than 12 chars");
+				System.err.println("Le nom de la formation ne peut pas dépasser 12 caractères.");
 				return;
 			}
+			
+			// Création du nouvel étudiant et ajout au TreeDAO
 			Student student = new Student (lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInt);
 			tree.addToTree(student);
 			System.out.println("Nom:" + lastNameInput);
@@ -143,7 +148,7 @@ public class AddStudent extends VBox {
 			System.out.println("Promo :" + namePromoInput);
 			System.out.println("Anne Promo :" + yearPromoInput);
 
-			// resetting the fields
+			// Réinitialisation des champs de saisie
 			lastNameTextField.clear();
 			firstNameTextField.clear();
 			locationTextField.clear();
@@ -154,15 +159,15 @@ public class AddStudent extends VBox {
 
 		});
 
+		// Configuration du bouton de validation
 //		btnValider.addStudentFromFields(lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInput);
 		btnValider.addStudentFromFields(lastNameTextField, firstNameTextField, locationTextField, promoTextField,
 				yearPromoTextField);
 
-//		btnValiderBox.getChildren().addAll(studentAdded, btnValider);
 		btnValiderBox.setLeft(studentAdded);
 		btnValiderBox.setCenter(btnValider);
 
-		// adding all elements as children
+		// Ajout des éléments dans le VBox principal
 		addStudentVBox.getChildren().addAll(titleLbl, gridAddStudent, btnValiderBox);
 		this.getChildren().add(addStudentVBox);
 	}

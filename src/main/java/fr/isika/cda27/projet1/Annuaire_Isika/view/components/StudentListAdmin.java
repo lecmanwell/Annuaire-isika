@@ -19,53 +19,69 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
 
+/**
+ * Classe représentant une table affichant la liste des étudiants avec des
+ * options d'édition et de suppression. Cette table est utilisée dans le
+ * contexte de l'administration des étudiants.
+ */
 public class StudentListAdmin extends TableView {
 
+	/** Liste observable contenant les étudiants affichés dans la table. */
 	public ObservableList<Student> myObservableArrayList;
+
 	Scene scene;
 	TreeDAO tree;
 	String iconPath = "/Images/trashIcon.png";
 
+	/**
+	 * Retourne la liste observable des étudiants.
+	 *
+	 * @return La liste observable des étudiants.
+	 */
 	public ObservableList<Student> getMyObservableArrayList() {
 		return myObservableArrayList;
 	}
 
-
-	// On instancie une TableView que l'on bind à notre liste observable
+	/**
+	 * Constructeur de la classe. Initialise la table des étudiants en créant et en
+	 * configurant les colonnes, et en liant les données des étudiants.
+	 *
+	 * @param scene La scène à laquelle cette table est attachée.
+	 * @param tree  L'objet {@code TreeDAO} utilisé pour accéder aux données des
+	 *              étudiants.
+	 */
 	@SuppressWarnings("unchecked")
 	public StudentListAdmin(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-		ArrayList<Student> list = tree.setAlphaList(); 
-		System.out.println(tree.getStudents());
+
+		// Chargement des données des étudiants à partir de {@code TreeDAO}
+		ArrayList<Student> list = tree.setAlphaList();
+//		System.out.println(tree.getStudents());
 		myObservableArrayList = FXCollections.observableArrayList(list);
-	
 		this.setItems(myObservableArrayList);
 
-		// On créé la première colonne qui va afficher le nom des stagiaires
+		// Création et configuration des colonnes
 		TableColumn<Student, String> colNom = new TableColumn<>("Nom");
 		colNom.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		colNom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
 		colNom.setPrefWidth(150);
-		
+
 		TableColumn<Student, String> colPrenom = new TableColumn<>("Prenom");
 		colPrenom.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		colPrenom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
 		colPrenom.setPrefWidth(150);
-
 
 		TableColumn<Student, String> colLocation = new TableColumn<>("Département");
 		colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
 		colLocation.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
 		colLocation.setPrefWidth(100);
 
-
 		TableColumn<Student, String> colNamePromo = new TableColumn<>("Formation");
 		colNamePromo.setCellValueFactory(new PropertyValueFactory<>("namePromo"));
 		colNamePromo.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
 		colNamePromo.setPrefWidth(138);
-
 
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("yearPromo"));
@@ -73,7 +89,6 @@ public class StudentListAdmin extends TableView {
 //		colYear.setCellFactory(ChoiceBoxTableCell.<Student>forTableColumn(colYear));
 		colYear.setPrefWidth(138);
 
-	
 		TableColumn<Student, Void> colAction = new TableColumn<>("");
 		ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream(iconPath)));
 		trashIcon.setFitHeight(15);
@@ -94,42 +109,33 @@ public class StudentListAdmin extends TableView {
 
 					@Override
 					protected void updateItem(Void item, boolean empty) {
-						  super.updateItem(item, empty);
-	                        if (empty) {
-	                            setGraphic(null);
-	                        } else {
-	                            // Afficher le bouton uniquement sur la ligne sélectionnée
-	                            if (getTableView().getSelectionModel().isSelected(getIndex())) {
-	                                setGraphic(deleteButton);
-	                            } else {
-	                                setGraphic(null);
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+						} else {
+							// Afficher le bouton uniquement lorsque la ligne est sélectionnée
+							if (getTableView().getSelectionModel().isSelected(getIndex())) {
+								setGraphic(deleteButton);
+							} else {
+								setGraphic(null);
+							}
+						}
 					}
-				}
-			}
-			
+
 				};
 			}
 		});
-        // Ajouter un écouteur pour rafraîchir la table lorsque la sélection change
-        this.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
-            this.refresh(); // Rafraîchir la table pour mettre à jour l'affichage des boutons
-        });
-			
-			
-			
 
-	
-		
-		 
-
+		// Ajouter un écouteur pour rafraîchir la table lorsque la sélection change
+		this.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
+			this.refresh(); // Rafraîchir la table pour mettre à jour l'affichage des boutons
+		});
 
 		colAction.setPrefWidth(65);
 
-
-		// On ajoute les colonnes à la tableView
+		// Ajout des colonnes à la table
 		this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear, colAction);
 		this.setEditable(true);
-		
 
 		this.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Student>() {
 
@@ -148,14 +154,12 @@ public class StudentListAdmin extends TableView {
 					colLocation.setOnEditCommit((e) -> {
 						newValue.setLocation(e.getNewValue());
 					});
-			
+
 				}
-			}				
-			
+			}
+
 		});
-		
-		
 
 	}
-	
+
 }

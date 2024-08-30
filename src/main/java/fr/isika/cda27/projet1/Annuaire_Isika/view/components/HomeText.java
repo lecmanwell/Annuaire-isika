@@ -10,21 +10,33 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * Classe représentant une vue de la page d'accueil de l'annuaire. Cette vue
+ * affiche un titre, une description et un bouton pour accéder à l'annuaire.
+ */
+
 public class HomeText extends VBox {
-	
+
 	private Scene scene;
 	CustomButton btnDirectory;
+
+	/**
+	 * Constructeur pour initialiser la vue de la page d'accueil.
+	 * 
+	 * @param scene La scène dans laquelle cette vue sera affichée.
+	 */
 
 	public HomeText(Scene scene) {
 		super();
 		this.scene = scene;
 		this.setAlignment(Pos.CENTER);
-//		this.setPadding(new Insets(20));
 
+		// Création du label pour le titre
 		Label titleLabel = new Label("Annuaire");
 		titleLabel.setFont(Font.font("Futura", FontWeight.BOLD, 40));
 		titleLabel.setPadding(new Insets(0, 0, 20, 0));
 
+		// Création du label pour la description
 		Label descriptionLabel = new Label(
 				"Dans cet annuaire, retrouvez tous les stagiaires ayant bénéficié d’une formation chez ISIKA.");
 		descriptionLabel.setFont(Font.font("Futura", 17));
@@ -35,14 +47,11 @@ public class HomeText extends VBox {
 		descriptionLabel.setAlignment(Pos.CENTER);
 		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 
+		// Création du bouton pour accéder à l'annuaire
 		btnDirectory = new CustomButton(scene);
 		btnDirectory.goToDirectory();
-		
-		
-//		CustomButton btn = new CustomButton(scene);
-//		Button btn1 = btn.goToDirectory();
 
-
+		// Ajout des éléments à la vue
 		this.getChildren().addAll(titleLabel, descriptionLabel, btnDirectory);
 
 	}

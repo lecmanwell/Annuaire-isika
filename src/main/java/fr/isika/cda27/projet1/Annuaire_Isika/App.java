@@ -46,7 +46,8 @@ public class App extends Application {
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), 800, 600);
 
-		HomeView home = new HomeView(scene);
+		HomeView home = new HomeView(scene, tree);
+
 
 		stage.setScene(scene);
 		stage.show();
