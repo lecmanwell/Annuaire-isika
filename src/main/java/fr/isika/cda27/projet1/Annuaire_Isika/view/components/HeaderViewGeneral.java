@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ public class HeaderViewGeneral extends HBox {
 
 	HBox headerBoxGrl = new HBox();
 	Scene scene;
+	TreeDAO tree;
 
 	// Bandes pour l'en-tête général
 	VBox stripesBox = new VBox();
@@ -49,9 +51,10 @@ public class HeaderViewGeneral extends HBox {
 	 * @param scene La scène à laquelle cet en-tête est attaché.
 	 */
 
-	public HeaderViewGeneral(Scene scene) {
+	public HeaderViewGeneral(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree= tree;
 
 		// Ratios pour les composants de l'en-tête'
 		double stripeHeightRatio = 0.015;
@@ -88,13 +91,13 @@ public class HeaderViewGeneral extends HBox {
 		separatorR.setMaxHeight(20);
 
 		// Création des boutons de navigation
-		btnHome = new CustomButton(scene);
+		btnHome = new CustomButton(scene, this.tree);
 		btnHome.homeButtonTitle();
 
-		btnDirectory = new CustomButton(scene);
+		btnDirectory = new CustomButton(scene, this.tree);
 		btnDirectory.goToDirectoryTitle();
 
-		btnAdmin = new CustomButton(scene);
+		btnAdmin = new CustomButton(scene, this.tree);
 		btnAdmin.adminAccessTitle();
 
 		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);

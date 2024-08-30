@@ -31,7 +31,7 @@ public class App extends Application {
 		this.tree = new TreeDAO();
 		ReaderInitialText reader = new ReaderInitialText();
 		try {
-			reader.readInitialText("src/main/resources/testAnnuaireText.txt");
+			reader.readInitialText("src/main/resources/STAGIAIRES.DON", this.tree);
 		} catch (IOException e) {
 
 			e.printStackTrace();

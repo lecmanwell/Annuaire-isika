@@ -37,7 +37,7 @@ public class LoginAdmin extends VBox {
 	 *
 	 * @param scene La scène dans laquelle ce composant sera utilisé.
 	 */
-	public LoginAdmin(Scene scene) {
+	public LoginAdmin(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
@@ -74,7 +74,7 @@ public class LoginAdmin extends VBox {
 
 			// Validation des informations d'identification et redirection
 			if (Admin.validateAdmin(usernameInput, passwordInput)) {
-				scene.setRoot(new AdminDirectoryView(scene, tree));
+				scene.setRoot(new AdminDirectoryView(scene, this.tree));
 			} else {
 				// Affichage d'un message d'erreur en cas d'identifiant ou mot de passe
 				// incorrect

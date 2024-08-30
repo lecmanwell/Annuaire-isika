@@ -47,7 +47,7 @@ public class CustomButton extends Button {
 	 * @param scene La scène dans laquelle le bouton sera utilisé.
 	 */
 
-	public CustomButton(Scene scene) {
+	public CustomButton(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
@@ -93,7 +93,7 @@ public class CustomButton extends Button {
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new HomeViewAdmin(this.scene));
+			scene.setRoot(new HomeViewAdmin(this.scene, this.tree));
 
 		});
 
@@ -112,7 +112,7 @@ public class CustomButton extends Button {
 
 		//
 		this.setOnAction((e) -> {
-			scene.setRoot(new UserDirectoryView(this.scene, tree));
+			scene.setRoot(new UserDirectoryView(this.scene, this.tree));
 		});
 
 	}
@@ -160,7 +160,7 @@ public class CustomButton extends Button {
 					"-fx-background-color: transparent; -fx-text-fill: black; -fx-border-color: #db754a; -fx-border-radius: 15; -fx-background-radius: 15;");
 		});
 		this.setOnAction((e) -> {
-			scene.setRoot(new HomeView(this.scene));
+			scene.setRoot(new HomeView(this.scene, this.tree));
 		});
 	}
 
@@ -186,7 +186,7 @@ public class CustomButton extends Button {
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new HomeView(scene));
+			scene.setRoot(new HomeView(scene, this.tree));
 		});
 
 	}
@@ -210,7 +210,7 @@ public class CustomButton extends Button {
 		});
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new HomeView(scene));
+			scene.setRoot(new HomeView(scene, this.tree));
 		});
 	}
 
@@ -232,7 +232,7 @@ public class CustomButton extends Button {
 		});
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new UserDirectoryView(scene, tree));
+			scene.setRoot(new UserDirectoryView(scene, this.tree));
 		});
 
 	}
@@ -255,7 +255,7 @@ public class CustomButton extends Button {
 		});
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new HomeViewAdmin(scene));
+			scene.setRoot(new HomeViewAdmin(scene, this.tree));
 		});
 
 	}
@@ -341,7 +341,7 @@ public class CustomButton extends Button {
 		this.setPadding(new Insets(3, 20, 3, 20));
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new AddStudentView(scene, tree));
+			scene.setRoot(new AddStudentView(scene, this.tree));
 		});
 
 	}
@@ -367,7 +367,7 @@ public class CustomButton extends Button {
 
 		// go to page action
 		this.setOnAction((e) -> {
-			scene.setRoot(new AdminDirectoryView(scene, tree));
+			scene.setRoot(new AdminDirectoryView(scene, this.tree));
 		});
 
 	}

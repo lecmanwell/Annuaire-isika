@@ -39,7 +39,7 @@ public class AddStudentView extends BorderPane {
 		double screenWidth = Screen.getPrimary().getBounds().getWidth();
 
 		// Création de l'en-tête
-		HeaderViewAdmin header = new HeaderViewAdmin(scene);
+		HeaderViewAdmin header = new HeaderViewAdmin(scene, this.tree);
 		header.setPrefHeight(screenHeight * 0.15);
 		header.setMinHeight(screenHeight * 0.15);
 		header.setMaxHeight(screenHeight * 0.15);
@@ -53,7 +53,7 @@ public class AddStudentView extends BorderPane {
 		body.setAlignment(Pos.CENTER);
 
 		 // Création du pied de page
-		Footer footer = new Footer(scene);
+		Footer footer = new Footer(this.scene, this.tree);
 		footer.footerAddStudentView();
 		
 		// Configuration du BorderPane

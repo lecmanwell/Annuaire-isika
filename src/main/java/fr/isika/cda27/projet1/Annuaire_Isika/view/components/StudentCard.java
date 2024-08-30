@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -43,13 +44,13 @@ public class StudentCard extends GridPane {
      */
 	
 	
-	public StudentCard(String name, String firstname,  String formation, String anneeFormation, String localisation) {
+	public StudentCard(Student stud) {
 		super();
-		this.lastNameString = name;
-		this.firstNameString = firstname;
-		this.formationString = formation;
-		this.anneeFormationString = anneeFormation;
-		this.localisationString = localisation;
+		this.lastNameString = stud.getLastName();
+		this.firstNameString = stud.getFirstName();
+		this.formationString = stud.getNamePromo();
+		this.anneeFormationString = String.valueOf(stud.getYearPromo());
+		this.localisationString = stud.getLocation();
 		this.setAlignment(Pos.CENTER);
 		Label lastNameLabel = new Label(this.lastNameString);
 		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 12));

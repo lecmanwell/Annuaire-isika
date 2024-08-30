@@ -199,7 +199,7 @@ public class Node {
 		// cas feuille trouver son pere et mettre l'enfant à -1
 		// aucun child et pas de next
 		if (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild == -1 && nodeToRemove.next == -1) {
-			System.out.println("cas feuuille");
+
 			removeLeaf(indice, raf);
 		}
 
@@ -207,7 +207,6 @@ public class Node {
 		// on arrive sur le premier des doublons sur l'arbre
 		if (nodeToRemove.next != -1) {
 
-			System.out.println("cas doublons");
 			// cas particulier du premier de la liste chainé
 
 			int indiceParent = findParent(indice, raf);
@@ -310,12 +309,7 @@ public class Node {
 				}
 			
 		}
-		
-//		System.out.println("nodeLeft :"+ nodeLeft.stud.toString());
-//		System.out.println("nodeRight :"+ nodeRight.stud.toString());
-//		System.out.println("nodeParent :"+ nodeParent.stud.toString());
-//		System.out.println("result left :"+ resultleft);
-//		System.out.println("result right :"+ resultright);
+
 		
 	}
 
@@ -342,14 +336,12 @@ public class Node {
 			}
 
 		} else if (node.next != -1) {
-			System.out.println("recursive launch");
 			removeStudentDoublons(student, node.next, raf, indice);
 		}
 	}
 
 	public int findParent(int indice, RandomAccessFile raf) {
 		int indiceFound = -1;
-		System.out.println("findparent");
 
 		try {
 			raf.seek(0);
@@ -366,7 +358,6 @@ public class Node {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(indiceFound);
 
 		return indiceFound;
 	}
@@ -385,7 +376,6 @@ public class Node {
 				if (nameRead.trim().equalsIgnoreCase(nameSearch.trim())) {
 					raf.seek(raf.getFilePointer() - Student.NBCHAR_LASTNAME * 2);
 					indice = raf.getFilePointer() / NODE_SIZE_OCTET;
-					System.out.println("------L'indice du nom : " + nameSearch + " est à l'indice " + indice);
 					break;
 				} else {
 					raf.seek(raf.getFilePointer() + (NODE_SIZE_OCTET - Student.NBCHAR_LASTNAME * 2));
@@ -526,7 +516,7 @@ public class Node {
 			Student studentToRemove2Child = new Student("AUGEREAU", "Kévin", "76", "AI 78", 2010);
 			removeStudent(studentToRemoveFeuille, rafR);
 
-			System.out.println("lecture fichier");
+		
 			rafR.seek(0);
 			while (rafR.getFilePointer() != rafR.length()) {
 
@@ -549,14 +539,6 @@ public class Node {
 					studentNamePromo += rafR.readChar();
 				}
 
-				int studentYearPromo = rafR.readInt();
-				int leftChild = rafR.readInt();
-				int rightChild = rafR.readInt();
-				int doublon = rafR.readInt();
-
-				System.out.println("Un étudiant : " + studentLastName + " " + studentFirstName + " " + studentLocation
-						+ " " + studentNamePromo + " " + studentYearPromo + " " + leftChild + " " + rightChild + " "
-						+ doublon);
 			}
 
 			rafR.close();

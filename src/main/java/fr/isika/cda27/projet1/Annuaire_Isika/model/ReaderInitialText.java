@@ -26,37 +26,31 @@ public class ReaderInitialText {
 	 *                     lecture du fichier.
 	 */
 
-	public void readInitialText(String filePath) throws IOException {
-
-		// test presence de fichiers txt ds le fichiers ressource
-		// si pas demander de telelcharger un fochier txt avec les students
+	public void readInitialText(String filePath, TreeDAO tree) throws IOException {
 
 		// test si ficheir de sauvegarde present
-		// afficher alert si on affiche ce fichier
 
-		File file = new File(filePath);
 
-		// if file exists and is a file
-		if (file.exists() && file.isFile()) {
+		File file = new File("src/main/resources/binarySave.bin");
+
+		// If the text file does not exist, check for a binary file
+		if (file.getPath().endsWith(".bin") && file.length() > 0) {
+
+			
+		} else if (file.exists() && file.isFile()) {
+
 			// if file is txt file read it
-			if (filePath.endsWith(".txt")) {
-				readTextFileAndAddStudent(filePath);
+			if (filePath.endsWith(".txt") || filePath.endsWith(".DON")) {
+				readTextFileAndAddStudent(filePath, tree);
 			} else {
 				System.err.println("lle fichier n'est pas un fichier texte.");
 			}
 		} else {
-			// If the text file does not exist, check for a binary file
-			if(filePath.endsWith(".bin")) {
-				
-			}else {
-				System.out.println("Aucun fichier texte ou binaire valide.");
-			}
+			System.err.println("Pas de ficheirs de sauvegarde.");
 		}
 
-		readTextFileAndAddStudent(filePath);
-
-//		Directory.getInstance().toString();
 	}
+	
 
 	/**
 	 * Méthode permettant de lire un fichier texte à partir du chemin spécifié et
@@ -67,9 +61,9 @@ public class ReaderInitialText {
 	 *                     lecture du fichier.
 	 */
 
-	public void readTextFileAndAddStudent(String filePath) throws IOException {
+	public void readTextFileAndAddStudent(String filePath, TreeDAO tree) throws IOException {
 
-		Directory dir = new Directory();
+		Directory dir = new Directory(tree);
 
 		try {
 			// Le fichier d'entrée
@@ -124,7 +118,7 @@ public class ReaderInitialText {
 		}
 
 		// Lecture d'un fichier binaire pour les tests
-		Node test = new Node();
-		test.readBinaryTest();
+//		Node test = new Node();
+//		test.readBinaryTest();
 	}
 }

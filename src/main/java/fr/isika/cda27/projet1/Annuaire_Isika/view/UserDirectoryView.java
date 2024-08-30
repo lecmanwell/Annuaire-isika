@@ -35,18 +35,18 @@ public class UserDirectoryView extends BorderPane {
 		this.tree = tree;
 
 		// Création de l'en-tête général
-		HeaderViewGeneral header = new HeaderViewGeneral(scene);
+		HeaderViewGeneral header = new HeaderViewGeneral(scene, this.tree);
 
 		// Conteneur principal pour la page centrale
 		VBox body = new VBox();
 		body.setPadding(new Insets(20, 20, 0, 20));
 
 		// Création de l'espace de recherche
-		MultiSearch multiSearch = new MultiSearch(scene);
+		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
 		multiSearch.multiSearchUser();
 
 		// Création du répertoire des utilisateurs avec une barre de défilement
-		UserDirectory userDirectory = new UserDirectory(scene);
+		UserDirectory userDirectory = new UserDirectory(scene, this.tree);
 		ScrollPane scrollpane = new ScrollPane();
 		System.out.println(scrollpane.viewportBoundsProperty());
 		userDirectory.setMinWidth(scrollpane.getWidth());
@@ -60,7 +60,7 @@ public class UserDirectoryView extends BorderPane {
 		body.getChildren().addAll(multiSearch, scrollpane);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene);
+		Footer footer = new Footer(scene, this.tree);
 		footer.footerUserDirectoryView();
 
 		// Configuration de la vue

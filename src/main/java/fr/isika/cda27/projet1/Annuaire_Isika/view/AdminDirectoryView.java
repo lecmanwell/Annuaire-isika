@@ -37,14 +37,14 @@ public class AdminDirectoryView extends BorderPane {
 		this.tree = tree;
 
 		// Création de l'en-tête
-		HeaderViewAdmin header = new HeaderViewAdmin(scene);
+		HeaderViewAdmin header = new HeaderViewAdmin(scene, this.tree);
 
 		// Création du conteneur central
 		VBox body = new VBox();
 		body.setPadding(new Insets(20, 20, 0, 20));
 
 		// Création de la barre de recherche
-		MultiSearch multiSearch = new MultiSearch(scene);
+		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
 		multiSearch.multiSearchUser();
 
 		// Création de la liste des étudiants avec une zone de défilement
@@ -60,7 +60,7 @@ public class AdminDirectoryView extends BorderPane {
 		body.getChildren().addAll(multiSearch, scrollpane);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene, userDirectory);
+		Footer footer = new Footer(scene,this.tree, userDirectory);
 		footer.footerAdminDirectoryView();
 
 		// Configuration du BorderPane

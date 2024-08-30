@@ -48,7 +48,7 @@ public class HomeView extends BorderPane {
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 
 		// Création du texte d'accueil
-		HomeText homeText = new HomeText(this.scene);
+		HomeText homeText = new HomeText(this.scene, this.tree);
 		homeText.setAlignment(Pos.CENTER);
 
 		// Ajout des composants au GridPane
@@ -58,7 +58,7 @@ public class HomeView extends BorderPane {
 		body.setHgap(20);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene);
+		Footer footer = new Footer(scene, this.tree);
 		footer.footerHomeView();
 
 		// Configuration du BorderPane

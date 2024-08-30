@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -24,6 +25,7 @@ import javafx.scene.Scene;
 public class Footer extends BorderPane {
 
 	Scene scene;
+	TreeDAO tree;
 
 	CustomButton btnGenerateDocumentation;
 	CustomButton btnGoBackHome;
@@ -40,8 +42,9 @@ public class Footer extends BorderPane {
 	 * 
 	 * @param scene La scène dans laquelle le pied de page sera affiché.
 	 */
-	public Footer(Scene scene) {
+	public Footer(Scene scene, TreeDAO tree) {
 		this.scene = scene;
+		this.tree = tree;
 		this.setPadding(new Insets(60, 60, 60, 60));
 	}
 
@@ -53,8 +56,9 @@ public class Footer extends BorderPane {
 	 * @param tableView La vue de la liste des étudiants pour générer des documents
 	 *                  PDF.
 	 */
-	public Footer(Scene scene, StudentListAdmin tableView) {
+	public Footer(Scene scene, TreeDAO tree, StudentListAdmin tableView) {
 		this.scene = scene;
+		this.tree=tree;
 		this.setPadding(new Insets(60, 60, 60, 60));
 		this.tableView = tableView;
 	}
@@ -74,7 +78,7 @@ public class Footer extends BorderPane {
 		iconQuestion.setFitWidth(20);
 		iconQuestion.setFitHeight(20);
 
-		btnGenerateDocumentation = new CustomButton(scene);
+		btnGenerateDocumentation = new CustomButton(scene, this.tree);
 		btnGenerateDocumentation.generateDocumentation();
 
 		iconAndDocBox = new HBox(10);
@@ -93,10 +97,10 @@ public class Footer extends BorderPane {
 	 */
 	public HBox createLogOutAndPrintBox() {
 
-		btnLogOut = new CustomButton(scene);
+		btnLogOut = new CustomButton(scene, this.tree);
 		btnLogOut.logOut();
 
-		btnPrintPfd = new CustomButton(scene);
+		btnPrintPfd = new CustomButton(scene, this.tree);
 		btnPrintPfd.printDirectory(tableView);
 
 		logOutAndPrintBox = new HBox(10);
@@ -115,7 +119,7 @@ public class Footer extends BorderPane {
 	public void footerHomeView() {
 		BorderPane footerHomeView = new BorderPane();
 
-		btnAdminAccess = new CustomButton(scene);
+		btnAdminAccess = new CustomButton(scene, this.tree);
 		btnAdminAccess.adminAccess();
 
 		HBox iconAndDocBox = createIconAndDocBox();
@@ -138,7 +142,7 @@ public class Footer extends BorderPane {
 	public void footerHomeViewAdmin() {
 		BorderPane footerHomeViewAdmin = new BorderPane();
 
-		btnGoBackHome = new CustomButton(scene);
+		btnGoBackHome = new CustomButton(scene, this.tree);
 		btnGoBackHome.backToHome();
 
 		HBox iconAndDocBox = createIconAndDocBox();
@@ -161,7 +165,7 @@ public class Footer extends BorderPane {
 	public void footerUserDirectoryView() {
 		BorderPane footerUserDirectoryView = new BorderPane();
 
-		btnPrintPfd = new CustomButton(scene);
+		btnPrintPfd = new CustomButton(scene, this.tree);
 		btnPrintPfd.printDirectory(this.tableView);
 
 		HBox iconAndDocBox = createIconAndDocBox();
@@ -183,7 +187,7 @@ public class Footer extends BorderPane {
 	public void footerAddStudentView() {
 		BorderPane footerAddStudentView = new BorderPane();
 
-		btnLogOut = new CustomButton(scene);
+		btnLogOut = new CustomButton(scene, this.tree);
 		btnLogOut.logOut();
 
 		HBox iconAndDocBox = createIconAndDocBox();

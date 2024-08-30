@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.control.Button;
 public class MultiSearch extends GridPane {
 
 	Scene scene;
+	TreeDAO tree;
 
 	/**
 	 * Constructeur de la classe. Initialise le composant en liant la scène fournie.
@@ -25,9 +27,10 @@ public class MultiSearch extends GridPane {
 	 * @param scene La scène dans laquelle ce composant sera utilisé.
 	 */
 
-	public MultiSearch(Scene scene) {
+	public MultiSearch(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree = tree;	
 
 	}
 
@@ -146,7 +149,7 @@ public class MultiSearch extends GridPane {
 		departementChoiceBox.setPrefHeight(200);
 		departementChoiceBox.setPrefWidth(300);
 
-		CustomButton btnGoToAddStudent = new CustomButton(scene);
+		CustomButton btnGoToAddStudent = new CustomButton(scene, this.tree);
 		btnGoToAddStudent.goToAddStudent();
 
 		this.add(lastNameField, 0, 0);

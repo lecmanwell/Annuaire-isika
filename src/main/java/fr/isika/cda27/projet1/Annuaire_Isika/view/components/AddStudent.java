@@ -81,7 +81,7 @@ public class AddStudent extends VBox {
 		BorderPane btnValiderBox = new BorderPane();
 		Label studentAdded = new Label();
 		studentAdded.setFont(Font.font("Futura", 1));
-		CustomButton btnValider = new CustomButton(null);
+		CustomButton btnValider = new CustomButton(null, this.tree);
 		btnValider.setOnAction((e) -> {
 			String lastNameInput = lastNameTextField.getText().trim().toUpperCase();
 			String firstNameInput = firstNameTextField.getText().trim();

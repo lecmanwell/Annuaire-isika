@@ -141,6 +141,9 @@ public class StudentListAdmin extends TableView {
 
 			@Override
 			public void changed(ObservableValue<? extends Student> observable, Student oldValue, Student newValue) {
+				
+				System.out.println("oldddddd "+oldValue);
+				System.out.println("new "+oldValue);
 				if (newValue != null) {
 					colNom.setOnEditCommit((e) -> {
 						newValue.setLastName(e.getNewValue());

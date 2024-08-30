@@ -1,5 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ public class HomeText extends VBox {
 
 	private Scene scene;
 	CustomButton btnDirectory;
+	TreeDAO tree;
 
 	/**
 	 * Constructeur pour initialiser la vue de la page d'accueil.
@@ -26,9 +28,11 @@ public class HomeText extends VBox {
 	 * @param scene La scène dans laquelle cette vue sera affichée.
 	 */
 
-	public HomeText(Scene scene) {
+	public HomeText(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
+		this.tree = tree;
+		
 		this.setAlignment(Pos.CENTER);
 
 		// Création du label pour le titre
@@ -48,7 +52,7 @@ public class HomeText extends VBox {
 		descriptionLabel.setMaxWidth(Double.MAX_VALUE);
 
 		// Création du bouton pour accéder à l'annuaire
-		btnDirectory = new CustomButton(scene);
+		btnDirectory = new CustomButton(scene, this.tree);
 		btnDirectory.goToDirectory();
 
 		// Ajout des éléments à la vue

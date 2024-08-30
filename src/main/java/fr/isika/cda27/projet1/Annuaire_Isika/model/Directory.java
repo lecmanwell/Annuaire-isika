@@ -26,7 +26,7 @@ public class Directory {
     /**
      * Le TreeDAO pour gérer les opérations sur l'arbre binaire.
      */
-	private TreeDAO treeDao;
+	private TreeDAO tree;
 
     /**
      * Constructeur par défaut de la classe Directory.
@@ -34,10 +34,9 @@ public class Directory {
      * Initialise également le fichier binaire pour la lecture et l'écriture.
      */
 
-	public Directory() {
+	public Directory(TreeDAO tree) {
 		this.studentsList = new ArrayList<Student>();
-//		this.tree = new Tree();
-
+		this.tree = tree;
 //		this.treeDao = new	TreeDAO();
 
 		try {
@@ -77,7 +76,6 @@ public class Directory {
      */
 
 	public void addStudentToList(Student student) {
-		System.out.println("Stagiaire added to list: " + student.getLastName());
 		studentsList.add(student);
 
 //		BinaryWriterReader writer = new BinaryWriterReader();
@@ -93,7 +91,7 @@ public class Directory {
 	
 	public void addStudentToTree(Student student) {
 //		tree.insert(student);
-		treeDao.addToTree(student);
+		this.tree.addToTree(student);
 
 	}
 
