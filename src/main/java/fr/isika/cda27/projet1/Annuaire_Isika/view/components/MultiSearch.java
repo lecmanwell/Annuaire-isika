@@ -128,17 +128,19 @@ public class MultiSearch extends GridPane {
 			departementChoiceBox.setPrefHeight(200);
 			departementChoiceBox.setPrefWidth(300);
 			
-			Button btn = new Button("Ajouter un stagiaire");
-			btn.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
-			btn.setPrefHeight(200);
-			btn.setPrefWidth(300);
+			
+			CustomButton btnGoToAddStudent = new CustomButton(scene);
+			btnGoToAddStudent.goToAddStudent();
+			
+//			btn.setPrefHeight(200);
+//			btn.setPrefWidth(300);
 			
 			this.add(lastNameField, 0, 0);
 			this.add(firstNameField, 0, 1);
 			this.add(formationComboBox, 1, 0);
 			this.add(anneeFormationComboBox, 1, 1);
 			this.add(departementChoiceBox, 2, 1);
-			this.add(btn,  3, 1);
+			this.add(btnGoToAddStudent,  3, 1);
 			this.setHgap(70);
 			this.setVgap(20);
 			this.setPadding(new Insets(0, 0, 20, 5));

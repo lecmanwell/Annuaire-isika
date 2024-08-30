@@ -3,6 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 
@@ -51,7 +52,7 @@ public class Footer extends BorderPane {
 	btnGenerateDocumentation = new CustomButton(scene);
 	btnGenerateDocumentation.generateDocumentation();
 	
-	iconAndDocBox = new HBox();
+	iconAndDocBox = new HBox(10);
 	iconAndDocBox.getChildren().addAll(iconQuestion, btnGenerateDocumentation);
 	iconAndDocBox.setAlignment(Pos.CENTER);
 	
@@ -68,7 +69,7 @@ public class Footer extends BorderPane {
 		btnPrintPfd = new CustomButton(scene);
 		btnPrintPfd.printDirectory(tableView);
 		
-		logOutAndPrintBox = new HBox();
+		logOutAndPrintBox = new HBox(10);
 		logOutAndPrintBox.getChildren().addAll(btnLogOut,btnPrintPfd);
 		
 		return logOutAndPrintBox;
@@ -86,7 +87,7 @@ public class Footer extends BorderPane {
 		footerHomeView.setLeft(iconAndDocBox);
 		footerHomeView.setRight(btnAdminAccess);
 		
-		this.getChildren().add(footerHomeView);
+		this.setBottom(footerHomeView);
 		
 	}
 	
@@ -102,7 +103,8 @@ public class Footer extends BorderPane {
 		footerHomeViewAdmin.setLeft(iconAndDocBox);
 		footerHomeViewAdmin.setRight(btnGoBackHome);
 		
-		this.getChildren().add(footerHomeViewAdmin);
+		this.setBottom(footerHomeViewAdmin);
+		
 	}
 	
 	public void footerUserDirectoryView() {
@@ -116,7 +118,8 @@ public class Footer extends BorderPane {
 		footerUserDirectoryView.setLeft(iconAndDocBox);
 		footerUserDirectoryView.setRight(btnPrintPfd);
 		
-		this.getChildren().add(footerUserDirectoryView);
+		this.setBottom(footerUserDirectoryView);
+
 		
 	}
 	
@@ -131,10 +134,9 @@ public class Footer extends BorderPane {
 		footerAddStudentView.setLeft(iconAndDocBox);
 		footerAddStudentView.setRight(btnLogOut);
 		
-		this.getChildren().add(footerAddStudentView);
+		this.setBottom(footerAddStudentView);
 		
 	}
-	
 	
 	
 	public void footerAdminDirectoryView() {
@@ -144,11 +146,10 @@ public class Footer extends BorderPane {
 		footerAdminDirectoryView.setLeft(iconAndDocBox);
 		
 		HBox logOutAndPrintBox = createLogOutAndPrintBox();
-		this.getChildren().addAll(footerAdminDirectoryView,logOutAndPrintBox);
 		
+		footerAdminDirectoryView.setLeft(iconAndDocBox);
 		footerAdminDirectoryView.setRight(logOutAndPrintBox);
-		
-		
+		this.setBottom(footerAdminDirectoryView);
 	}
 	
 }
