@@ -107,7 +107,6 @@ public class TreeDAO {
 	
 	public void deleteStudent(Student student) throws IOException {
         
-		System.out.println(student);
         Node node = new Node();
         node.removeStudent(student, this.raf);
     }

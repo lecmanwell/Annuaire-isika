@@ -4,6 +4,7 @@ import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.UserDirectory;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -46,7 +47,7 @@ public class UserDirectoryView extends BorderPane {
 		multiSearch.multiSearchUser();
 
 		// Création du répertoire des utilisateurs avec une barre de défilement
-		UserDirectory userDirectory = new UserDirectory(scene, this.tree);
+		StudentListAdmin userDirectory = new StudentListAdmin(scene, this.tree, false);
 		ScrollPane scrollpane = new ScrollPane();
 		System.out.println(scrollpane.viewportBoundsProperty());
 		userDirectory.setMinWidth(scrollpane.getWidth());

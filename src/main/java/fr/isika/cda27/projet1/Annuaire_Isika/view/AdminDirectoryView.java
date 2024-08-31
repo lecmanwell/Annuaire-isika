@@ -48,7 +48,7 @@ public class AdminDirectoryView extends BorderPane {
 		multiSearch.multiSearchUser();
 
 		// Création de la liste des étudiants avec une zone de défilement
-		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree);
+		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree, true);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
 		scrollpane.setContent(userDirectory);
