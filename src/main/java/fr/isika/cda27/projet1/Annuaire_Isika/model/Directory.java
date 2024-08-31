@@ -78,8 +78,6 @@ public class Directory {
 	public void addStudentToList(Student student) {
 		studentsList.add(student);
 
-//		BinaryWriterReader writer = new BinaryWriterReader();
-//		writer.writeBinary(student);
 	}
 
 	
@@ -90,29 +88,8 @@ public class Directory {
      */
 	
 	public void addStudentToTree(Student student) {
-//		tree.insert(student);
 		this.tree.addToTree(student);
 
 	}
-
-//
-//	public Student findStudent(Student student) {
-//		return tree.searchFromNode(student, tree.getRoot()).getData();
-//	}
-
-//	public static ArrayList<Student> getStudentsList() {
-//		return Directory.instance.tree.treeAlphabeticalSorted();
-//	}
-//
-//	@Override
-//	public String toString() {
-//		
-//		System.out.println("List of all stagiaire render by alphabetic order-----------");		
-//		System.out.println("Parcours du Tree");
-//		
-//		this.tree.infixeToString(this.tree.getRoot());
-//
-//		return null;
-//	}
 
 }

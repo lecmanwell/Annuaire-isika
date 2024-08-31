@@ -36,7 +36,6 @@ public class ReaderInitialText {
 		// If the text file does not exist, check for a binary file
 		if (file.getPath().endsWith(".bin") && file.length() > 0) {
 
-			
 		} else if (file.exists() && file.isFile()) {
 
 			// if file is txt file read it

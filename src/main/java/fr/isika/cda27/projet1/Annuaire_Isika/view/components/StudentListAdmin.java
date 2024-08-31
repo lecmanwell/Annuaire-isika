@@ -1,6 +1,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.util.Callback;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
@@ -25,6 +26,8 @@ import javafx.scene.image.Image;
  * contexte de l'administration des étudiants.
  */
 public class StudentListAdmin extends TableView {
+
+	Student previous;
 
 	/** Liste observable contenant les étudiants affichés dans la table. */
 	public ObservableList<Student> myObservableArrayList;
@@ -104,6 +107,12 @@ public class StudentListAdmin extends TableView {
 						deleteButton.setOnAction((e) -> {
 							Student student = getTableView().getItems().get(getIndex());
 							myObservableArrayList.remove(student);
+							try {
+								tree.deleteStudent(student);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 						});
 					}
 
@@ -141,9 +150,6 @@ public class StudentListAdmin extends TableView {
 
 			@Override
 			public void changed(ObservableValue<? extends Student> observable, Student oldValue, Student newValue) {
-				
-				System.out.println("oldddddd "+oldValue);
-				System.out.println("new "+oldValue);
 				if (newValue != null) {
 					colNom.setOnEditCommit((e) -> {
 						newValue.setLastName(e.getNewValue());
@@ -159,6 +165,20 @@ public class StudentListAdmin extends TableView {
 					});
 
 				}
+
+				if (oldValue != null) {
+					try {
+						tree.upDateStudent(previous, oldValue);
+
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+				previous = new Student(newValue.getLastName(), newValue.getFirstName(), newValue.getLocation(),
+						newValue.getNamePromo(), newValue.getYearPromo());
+
 			}
 
 		});

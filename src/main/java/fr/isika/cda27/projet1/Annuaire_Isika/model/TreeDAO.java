@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class TreeDAO {
 
-	private static RandomAccessFile raf;
+	private RandomAccessFile raf;
 	public ArrayList<Student> students;
 
 	/**
@@ -46,7 +46,7 @@ public class TreeDAO {
 	 * 
 	 * @return Le fichier RandomAccessFile utilisé pour la sauvegarde.
 	 */
-	public static RandomAccessFile getRaf() {
+	public  RandomAccessFile getRaf() {
 		return raf;
 	}
 
@@ -95,4 +95,20 @@ public class TreeDAO {
 		}
 		return this.students;
 	}
+	
+	public void upDateStudent(Student oldStudent, Student student) throws IOException {
+		
+		if (!oldStudent.equals(student)) {		
+			Node node = new Node();
+			node.updateStudent(oldStudent, student, this.raf);
+		}
+	}
+	
+	
+	public void deleteStudent(Student student) throws IOException {
+        
+		System.out.println(student);
+        Node node = new Node();
+        node.removeStudent(student, this.raf);
+    }
 }

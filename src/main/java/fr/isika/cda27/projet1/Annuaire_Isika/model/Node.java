@@ -161,6 +161,9 @@ public class Node {
 	}
 
 	public void updateStudent(Student oldStudent, Student student, RandomAccessFile raf) throws IOException {
+		
+		
+		
 
 		// on recupere l'indice de la premiere occurence de clé
 		int indice = findStudentPosition(raf, oldStudent.getLastName());
@@ -168,6 +171,7 @@ public class Node {
 		// on compare en entier avec avec le student trouver à l'indice donné
 		Node node = new Node();
 		node = readNode(raf, indice);
+			
 		// si egaux, on est sur le bon student et on le modifie
 		if (node.stud.equals(oldStudent)) {
 			writeStudent(student, raf, indice);
@@ -195,7 +199,7 @@ public class Node {
 	public void removeStudent(Student student, RandomAccessFile raf) throws IOException {
 		int indice = findStudentPosition(raf, student.getLastName());
 		Node nodeToRemove = readNode(raf, indice);
-
+	
 		// cas feuille trouver son pere et mettre l'enfant à -1
 		// aucun child et pas de next
 		if (nodeToRemove.leftChild == -1 && nodeToRemove.rightChild == -1 && nodeToRemove.next == -1) {
