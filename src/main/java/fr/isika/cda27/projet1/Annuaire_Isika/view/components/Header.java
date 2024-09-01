@@ -12,6 +12,25 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * La classe Header représente un en-tête personnalisable. Cet en-tête contient
+ * un logo, des bandes colorées et un menu de navigation.
+ * 
+ * Cette classe est conçue pour afficher trois types d'en-tête différents : Un
+ * en-tête simple avec un logo centré entouré de bandes colorées. Un en-tête
+ * pour les utilisateurs avec un logo, des bandes colorées et un menu de
+ * navigation. Un en-tête pour les administrateurs avec un logo, des bandes
+ * colorées et un menu de navigation spécifique aux administrateurs.
+ * 
+ * Les dimensions des éléments graphiques s'adaptent dynamiquement à la taille
+ * de la fenêtre.
+ * 
+ * Cette classe dépend de la classe {@link CustomButton} pour créer les boutons
+ * de navigation, et de la classe {@link TreeDAO} pour la gestion des données
+ * sous-jacentes.
+ * 
+ */
+
 public class Header extends HBox {
 
 	private Scene scene;
@@ -87,17 +106,12 @@ public class Header extends HBox {
 		btnHome = new CustomButton(scene, this.tree);
 		btnHome.homeButtonTitle();
 
-//		btnDirectory = new CustomButton(scene, this.tree);
-//		btnDirectory.goToDirectoryTitle();
-
 		btnAdmin = new CustomButton(scene, this.tree);
 		btnAdmin.adminAccessTitle();
 
 		/// Création des séparateurs
 		separatorL = createSeparator();
-//		separatorR = createSeparator();
 
-//		menuBoxUser.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);
 		menuBoxUser.getChildren().addAll(btnHome, separatorL, btnAdmin);
 		menuBoxUser.setAlignment(Pos.CENTER);
 		menuBoxUser.setStyle("-fx-font-family: 'Futura';");
@@ -111,9 +125,9 @@ public class Header extends HBox {
 
 		btnDirectory = new CustomButton(scene, this.tree);
 		btnDirectory.goToDirectoryAdminTitle();
-		
+
 		separatorL = createSeparator();
-		
+
 		menuBoxAdmin.getChildren().addAll(btnHome, separatorL, btnDirectory);
 		menuBoxAdmin.setAlignment(Pos.CENTER);
 		menuBoxAdmin.setStyle("-fx-font-family: 'Futura';");
@@ -143,9 +157,9 @@ public class Header extends HBox {
 		HBox menuBoxUser = createMenuUser();
 		HBox headerBox = new HBox();
 		headerBox.getChildren().addAll(logo, stripes, menuBoxUser);
-		
+
 		this.getChildren().add(headerBox);
-		
+
 		return;
 	}
 
@@ -159,9 +173,9 @@ public class Header extends HBox {
 		HBox menuBoxAdmin = createMenuAdmin();
 		HBox headerBox = new HBox();
 		headerBox.getChildren().addAll(logo, stripes, menuBoxAdmin);
-		
+
 		this.getChildren().add(headerBox);
-		
+
 		return;
 	}
 }
