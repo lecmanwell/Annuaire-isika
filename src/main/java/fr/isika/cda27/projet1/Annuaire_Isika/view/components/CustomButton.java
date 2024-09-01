@@ -391,6 +391,15 @@ public class CustomButton extends Button {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 	}
+	
+	public void setResetFilter() {
+		this.setText("Effacer recherche");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setPrefHeight(200);
+		this.setPrefWidth(315);
+		this.setPadding(new Insets(3, 20, 3, 20));
+
+	}
 
 
 }
