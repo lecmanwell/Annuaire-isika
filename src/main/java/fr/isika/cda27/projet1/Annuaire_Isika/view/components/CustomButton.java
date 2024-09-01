@@ -4,9 +4,11 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.FileOutputStream;
 import java.time.LocalDate;
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -31,6 +33,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * Classe représentant un bouton personnalisé pour l'application. Cette classe
@@ -289,20 +293,24 @@ public class CustomButton extends Button {
 
 	private void generatePDF(StudentListAdmin tableView) throws IOException {
 		String dest = "stagiaires.pdf";
-
+		
+		 // Créer un écrivain PDF
 		try {
 			PdfWriter writer = new PdfWriter(dest);
 			PdfDocument pdf = new PdfDocument(writer);
 			Document document = new Document(pdf);
-
+			
+			// Nombre de colonnes dans la TableView
+			int numberOfColumns = 5;
+			
 			// Ajouter un titre
 			document.add(new Paragraph("Liste des Stagiaires"));
 
 			// Créer une table PDF
-			Table table = new Table(5);
+			Table table = new Table(numberOfColumns);
 			table.addCell(new Cell().add(new Paragraph("Nom")));
 			table.addCell(new Cell().add(new Paragraph("Prénom")));
-			table.addCell(new Cell().add(new Paragraph("Département")));
+			table.addCell(new Cell().add(new Paragraph("Dép.")));
 			table.addCell(new Cell().add(new Paragraph("Formation")));
 			table.addCell(new Cell().add(new Paragraph("Année de Formation")));
 			ArrayList<Student> studentsArray = new ArrayList<Student>(tableView.getItems());
@@ -352,7 +360,7 @@ public class CustomButton extends Button {
 	 * administrateur lorsqu'il est cliqué.
 	 */
 
-	public void goToDirectoryAdmin() {
+	public void goToDirectoryAdminTitle() {
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
@@ -371,5 +379,13 @@ public class CustomButton extends Button {
 		});
 
 	}
+//-----------------------------	
+	public void searchStudent() {
+		 List<Student> searchResult = new ArrayList<Student>();
+	this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+	this.setText("Rechercher");
+	
+	}
+
 
 }

@@ -31,7 +31,7 @@ public class StudentListAdmin extends TableView {
 
 	/** Liste observable contenant les étudiants affichés dans la table. */
 	public ObservableList<Student> myObservableArrayList;
-
+	
 	Scene scene;
 	TreeDAO tree;
 	String iconPath = "/Images/trashIcon.png";
@@ -196,7 +196,7 @@ public class StudentListAdmin extends TableView {
 
 			});
 		}
-
+	
 	}
 
 }

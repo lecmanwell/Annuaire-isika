@@ -86,7 +86,7 @@ public class HeaderViewAdmin extends HBox {
 		btnHome.homeButtonTitle();
 
 		btnDirectory = new CustomButton(scene,this.tree);
-		btnDirectory.goToDirectoryAdmin();
+		btnDirectory.goToDirectoryAdminTitle();
 
 		btnAdmin = new CustomButton(scene,this.tree);
 		btnAdmin.adminAccessTitle();

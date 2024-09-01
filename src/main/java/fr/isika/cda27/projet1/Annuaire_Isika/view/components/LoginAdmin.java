@@ -67,6 +67,7 @@ public class LoginAdmin extends VBox {
 		// Création du bouton d'accès
 		Button btnAccess = new Button("Accéder à l'annuaire");
 		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		btnAccess.setDefaultButton(true);
 		btnAccess.setOnAction((e) -> {
 			Admin admin = new Admin();
 			String usernameInput = userNameTextField.getText();

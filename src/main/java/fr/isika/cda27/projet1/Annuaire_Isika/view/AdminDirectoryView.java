@@ -24,6 +24,7 @@ public class AdminDirectoryView extends BorderPane {
 	private Scene scene;
 	TreeDAO tree;
 
+
 	/**
 	 * Constructeur de la classe.
 	 *
@@ -45,7 +46,7 @@ public class AdminDirectoryView extends BorderPane {
 
 		// Création de la barre de recherche
 		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
-		multiSearch.multiSearchUser();
+		multiSearch.multiSearchUser(new StudentListAdmin(scene, tree, true));
 
 		// Création de la liste des étudiants avec une zone de défilement
 		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree, true);

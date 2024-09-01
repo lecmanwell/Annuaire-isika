@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Node {
 
@@ -13,6 +14,33 @@ public class Node {
 	private int leftChild, rightChild, next;
 	public final static int NODE_SIZE_OCTET = Student.STUDENT_SIZE_OCTET + 3 * 4;
 	private ArrayList<Student> doublonFromIndice = new ArrayList<Student>();
+	private RandomAccessFile raf;
+
+//-------------------------
+	public int getLeftChild() {
+		return leftChild;
+	}
+
+	public void setLeftChild(int leftChild) {
+		this.leftChild = leftChild;
+	}
+
+	public int getRightChild() {
+		return rightChild;
+	}
+
+	public void setRightChild(int rightChild) {
+		this.rightChild = rightChild;
+	}
+
+	public int getNext() {
+		return next;
+	}
+
+	public void setNext(int next) {
+		this.next = next;
+	}
+//--------------------------------------	
 
 	public Node(Student stud) {
 		this.stud = stud;
@@ -117,7 +145,6 @@ public class Node {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -159,6 +186,55 @@ public class Node {
 		}
 
 	}
+	
+	
+//	-------------------------------------------------
+//	
+//    public List<Student> search(String lastName, String firstName, String location, String namePromo, int yearPromo) throws IOException {
+//        List<Student> searchResult = new ArrayList<Student>();
+//        searchRec(raf, this, lastName, firstName, location, namePromo, yearPromo, searchResult);
+//        return searchResult;
+//    }
+//	
+//    private void searchRec(RandomAccessFile raf, Node node, String lastName, String firstName, String location, String namePromo, int yearPromo, List<Student> result) throws IOException {
+//        if (this != null) {
+//        	Node leftNode = readNode(raf, this.leftChild);
+//        	Node rightNode = readNode(raf, this.rightChild);
+//            searchRec(raf, leftNode, lastName, firstName, location, namePromo, yearPromo, result);
+//
+//            Student student = leftNode.getStud();
+//            boolean matches = true;
+//            
+//            if (lastName != null && !lastName.isEmpty() && !student.getLastName().equalsIgnoreCase(lastName)) {
+//                matches = false;
+//            }
+//            if (firstName != null && !firstName.isEmpty() && !student.getFirstName().equalsIgnoreCase(firstName)) {
+//                matches = false;
+//            }
+//            if (location != null && !location.isEmpty() && !student.getNamePromo().equalsIgnoreCase(location)) {
+//                matches = false;
+//            }
+//            if (namePromo != null && !namePromo.isEmpty() && !student.getNamePromo().equalsIgnoreCase(namePromo)) {
+//                matches = false;
+//            }
+//            if (yearPromo != 0 && student.getYearPromo() != yearPromo) {
+//            	matches = false;
+//            }
+//
+//            if (matches) {
+//                result.add(student);
+//            }
+//
+//            searchRec(raf, rightNode, lastName, firstName, location, namePromo, yearPromo, result);
+//        }
+//    }
+	
+//	-------------------------------------------------
+	
+	
+	
+	
+	
 
 	public void updateStudent(Student oldStudent, Student student, RandomAccessFile raf) throws IOException {
 		
