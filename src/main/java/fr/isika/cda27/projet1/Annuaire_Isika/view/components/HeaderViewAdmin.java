@@ -49,7 +49,7 @@ public class HeaderViewAdmin extends HBox {
 
 		// Ratios pour les composants de l'en-tête
 		double stripeHeightRatio = 0.015;
-		double stripesBoxWidthRatio = 0.48;
+		double stripesBoxWidthRatio = 0.62;
 		double logoWidthRatio = 0.16;
 
 		// Création du logo
@@ -78,8 +78,8 @@ public class HeaderViewAdmin extends HBox {
 		separatorL.setOrientation(Orientation.VERTICAL);
 		separatorL.setMaxHeight(20);
 
-		separatorR.setOrientation(Orientation.VERTICAL);
-		separatorR.setMaxHeight(20);
+//		separatorR.setOrientation(Orientation.VERTICAL);
+//		separatorR.setMaxHeight(20);
 
 		// Création des boutons de navigation
 		btnHome = new CustomButton(scene,this.tree);
@@ -88,10 +88,10 @@ public class HeaderViewAdmin extends HBox {
 		btnDirectory = new CustomButton(scene,this.tree);
 		btnDirectory.goToDirectoryAdminTitle();
 
-		btnAdmin = new CustomButton(scene,this.tree);
-		btnAdmin.adminAccessTitle();
+//		btnAdmin = new CustomButton(scene,this.tree);
+//		btnAdmin.adminAccessTitle();
 
-		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory, separatorR, btnAdmin);
+		menuBox.getChildren().addAll(btnHome, separatorL, btnDirectory);
 		menuBox.setAlignment(Pos.CENTER);
 		menuBox.setStyle("-fx-font-family: 'Futura';");
 

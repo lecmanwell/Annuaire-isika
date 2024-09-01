@@ -8,8 +8,10 @@ import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -65,7 +67,7 @@ public class MultiSearch extends GridPane {
 
 	Scene scene;
 	TreeDAO tree;
-	
+
 	TextField lastNameField = new TextField();
 	TextField firstNameField = new TextField();
 	ComboBox<String> formationComboBox = new ComboBox<String>();
@@ -74,7 +76,6 @@ public class MultiSearch extends GridPane {
 	StudentListAdmin studentList;
 
 	ArrayList<String> listFormations;
-
 
 	/**
 	 * Constructeur de la classe. Initialise le composant en liant la scène fournie.
@@ -85,9 +86,53 @@ public class MultiSearch extends GridPane {
 	public MultiSearch(Scene scene, TreeDAO tree) {
 		super();
 		this.scene = scene;
-		this.tree = tree;	
+		this.tree = tree;
 		this.listFormations = this.getFormations();
-		
+
+		this.fillComboBoxWithPossibleValues();
+	}
+
+	/**
+	 * Remplit les ComboBox avec les valeurs possibles dérivées de la liste
+	 * d'étudiants. Cette méthode récupère une liste d'étudiants à partir de l'arbre
+	 * (`tree`) et extrait les valeurs possibles pour les promotions, les
+	 * localisations, et les années de promotion. Elle trie ensuite ces valeurs et
+	 * les assigne aux ComboBox correspondantes pour la formation, le département,
+	 * et l'année de formation.
+	 */
+
+	public void fillComboBoxWithPossibleValues() {
+		ArrayList<Student> studentList = this.tree.getStudents();
+
+		Set<String> possiblePromo = new HashSet<String>();
+		Set<String> possibleLocation = new HashSet<String>();
+		Set<Integer> possibleYearPromo = new HashSet<Integer>();
+
+		for (Student student : studentList) {
+			if (student.getNamePromo() != null) {
+				possiblePromo.add(student.getNamePromo());
+			}
+			if (student.getLocation() != null) {
+				possibleLocation.add(student.getLocation());
+			}
+			if (student.getYearPromo() > 0) {
+				possibleYearPromo.add(student.getYearPromo());
+			}
+		}
+
+		ArrayList<String> sortedPromo = new ArrayList<String>(possiblePromo);
+		Collections.sort(sortedPromo);
+
+		ArrayList<String> sortedLocation = new ArrayList<String>(possibleLocation);
+		Collections.sort(sortedLocation);
+
+		ArrayList<Integer> sortedYearPromo = new ArrayList<Integer>(possibleYearPromo);
+		Collections.sort(sortedYearPromo);
+
+		formationComboBox.setItems(FXCollections.observableArrayList(sortedPromo));
+		departementComboBox.setItems(FXCollections.observableArrayList(sortedLocation));
+		anneeFormationComboBox.setItems(FXCollections.observableArrayList(sortedYearPromo));
+
 	}
 
 	/**
@@ -99,17 +144,14 @@ public class MultiSearch extends GridPane {
 
 	public void multiSearch(StudentListAdmin studentList, boolean isAdmin) {
 		this.studentList = studentList;
-		
-		
+
 		lastNameField.setPrefHeight(200);
 		lastNameField.setPrefWidth(300);
 		lastNameField.setPromptText("Nom");
 
-
 		firstNameField.setPromptText("Prénom");
 		firstNameField.setPrefHeight(200);
 		firstNameField.setPrefWidth(300);
-
 
 		formationComboBox.setPromptText("Formation");
 		formationComboBox.setPrefHeight(200);
@@ -122,8 +164,6 @@ public class MultiSearch extends GridPane {
 		departementComboBox.setPromptText("Département");
 		departementComboBox.setPrefHeight(200);
 		departementComboBox.setPrefWidth(300);
-		
-		
 
 		this.add(lastNameField, 0, 0);
 		this.add(firstNameField, 0, 1);
@@ -135,55 +175,56 @@ public class MultiSearch extends GridPane {
 		this.setPadding(new Insets(0, 0, 20, 5));
 		this.setHeight(100);
 		this.setMaxHeight(120);
-		
+
 		if (isAdmin) {
 			CustomButton btnGoToAddStudent = new CustomButton(scene, tree);
 			btnGoToAddStudent.goToAddStudent();
 			this.add(btnGoToAddStudent, 3, 1);
 		}
-		
+
 		FilteredList<Student> filteredData = new FilteredList<>(studentList.getMyObservableArrayList(), p -> true);
 		lastNameField.textProperty().addListener((observable, olvValue, newValue) -> {
 			filteredData.setPredicate(student -> filterStudent(student));
 		});
 		firstNameField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(student -> filterStudent(student));
-        });
+			filteredData.setPredicate(student -> filterStudent(student));
+		});
 		departementComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(student -> filterStudent(student));
-        });
-        formationComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(student -> filterStudent(student));
-        });
-        anneeFormationComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(student -> filterStudent(student));
-        });
+			filteredData.setPredicate(student -> filterStudent(student));
+		});
+		formationComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(student -> filterStudent(student));
+		});
+		anneeFormationComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(student -> filterStudent(student));
+		});
 
-        // Mise à jour de la tableView avec les données filtrées
+		// Mise à jour de la tableView avec les données filtrées
 //        ((TableView) studentList.getItems()).setItems(filteredData);
-        studentList.refreshList(filteredData);
-		
-		
-		
-		
+		studentList.refreshList(filteredData);
+
 	}
-	public boolean filterStudent (Student student) {
-		if (!lastNameField.getText().isEmpty() && !student.getLastName().toLowerCase().contains(lastNameField.getText().toLowerCase())) {
-		return false;
+
+	public boolean filterStudent(Student student) {
+		if (!lastNameField.getText().isEmpty()
+				&& !student.getLastName().toLowerCase().contains(lastNameField.getText().toLowerCase())) {
+			return false;
 		}
-        if (!firstNameField.getText().isEmpty() && !student.getFirstName().toLowerCase().contains(firstNameField.getText().toLowerCase())) {
-            return false;
-        }
-        if (departementComboBox.getValue() != null && !departementComboBox.getValue().equals(student.getLocation())) {
-            return false;
-        }
-        if (formationComboBox.getValue() != null && !formationComboBox.getValue().equals(student.getNamePromo())) {
-            return false;
-        }
-        if (anneeFormationComboBox.getValue() != null && !anneeFormationComboBox.getValue().equals(student.getYearPromo())) {
-            return  false;
-        }
-        return true;
+		if (!firstNameField.getText().isEmpty()
+				&& !student.getFirstName().toLowerCase().contains(firstNameField.getText().toLowerCase())) {
+			return false;
+		}
+		if (departementComboBox.getValue() != null && !departementComboBox.getValue().equals(student.getLocation())) {
+			return false;
+		}
+		if (formationComboBox.getValue() != null && !formationComboBox.getValue().equals(student.getNamePromo())) {
+			return false;
+		}
+		if (anneeFormationComboBox.getValue() != null
+				&& !anneeFormationComboBox.getValue().equals(student.getYearPromo())) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -254,20 +295,17 @@ public class MultiSearch extends GridPane {
 //		this.setPadding(new Insets(0, 0, 20, 5));
 ////			return this;
 //	}
-	
-	
+
 	public ArrayList<String> getFormations() {
 
-
 		ArrayList<Student> listStudent = this.tree.getStudents();
-		for (Student stud :listStudent) {
+		for (Student stud : listStudent) {
 //			this.listFormations.add(stud.getNamePromo());
 //			System.out.println(stud.getNamePromo());
 		}
-		
-		return this.listFormations;
-		
-	}
-	
-}
 
+		return this.listFormations;
+
+	}
+
+}

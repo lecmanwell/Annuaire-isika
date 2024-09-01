@@ -42,8 +42,6 @@ public class Admin {
 		if ((usernameInput.equals(userName)) && (passwordInput.equals(password))) {
 			return true;
 		} else {
-			System.out.println("user name : " + usernameInput + " pass : " + passwordInput);
-			System.err.println("invalid username or password");
 			return false;
 		}
 	}
