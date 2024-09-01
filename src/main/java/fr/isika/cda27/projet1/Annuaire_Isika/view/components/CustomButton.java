@@ -112,7 +112,7 @@ public class CustomButton extends Button {
 
 	public void goToDirectory() {
 		this.setText("Accéder à l'annuaire");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
+		this.setStyle("-fx-background-color: #144d65;-fx-padding: 10 20; -fx-text-fill: white;");
 
 		//
 		this.setOnAction((e) -> {
@@ -349,7 +349,7 @@ public class CustomButton extends Button {
 		this.setPadding(new Insets(3, 20, 3, 20));
 
 		this.setOnAction((e) -> {
-			scene.setRoot(new AddStudentView(scene, this.tree));
+			scene.setRoot(new AddStudentView(this.scene, this.tree));
 		});
 
 	}
@@ -385,6 +385,11 @@ public class CustomButton extends Button {
 	this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 	this.setText("Rechercher");
 	
+	}
+	
+	public void validAdmin() {
+		this.setText("Valider");
+		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 	}
 
 

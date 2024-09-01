@@ -50,7 +50,7 @@ public class AddStudentView extends BorderPane {
 		// Création du conteneur du corps
 		HBox body = new HBox();
 		StudentListAdmin studentList = new StudentListAdmin(scene, tree, true);
-		AddStudent addStudent = new AddStudent(tree, studentList);
+		AddStudent addStudent = new AddStudent(this.tree, studentList);
 		body.getChildren().add(addStudent);
 		body.setAlignment(Pos.CENTER);
 
