@@ -10,6 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -43,7 +44,7 @@ public class StudentListAdmin extends TableView {
 	 * @return La liste observable des étudiants.
 	 */
 	public ObservableList<Student> getMyObservableArrayList() {
-		return myObservableArrayList;
+		return this.myObservableArrayList;
 	}
 
 	/**
@@ -67,6 +68,8 @@ public class StudentListAdmin extends TableView {
 		myObservableArrayList = FXCollections.observableArrayList(list);
 		this.setItems(myObservableArrayList);
 
+		
+		
 		// Création et configuration des colonnes
 		TableColumn<Student, String> colNom = new TableColumn<>("Nom");
 		colNom.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -197,6 +200,10 @@ public class StudentListAdmin extends TableView {
 			});
 		}
 	
+	}
+	
+	public void refreshList(FilteredList<Student> list){
+		this.setItems(list);
 	}
 
 }

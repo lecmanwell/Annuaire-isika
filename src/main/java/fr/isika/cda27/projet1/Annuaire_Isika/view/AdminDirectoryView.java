@@ -45,11 +45,12 @@ public class AdminDirectoryView extends BorderPane {
 		body.setPadding(new Insets(20, 20, 0, 20));
 
 		// Création de la barre de recherche
-		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
-		multiSearch.multiSearchUser(new StudentListAdmin(scene, tree, true));
 
 		// Création de la liste des étudiants avec une zone de défilement
 		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree, true);
+		
+		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
+		multiSearch.multiSearchUser(userDirectory);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
 		scrollpane.setContent(userDirectory);

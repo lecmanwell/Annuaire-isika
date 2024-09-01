@@ -6,12 +6,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
+
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+
+
+import java.util.ArrayList;
+
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Filtres;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -77,6 +89,9 @@ public class MultiSearch extends GridPane {
 	CustomButton searchButton = new CustomButton(scene, tree);
 	StudentListAdmin studentList;
 
+	ArrayList<String> listFormations;
+
+
 	/**
 	 * Constructeur de la classe. Initialise le composant en liant la scène fournie.
 	 *
@@ -87,7 +102,8 @@ public class MultiSearch extends GridPane {
 		super();
 		this.scene = scene;
 		this.tree = tree;	
-
+		this.listFormations = this.getFormations();
+		
 	}
 
 	/**
@@ -96,14 +112,18 @@ public class MultiSearch extends GridPane {
 	 * département. Ajoute les composants au {@code GridPane} avec des espacements
 	 * et des marges définis.
 	 */
+
 	public void multiSearchUser(StudentListAdmin studentList) {
 		this.studentList = studentList;
 		
 		
 //		TextField lastNameField = new TextField("Nom");
 		lastNameField.setPromptText("Nom");
+
 		lastNameField.setPrefHeight(200);
 		lastNameField.setPrefWidth(300);
+		lastNameField.setPromptText("Nom");
+
 		lastNameField.setOnMouseClicked(event -> {
 			lastNameField.clear();
 		});
@@ -111,7 +131,9 @@ public class MultiSearch extends GridPane {
 
 		lastNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue && lastNameField.getText().isEmpty()) {
+
 				lastNameField.setPromptText("Nom");
+
 			}
 		});
 
@@ -123,6 +145,8 @@ public class MultiSearch extends GridPane {
 			firstNameField.clear();
 
 		});
+		
+		
 
 		firstNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
 			if (!newValue && firstNameField.getText().isEmpty()) {
@@ -134,6 +158,7 @@ public class MultiSearch extends GridPane {
 		formationComboBox.setPromptText("Formation");
 		formationComboBox.setPrefHeight(200);
 		formationComboBox.setPrefWidth(300);
+//		formationComboBox.setItems( FXCollections.observableArrayList(this.listFormations));
 
 //		ComboBox<String> anneeFormationComboBox = new ComboBox<String>();
 		anneeFormationComboBox.setPromptText("Année de formation");
@@ -180,7 +205,8 @@ public class MultiSearch extends GridPane {
         });
 
         // Mise à jour de la tableView avec les données filtrées
-        ((TableView) studentList.getMyObservableArrayList()).setItems(filteredData);
+//        ((TableView) studentList.getItems()).setItems(filteredData);
+        studentList.refreshList(filteredData);
 		
 		
 		
@@ -247,6 +273,7 @@ public class MultiSearch extends GridPane {
 		formationComboBox.setPromptText("Formation");
 		formationComboBox.setPrefHeight(200);
 		formationComboBox.setPrefWidth(300);
+		formationComboBox.setItems(FXCollections.observableArrayList(getFormations()));
 
 		ComboBox<String> anneeFormationComboBox = new ComboBox<String>();
 		anneeFormationComboBox.setPromptText("Année de formation");
@@ -273,6 +300,19 @@ public class MultiSearch extends GridPane {
 //			return this;
 	}
 	
+	
+	public ArrayList<String> getFormations() {
 
+
+		ArrayList<Student> listStudent = this.tree.getStudents();
+		for (Student stud :listStudent) {
+//			this.listFormations.add(stud.getNamePromo());
+//			System.out.println(stud.getNamePromo());
+		}
+		
+		return this.listFormations;
 		
 	}
+	
+}
+
