@@ -57,6 +57,7 @@ public class Footer extends BorderPane {
 	 *                  PDF.
 	 */
 	public Footer(Scene scene, TreeDAO tree, StudentListAdmin tableView) {
+		
 		this.scene = scene;
 		this.tree=tree;
 		this.setPadding(new Insets(60, 60, 60, 60));
