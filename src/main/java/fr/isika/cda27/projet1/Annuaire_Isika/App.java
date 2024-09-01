@@ -42,7 +42,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) {
-
+		stage.setTitle("Annuaire informatisé ISIKA");
 		stage.getIcons().add(new Image(getClass().getResourceAsStream("/Images/isika.png")));
 		Scene scene = new Scene(new Pane(), 800, 600);
 

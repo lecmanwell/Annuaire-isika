@@ -47,7 +47,7 @@ public class UserDirectoryView extends BorderPane {
 		// Création du répertoire des utilisateurs avec une barre de défilement
 		StudentListAdmin userDirectory = new StudentListAdmin(scene, this.tree, false);
 		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
-		multiSearch.multiSearchUser(userDirectory);
+		multiSearch.multiSearch(userDirectory, false);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
 		scrollpane.setContent(userDirectory);

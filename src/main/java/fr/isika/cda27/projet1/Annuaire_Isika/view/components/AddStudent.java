@@ -3,6 +3,8 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -25,16 +27,17 @@ import javafx.scene.text.FontWeight;
 public class AddStudent extends VBox {
 
 	TreeDAO tree;
-	
+	StudentListAdmin studentList;
     /**
      * Constructeur de la classe.
      * 
      * @param tree L'objet {@link TreeDAO} utilisé pour ajouter le stagiaire à la base de données.
      */
 	
-	public AddStudent(TreeDAO tree) {
+	public AddStudent(TreeDAO tree, StudentListAdmin studentList) {
 		super();
 		this.tree = tree;
+		this.studentList = studentList;
 
 		VBox addStudentVBox = new VBox(10);
 
@@ -156,7 +159,6 @@ public class AddStudent extends VBox {
 			yearPromoTextField.clear();
 			studentAdded.setText("Nouveau stagiaire enregistré." + "\n" + lastNameInput + " " + firstNameInput + ", "
 					+ locationInput + "\nFormation : " + namePromoInput + " - " + yearPromoInput);
-
 		});
 
 		// Configuration du bouton de validation

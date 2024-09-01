@@ -5,6 +5,7 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -48,7 +49,8 @@ public class AddStudentView extends BorderPane {
 
 		// Création du conteneur du corps
 		HBox body = new HBox();
-		AddStudent addStudent = new AddStudent(tree);
+		StudentListAdmin studentList = new StudentListAdmin(scene, tree, true);
+		AddStudent addStudent = new AddStudent(tree, studentList);
 		body.getChildren().add(addStudent);
 		body.setAlignment(Pos.CENTER);
 

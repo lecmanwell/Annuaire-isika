@@ -50,7 +50,7 @@ public class AdminDirectoryView extends BorderPane {
 		StudentListAdmin userDirectory = new StudentListAdmin(scene, tree, true);
 		
 		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
-		multiSearch.multiSearchUser(userDirectory);
+		multiSearch.multiSearch(userDirectory, true);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
 		scrollpane.setContent(userDirectory);
