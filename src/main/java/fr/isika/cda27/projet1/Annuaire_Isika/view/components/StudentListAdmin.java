@@ -11,6 +11,9 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -19,6 +22,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 
 /**
@@ -74,12 +80,12 @@ public class StudentListAdmin extends TableView {
 		TableColumn<Student, String> colNom = new TableColumn<>("Nom");
 		colNom.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		colNom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-		colNom.setPrefWidth(this.isAdmin? 150 : 180);
+		colNom.setPrefWidth(this.isAdmin? 163 : 180);
 
 		TableColumn<Student, String> colPrenom = new TableColumn<>("Prenom");
 		colPrenom.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		colPrenom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-		colPrenom.setPrefWidth(this.isAdmin? 150 : 174);
+		colPrenom.setPrefWidth(this.isAdmin? 162 : 174);
 
 		TableColumn<Student, String> colLocation = new TableColumn<>("Département");
 		colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -101,7 +107,10 @@ public class StudentListAdmin extends TableView {
 		ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream(iconPath)));
 		trashIcon.setFitHeight(15);
 		trashIcon.setFitWidth(15);
-
+		colAction.setPrefWidth(this.isAdmin? 40 : 0);
+	
+	
+		
 		if (this.isAdmin) {
 			colAction.setCellFactory(new Callback<>() {
 				@Override
@@ -146,9 +155,6 @@ public class StudentListAdmin extends TableView {
 		this.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
 			this.refresh(); // Rafraîchir la table pour mettre à jour l'affichage des boutons
 		});
-
-		
-		colAction.setPrefWidth(this.isAdmin? 65 : 0);
 
 		// Ajout des colonnes à la table
 		if (this.isAdmin) {
