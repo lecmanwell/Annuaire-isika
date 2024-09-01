@@ -130,7 +130,7 @@ public class CustomButton extends Button {
 	 */
 
 	public void printDirectory(StudentListAdmin tableView) {
-		this.setText("Imprimer le PDF");
+		this.setText("Imprimer l'annuaire");
 		this.setStyle(
 				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPadding(new Insets(3, 20, 3, 20));
@@ -341,7 +341,7 @@ public class CustomButton extends Button {
 	 * d'un stagiaire lorsqu'il est cliqué.
 	 */
 	public void goToAddStudent() {
-		this.setText("Ajouter Stagiaire");
+		this.setText("Ajouter stagiaire");
 		this.setStyle(
 				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPrefHeight(200);
