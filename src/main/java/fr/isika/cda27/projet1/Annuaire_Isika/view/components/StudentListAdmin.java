@@ -63,7 +63,7 @@ public class StudentListAdmin extends TableView {
 		this.isAdmin = isAdmin;
 
 		// Chargement des données des étudiants à partir de {@code TreeDAO}
-		ArrayList<Student> list = tree.setAlphaList();
+		ArrayList<Student> list = this.tree.setAlphaList();
 //		System.out.println(tree.getStudents());
 		myObservableArrayList = FXCollections.observableArrayList(list);
 		this.setItems(myObservableArrayList);

@@ -144,12 +144,8 @@ public class AddStudent extends VBox {
 			
 			// Création du nouvel étudiant et ajout au TreeDAO
 			Student student = new Student (lastNameInput, firstNameInput, locationInput, namePromoInput, yearPromoInt);
-			tree.addToTree(student);
-			System.out.println("Nom:" + lastNameInput);
-			System.out.println("Prenom :" + firstNameInput);
-			System.out.println("Localisation :" + locationInput);
-			System.out.println("Promo :" + namePromoInput);
-			System.out.println("Anne Promo :" + yearPromoInput);
+			this.tree.addToTree(student);
+
 
 			// Réinitialisation des champs de saisie
 			lastNameTextField.clear();

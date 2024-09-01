@@ -60,7 +60,7 @@ public class UserDirectoryView extends BorderPane {
 		body.getChildren().addAll(multiSearch, scrollpane);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene, this.tree);
+		Footer footer = new Footer(scene, this.tree, userDirectory);
 		footer.footerUserDirectoryView();
 
 		// Configuration de la vue

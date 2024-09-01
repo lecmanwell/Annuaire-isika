@@ -87,52 +87,8 @@ public class MultiSearch extends GridPane {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-		this.listFormations = this.getFormations();
 
 		this.fillComboBoxWithPossibleValues();
-	}
-
-	/**
-	 * Remplit les ComboBox avec les valeurs possibles dérivées de la liste
-	 * d'étudiants. Cette méthode récupère une liste d'étudiants à partir de l'arbre
-	 * (`tree`) et extrait les valeurs possibles pour les promotions, les
-	 * localisations, et les années de promotion. Elle trie ensuite ces valeurs et
-	 * les assigne aux ComboBox correspondantes pour la formation, le département,
-	 * et l'année de formation.
-	 */
-
-	public void fillComboBoxWithPossibleValues() {
-		ArrayList<Student> studentList = this.tree.getStudents();
-
-		Set<String> possiblePromo = new HashSet<String>();
-		Set<String> possibleLocation = new HashSet<String>();
-		Set<Integer> possibleYearPromo = new HashSet<Integer>();
-
-		for (Student student : studentList) {
-			if (student.getNamePromo() != null) {
-				possiblePromo.add(student.getNamePromo());
-			}
-			if (student.getLocation() != null) {
-				possibleLocation.add(student.getLocation());
-			}
-			if (student.getYearPromo() > 0) {
-				possibleYearPromo.add(student.getYearPromo());
-			}
-		}
-
-		ArrayList<String> sortedPromo = new ArrayList<String>(possiblePromo);
-		Collections.sort(sortedPromo);
-
-		ArrayList<String> sortedLocation = new ArrayList<String>(possibleLocation);
-		Collections.sort(sortedLocation);
-
-		ArrayList<Integer> sortedYearPromo = new ArrayList<Integer>(possibleYearPromo);
-		Collections.sort(sortedYearPromo);
-
-		formationComboBox.setItems(FXCollections.observableArrayList(sortedPromo));
-		departementComboBox.setItems(FXCollections.observableArrayList(sortedLocation));
-		anneeFormationComboBox.setItems(FXCollections.observableArrayList(sortedYearPromo));
-
 	}
 
 	/**
@@ -177,7 +133,7 @@ public class MultiSearch extends GridPane {
 		this.setMaxHeight(120);
 
 		if (isAdmin) {
-			CustomButton btnGoToAddStudent = new CustomButton(scene, tree);
+			CustomButton btnGoToAddStudent = new CustomButton(this.scene, this.tree);
 			btnGoToAddStudent.goToAddStudent();
 			this.add(btnGoToAddStudent, 3, 1);
 		}
@@ -200,7 +156,6 @@ public class MultiSearch extends GridPane {
 		});
 
 		// Mise à jour de la tableView avec les données filtrées
-//        ((TableView) studentList.getItems()).setItems(filteredData);
 		studentList.refreshList(filteredData);
 
 	}
@@ -228,84 +183,49 @@ public class MultiSearch extends GridPane {
 	}
 
 	/**
-	 * Crée et configure les champs de recherche pour les administrateurs. Les
-	 * champs incluent les noms, les prénoms, la formation, l'année de formation, et
-	 * le département. Ajoute un bouton pour accéder à l'ajout de nouveaux
-	 * étudiants. Les composants sont ajoutés au {@code GridPane} avec des
-	 * espacements et des marges définis.
+	 * Remplit les ComboBox avec les valeurs possibles dérivées de la liste
+	 * d'étudiants. Cette méthode récupère une liste d'étudiants à partir de l'arbre
+	 * (`tree`) et extrait les valeurs possibles pour les promotions, les
+	 * localisations, et les années de promotion. Elle trie ensuite ces valeurs et
+	 * les assigne aux ComboBox correspondantes pour la formation, le département,
+	 * et l'année de formation.
 	 */
 
-//	public void multiSearchAdmin(StudentListAdmin studentList) {
-////			GridPane multisearchAdmin = new GridPane();
-//
-//		TextField lastNameField = new TextField("Nom");
-//		lastNameField.setPrefHeight(200);
-//		lastNameField.setPrefWidth(300);
-//		lastNameField.setOnMouseClicked(event -> {
-//			lastNameField.clear();
-//		});
-//
-//		lastNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue && lastNameField.getText().isEmpty()) {
-//				lastNameField.setText("Nom");
-//			}
-//		});
-//
-//		TextField firstNameField = new TextField("Prénom");
-//		firstNameField.setPrefHeight(200);
-//		firstNameField.setPrefWidth(300);
-//		firstNameField.setOnMouseClicked(event -> {
-//			firstNameField.clear();
-//
-//		});
-//
-//		firstNameField.focusedProperty().addListener((observable, oldValue, newValue) -> {
-//			if (!newValue && firstNameField.getText().isEmpty()) {
-//				firstNameField.setText("Prénom");
-//			}
-//		});
-//
-//		ComboBox<String> formationComboBox = new ComboBox<String>();
-//		formationComboBox.setPromptText("Formation");
-//		formationComboBox.setPrefHeight(200);
-//		formationComboBox.setPrefWidth(300);
-//		formationComboBox.setItems(FXCollections.observableArrayList(getFormations()));
-//
-//		ComboBox<String> anneeFormationComboBox = new ComboBox<String>();
-//		anneeFormationComboBox.setPromptText("Année de formation");
-//		anneeFormationComboBox.setPrefHeight(200);
-//		anneeFormationComboBox.setPrefWidth(300);
-//
-//		ComboBox<String> departementChoiceBox = new ComboBox<String>();
-//		departementChoiceBox.setPromptText("Département");
-//		departementChoiceBox.setPrefHeight(200);
-//		departementChoiceBox.setPrefWidth(300);
-//
-//		CustomButton btnGoToAddStudent = new CustomButton(scene, this.tree);
-//		btnGoToAddStudent.goToAddStudent();
-//
-//		this.add(lastNameField, 0, 0);
-//		this.add(firstNameField, 0, 1);
-//		this.add(formationComboBox, 1, 0);
-//		this.add(anneeFormationComboBox, 1, 1);
-//		this.add(departementChoiceBox, 2, 1);
-//		this.add(btnGoToAddStudent, 3, 1);
-//		this.setHgap(70);
-//		this.setVgap(20);
-//		this.setPadding(new Insets(0, 0, 20, 5));
-////			return this;
-//	}
+	public void fillComboBoxWithPossibleValues() {
+		
+		ArrayList<Student> studentList = this.tree.setAlphaList();
 
-	public ArrayList<String> getFormations() {
+		Set<String> possiblePromo = new HashSet<String>();
+		Set<String> possibleLocation = new HashSet<String>();
+		Set<Integer> possibleYearPromo = new HashSet<Integer>();
 
-		ArrayList<Student> listStudent = this.tree.getStudents();
-		for (Student stud : listStudent) {
-//			this.listFormations.add(stud.getNamePromo());
-//			System.out.println(stud.getNamePromo());
+		for (Student student : studentList) {
+			if (student.getNamePromo() != null) {
+				possiblePromo.add(student.getNamePromo());
+			}
+			if (student.getLocation() != null) {
+				possibleLocation.add(student.getLocation());
+			}
+			if (student.getYearPromo() > 0) {
+				possibleYearPromo.add(student.getYearPromo());
+			}
 		}
 
-		return this.listFormations;
+		ArrayList<String> sortedPromo = new ArrayList<String>(possiblePromo);
+		Collections.sort(sortedPromo);
+
+		ArrayList<String> sortedLocation = new ArrayList<String>(possibleLocation);
+		Collections.sort(sortedLocation);
+
+		ArrayList<Integer> sortedYearPromo = new ArrayList<Integer>(possibleYearPromo);
+		Collections.sort(sortedYearPromo);
+
+		this.formationComboBox.setItems(FXCollections.observableArrayList(sortedPromo));
+		this.departementComboBox.setItems(FXCollections.observableArrayList(sortedLocation));
+		this.anneeFormationComboBox.setItems(FXCollections.observableArrayList(sortedYearPromo));
+		
+		
+		System.out.println(sortedPromo.get(0).toString());
 
 	}
-
 }

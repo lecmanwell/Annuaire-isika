@@ -65,8 +65,9 @@ public class LoginAdmin extends VBox {
 		gridLoginBox.setAlignment(Pos.CENTER);
 
 		// Création du bouton d'accès
-		Button btnAccess = new Button("Accéder à l'annuaire");
+		CustomButton btnAccess = new CustomButton(scene, this.tree);
 		btnAccess.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		btnAccess.setText("Accéder à l'annuaire");
 		btnAccess.setDefaultButton(true);
 		btnAccess.setOnAction((e) -> {
 			Admin admin = new Admin();

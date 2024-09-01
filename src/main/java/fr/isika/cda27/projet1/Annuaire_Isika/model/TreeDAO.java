@@ -88,12 +88,13 @@ public class TreeDAO {
 
 	public ArrayList<Student> setAlphaList() {
 		Node node = new Node();
+		ArrayList<Student> list = new ArrayList<Student>();
 		try {
-			node.displayFromBinary(raf, 0, this.students);
+			node.displayFromBinary(raf, 0, list);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return this.students;
+		return list;
 	}
 	
 	public void upDateStudent(Student oldStudent, Student student) throws IOException {
