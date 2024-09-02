@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
@@ -22,7 +22,7 @@ import javafx.scene.layout.VBox;
 public class AdminDirectoryView extends BorderPane {
 
 	private Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 
 	/**
@@ -32,7 +32,7 @@ public class AdminDirectoryView extends BorderPane {
 	 * @param tree  L'objet utilisé pour gérer les stagiaires.
 	 */
 
-	public AdminDirectoryView(Scene scene, TreeDAO tree) {
+	public AdminDirectoryView(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

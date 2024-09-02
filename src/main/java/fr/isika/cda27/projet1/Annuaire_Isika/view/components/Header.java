@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -26,7 +26,7 @@ import javafx.scene.shape.Rectangle;
  * de la fenêtre.
  * 
  * Cette classe dépend de la classe {@link CustomButton} pour créer les boutons
- * de navigation, et de la classe {@link TreeDAO} pour la gestion des données
+ * de navigation, et de la classe {@link Tree} pour la gestion des données
  * sous-jacentes.
  * 
  */
@@ -34,7 +34,7 @@ import javafx.scene.shape.Rectangle;
 public class Header extends HBox {
 
 	private Scene scene;
-	private TreeDAO tree;
+	private Tree tree;
 
 	private String imgPathLogo = "/Images/isikalogo.png";
 
@@ -51,7 +51,7 @@ public class Header extends HBox {
 	private Separator separatorL;
 	private Separator separatorR;
 
-	public Header(Scene scene, TreeDAO tree) {
+	public Header(Scene scene, Tree tree) {
 		this.scene = scene;
 		this.tree = tree;
 	}

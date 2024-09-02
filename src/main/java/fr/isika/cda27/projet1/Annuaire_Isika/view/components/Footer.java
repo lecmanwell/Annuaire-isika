@@ -10,7 +10,7 @@ import javafx.scene.image.Image;
 import java.util.ArrayList;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,7 +25,7 @@ import javafx.scene.Scene;
 public class Footer extends BorderPane {
 
 	Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 	CustomButton btnGenerateDocumentation;
 	CustomButton btnGoBackHome;
@@ -42,7 +42,7 @@ public class Footer extends BorderPane {
 	 * 
 	 * @param scene La scène dans laquelle le pied de page sera affiché.
 	 */
-	public Footer(Scene scene, TreeDAO tree) {
+	public Footer(Scene scene, Tree tree) {
 		this.scene = scene;
 		this.tree = tree;
 		this.setPadding(new Insets(60, 60, 60, 60));
@@ -56,7 +56,7 @@ public class Footer extends BorderPane {
 	 * @param tableView La vue de la liste des étudiants pour générer des documents
 	 *                  PDF.
 	 */
-	public Footer(Scene scene, TreeDAO tree, StudentListAdmin tableView) {
+	public Footer(Scene scene, Tree tree, StudentListAdmin tableView) {
 		
 		this.scene = scene;
 		this.tree=tree;

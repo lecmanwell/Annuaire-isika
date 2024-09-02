@@ -2,7 +2,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.geometry.Insets;
@@ -28,15 +28,15 @@ import javafx.scene.text.TextAlignment;
  */
 public class AddStudent extends VBox {
 
-	TreeDAO tree;
+	Tree tree;
 	StudentListAdmin studentList;
     /**
      * Constructeur de la classe.
      * 
-     * @param tree L'objet {@link TreeDAO} utilisé pour ajouter le stagiaire à la base de données.
+     * @param tree L'objet {@link Tree} utilisé pour ajouter le stagiaire à la base de données.
      */
 	
-	public AddStudent(TreeDAO tree, StudentListAdmin studentList) {
+	public AddStudent(Tree tree, StudentListAdmin studentList) {
 		super();
 		this.tree = tree;
 		this.studentList = studentList;

@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 public class UserDirectoryView extends BorderPane {
 
 	private Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 	/**
 	 * Constructeur de la classe. Initialise la vue du répertoire des utilisateurs
@@ -31,7 +31,7 @@ public class UserDirectoryView extends BorderPane {
 	 * @param tree  L'objet {@code TreeDAO} utilisé pour accéder aux données des
 	 *              utilisateurs.
 	 */
-	public UserDirectoryView(Scene scene, TreeDAO tree) {
+	public UserDirectoryView(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

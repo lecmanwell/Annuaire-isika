@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.login.Admin;
@@ -31,14 +31,14 @@ import javafx.scene.text.Text;
 public class LoginAdmin extends VBox {
 
 	Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 	/**
 	 * Construit une instance de LoginAdmin avec la scène spécifiée.
 	 *
 	 * @param scene La scène dans laquelle ce composant sera utilisé.
 	 */
-	public LoginAdmin(Scene scene, TreeDAO tree) {
+	public LoginAdmin(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

@@ -26,7 +26,7 @@ public class ReaderInitialText {
 	 *                     lecture du fichier.
 	 */
 
-	public void readInitialText(String filePath, TreeDAO tree) throws IOException {
+	public void readInitialText(String filePath, Tree tree) throws IOException {
 
 		// test si ficheir de sauvegarde present
 
@@ -60,7 +60,7 @@ public class ReaderInitialText {
 	 *                     lecture du fichier.
 	 */
 
-	public void readTextFileAndAddStudent(String filePath, TreeDAO tree) throws IOException {
+	public void readTextFileAndAddStudent(String filePath, Tree tree) throws IOException {
 
 		Directory dir = new Directory(tree);
 

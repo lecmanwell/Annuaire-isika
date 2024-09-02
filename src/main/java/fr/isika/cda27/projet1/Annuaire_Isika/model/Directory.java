@@ -26,7 +26,7 @@ public class Directory {
     /**
      * Le TreeDAO pour gérer les opérations sur l'arbre binaire.
      */
-	private TreeDAO tree;
+	private Tree tree;
 
     /**
      * Constructeur par défaut de la classe Directory.
@@ -34,7 +34,7 @@ public class Directory {
      * Initialise également le fichier binaire pour la lecture et l'écriture.
      */
 
-	public Directory(TreeDAO tree) {
+	public Directory(Tree tree) {
 		this.studentsList = new ArrayList<Student>();
 		this.tree = tree;
 //		this.treeDao = new	TreeDAO();

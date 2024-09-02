@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * alphabétique.
  */
 
-public class TreeDAO {
+public class Tree {
 
 	private RandomAccessFile raf;
 	public ArrayList<Student> students;
@@ -21,7 +21,7 @@ public class TreeDAO {
 	 * Constructeur de la classe TreeDAO. Initialise le fichier binaire pour la
 	 * sauvegarde des données et crée une liste d'étudiants vide.
 	 */
-	public TreeDAO() {
+	public Tree() {
 		try {
 			students = new ArrayList<Student>();
 			raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
@@ -46,7 +46,7 @@ public class TreeDAO {
 	 * 
 	 * @return Le fichier RandomAccessFile utilisé pour la sauvegarde.
 	 */
-	public  RandomAccessFile getRaf() {
+	public RandomAccessFile getRaf() {
 		return raf;
 	}
 
@@ -96,19 +96,36 @@ public class TreeDAO {
 		}
 		return list;
 	}
-	
+
+	/**
+	 * Méthode pour mettre à jour un étudiant dans l'arbre binaire stocké dans le
+	 * fichier binaire. Cette méthode vérifie si l'étudiant à mettre à jour est
+	 * différent de l'ancien étudiant. Si c'est le cas, elle utilise une instance de
+	 * la classe Node pour mettre à jour l'étudiant dans l'arbre.
+	 *
+	 * @param oldStudent L'ancien étudiant.
+	 * @param student    Le nouveau étudiant.
+	 * @throws IOException Si une erreur d'entrée/sortie se produit.
+	 */
 	public void upDateStudent(Student oldStudent, Student student) throws IOException {
-		
-		if (!oldStudent.equals(student)) {		
+
+		if (!oldStudent.equals(student)) {
 			Node node = new Node();
 			node.updateStudent(oldStudent, student, this.raf);
 		}
 	}
-	
-	
+
+	/**
+	 * Méthode pour supprimer un étudiant de l'arbre binaire stocké dans le fichier
+	 * binaire. Cette méthode utilise une instance de la classe Node pour supprimer
+	 * l'étudiant de l'arbre.
+	 *
+	 * @param student L'étudiant à supprimer.
+	 * @throws IOException Si une erreur d'entrée/sortie se produit.
+	 */
 	public void deleteStudent(Student student) throws IOException {
-        
-        Node node = new Node();
-        node.removeStudent(student, this.raf);
-    }
+
+		Node node = new Node();
+		node.removeStudent(student, this.raf);
+	}
 }
