@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.util.ArrayList;
 
 /**
  * La classe ReaderInitialText est responsable de la lecture d'un fichier texte
@@ -28,28 +26,25 @@ public class ReaderInitialText {
 
 	public void readInitialText(String filePath, Tree tree) throws IOException {
 
-		// test si ficheir de sauvegarde present
-
-
 		File file = new File("src/main/resources/binarySave.bin");
 
-		// If the text file does not exist, check for a binary file
 		if (file.getPath().endsWith(".bin") && file.length() > 0) {
-
+			// Si un fichier de sauvegarde binaire existe et n'est pas vide, aucune action
+			// n'est effectuée.
 		} else if (file.exists() && file.isFile()) {
+			// Si le fichier spécifié par le chemin de fichier existe et est un fichier,
+			// vérifie si le fichier est un fichier texte (avec l'extension .txt ou .DON).
 
-			// if file is txt file read it
 			if (filePath.endsWith(".txt") || filePath.endsWith(".DON")) {
 				readTextFileAndAddStudent(filePath, tree);
 			} else {
-				System.err.println("lle fichier n'est pas un fichier texte.");
+				System.err.println("Le fichier n'est pas un fichier texte.");
 			}
 		} else {
 			System.err.println("Pas de ficheirs de sauvegarde.");
 		}
 
 	}
-	
 
 	/**
 	 * Méthode permettant de lire un fichier texte à partir du chemin spécifié et
@@ -116,8 +111,5 @@ public class ReaderInitialText {
 			System.err.print("Document : " + filePath + " introuvable.  ");
 		}
 
-		// Lecture d'un fichier binaire pour les tests
-//		Node test = new Node();
-//		test.readBinaryTest();
 	}
 }
