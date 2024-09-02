@@ -36,13 +36,15 @@ public class Header extends HBox {
 	private Scene scene;
 	private Tree tree;
 
+	// Chemin vers le logo
 	private String imgPathLogo = "/Images/isikalogo.png";
 
+	// Ratios pour les dimensions des bandes et du logo
 	private double stripeHeightRatio = 0.015;
 	private double stripesBoxWidthRatio;
 	private double logoWidthRatio = 0.16;;
 
-	// container pour le menu de navigation
+	// Conteneurs pour le menu de navigation
 	HBox menuBoxAdmin = new HBox();
 	HBox menuBoxUser = new HBox();
 	private CustomButton btnHome;
@@ -51,11 +53,25 @@ public class Header extends HBox {
 	private Separator separatorL;
 	private Separator separatorR;
 
+	/**
+	 * Constructeur de la classe Header.
+	 * 
+	 * @param scene la scène JavaFX associée.
+	 * @param tree  l'arbre de données utilisé pour la gestion de l'annuaire.
+	 */
+
 	public Header(Scene scene, Tree tree) {
 		this.scene = scene;
 		this.tree = tree;
 	}
 
+	/**
+	 * Crée un conteneur vertical (VBox) contenant trois bandes colorées. Les bandes
+	 * sont bleue, blanche et orange.
+	 * 
+	 * @param widthRatio le ratio de la largeur des bandes par rapport à la scène.
+	 * @return un VBox contenant les bandes colorées.
+	 */
 	public VBox createStripesBox(double widthRatio) {
 
 		VBox stripesBox = new VBox();
@@ -64,12 +80,12 @@ public class Header extends HBox {
 		Rectangle whiteStripe = new Rectangle();
 		Rectangle orangeStripe = new Rectangle();
 
-		// Set colors for stripes
+		// Définir les couleurs des bandes
 		blueStripe.setFill(Color.web("#144d65"));
 		whiteStripe.setFill(Color.web("#FFFFFF"));
 		orangeStripe.setFill(Color.web("#db754a"));
 
-		// Bind sizes to scene properties
+		// Lier les tailles des bandes aux propriétés de la scène
 		blueStripe.widthProperty().bind(scene.widthProperty().multiply(widthRatio));
 		blueStripe.heightProperty().bind(scene.heightProperty().multiply(stripeHeightRatio));
 		whiteStripe.widthProperty().bind(scene.widthProperty().multiply(widthRatio));
@@ -84,6 +100,13 @@ public class Header extends HBox {
 
 	}
 
+	/**
+	 * Crée et retourne une vue d'image (ImageView) pour afficher le logo.
+	 * 
+	 * @param logoWidthRatio le ratio de la largeur du logo par rapport à la scène.
+	 * @return un ImageView contenant le logo.
+	 */
+
 	public ImageView createLogo(double logoWidthRatio) {
 
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
@@ -93,6 +116,11 @@ public class Header extends HBox {
 
 	}
 
+	/**
+	 * Crée et retourne un séparateur vertical (Separator).
+	 * 
+	 * @return un Separator vertical.
+	 */
 	public Separator createSeparator() {
 		Separator separator = new Separator();
 		separator.setOrientation(Orientation.VERTICAL);
@@ -100,6 +128,12 @@ public class Header extends HBox {
 		return separator;
 	}
 
+	/**
+	 * Crée et retourne une barre de menu pour les utilisateurs. La barre de menu
+	 * contient des boutons de navigation.
+	 * 
+	 * @return un HBox contenant le menu utilisateur.
+	 */
 	public HBox createMenuUser() {
 
 		// Création des boutons de navigation
@@ -109,7 +143,7 @@ public class Header extends HBox {
 		btnAdmin = new CustomButton(scene, this.tree);
 		btnAdmin.adminAccessTitle();
 
-		/// Création des séparateurs
+		// Création du séparateur
 		separatorL = createSeparator();
 
 		menuBoxUser.getChildren().addAll(btnHome, separatorL, btnAdmin);
@@ -118,7 +152,15 @@ public class Header extends HBox {
 		return menuBoxUser;
 	}
 
+	/**
+	 * Crée et retourne une barre de menu pour les administrateurs. La barre de menu
+	 * contient des boutons de navigation spécifiques aux administrateurs.
+	 * 
+	 * @return un HBox contenant le menu administrateur.
+	 */
+
 	public HBox createMenuAdmin() {
+
 		// Création des boutons de navigation
 		btnHome = new CustomButton(scene, this.tree);
 		btnHome.homeButtonTitle();
@@ -126,6 +168,7 @@ public class Header extends HBox {
 		btnDirectory = new CustomButton(scene, this.tree);
 		btnDirectory.goToDirectoryAdminTitle();
 
+		// Création du séparateur
 		separatorL = createSeparator();
 
 		menuBoxAdmin.getChildren().addAll(btnHome, separatorL, btnDirectory);
@@ -134,6 +177,9 @@ public class Header extends HBox {
 		return menuBoxAdmin;
 	}
 
+    /**
+     * Méthode pour créer un en-tête simple avec un logo centré entouré de bandes colorées.
+     */
 	public void headerSimple() {
 		stripesBoxWidthRatio = 0.40;
 
@@ -146,6 +192,10 @@ public class Header extends HBox {
 		this.getChildren().add(headerBox);
 	}
 
+    /**
+     * Méthode pour créer un en-tête destiné aux utilisateurs,
+     * avec un logo, des bandes colorées et un menu de navigation utilisateur.
+     */
 	public void headerUserDirectoryView() {
 
 		stripesBoxWidthRatio = 0.48;
@@ -163,6 +213,10 @@ public class Header extends HBox {
 		return;
 	}
 
+    /**
+     * Méthode pour créer un en-tête destiné aux administrateurs,
+     * avec un logo, des bandes colorées et un menu de navigation spécifique aux administrateurs.
+     */
 	public void headerAdminView() {
 		stripesBoxWidthRatio = 0.62;
 
