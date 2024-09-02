@@ -70,7 +70,6 @@ public class StudentListAdmin extends TableView {
 
 		// Chargement des données des étudiants à partir de {@code TreeDAO}
 		ArrayList<Student> list = this.tree.setAlphaList();
-//		System.out.println(tree.getStudents());
 		myObservableArrayList = FXCollections.observableArrayList(list);
 		this.setItems(myObservableArrayList);
 
@@ -100,7 +99,6 @@ public class StudentListAdmin extends TableView {
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("yearPromo"));
 		colYear.setCellFactory(column -> new ChoiceBoxTableCell());
-//		colYear.setCellFactory(ChoiceBoxTableCell.<Student>forTableColumn(colYear));
 		colYear.setPrefWidth(138);
 
 		TableColumn<Student, Void> colAction = new TableColumn<>("");
@@ -197,10 +195,11 @@ public class StudentListAdmin extends TableView {
 							e.printStackTrace();
 						}
 					}
-
+						
+					if (newValue != null) {
 					previous = new Student(newValue.getLastName(), newValue.getFirstName(), newValue.getLocation(),
 							newValue.getNamePromo(), newValue.getYearPromo());
-
+					}
 				}
 
 			});

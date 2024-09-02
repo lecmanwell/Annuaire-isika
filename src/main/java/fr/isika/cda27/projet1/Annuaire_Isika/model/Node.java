@@ -154,10 +154,7 @@ public class Node {
 				raf.writeInt(-1);
 				raf.writeInt(-1);
 				raf.writeInt(-1);
-			} else {
-				System.out.println("L'étudiant est nul !");
-			}
-
+			} 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -181,9 +178,7 @@ public class Node {
 				raf.writeChars(stud.getNamePromoLong());
 				raf.writeInt(stud.getYearPromo());
 
-			} else {
-				System.out.println("L'étudiant est nul !");
-			}
+			} 
 
 		} catch (IOException e) {
 			e.printStackTrace();
