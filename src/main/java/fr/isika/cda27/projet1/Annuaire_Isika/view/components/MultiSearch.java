@@ -112,7 +112,6 @@ public class MultiSearch extends GridPane {
 		        }
 		    });
 		
-
 		this.add(lastNameField, 0, 0);
 		this.add(firstNameField, 0, 1);
 		this.add(formationComboBox, 1, 0);
@@ -169,7 +168,6 @@ public class MultiSearch extends GridPane {
 		// Mise à jour de la tableView avec les données filtrées
 		studentList.refreshList(filteredData);
 		this.fillComboBoxWithPossibleValues();
-		
 	}
 		/**
 		 * Applique les critères de recherche pour filtrer un étudiant.
@@ -202,9 +200,6 @@ public class MultiSearch extends GridPane {
 			}
 			return true;
 		}
-
-
-
 
 	/**
 	 * Remplit les ComboBox avec les valeurs possibles dérivées de la liste
