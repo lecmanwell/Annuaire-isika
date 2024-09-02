@@ -132,7 +132,7 @@ public class AddStudent extends VBox {
 		// Création de la BorderPane pour le bouton de validation
 		BorderPane btnValiderBox = new BorderPane();
 		Label studentAdded = new Label();
-		studentAdded.setFont(Font.font("Futura", 1));
+		studentAdded.setFont(Font.font("Futura", 9));
 		CustomButton btnValider = new CustomButton(null, this.tree);
 		btnValider.setOnAction((e) -> {
 			String lastNameInput = lastNameTextField.getText().trim().toUpperCase();
@@ -153,21 +153,28 @@ public class AddStudent extends VBox {
 			if (!(Validator.isValidName(lastNameInput)) || !(Validator.maxLength(lastNameInput, 30))) {
 				lastNameLblError.setVisible(true);
 				return;
+			} else {
+				lastNameLblError.setVisible(false);
 			}
 			if (!(Validator.isValidName(firstNameInput)) || !(Validator.maxLength(firstNameInput, 30))) {
 				firstNameLblError.setVisible(true);
 				return;
+			} else {
+				firstNameLblError.setVisible(false);
 			}
 
 			if (!(Validator.isValidPromo(namePromoInput)) || !(Validator.maxLength(namePromoInput, 12))) {
 				promoLblError.setVisible(true);
 				return;
+			} else {
+				promoLblError.setVisible(false);
 			}
-			
 			
 			if ((Validator.containsSpecialCharacters(locationInput)) || !(Validator.maxLength(locationInput, 3))) {
 				locationLblError.setVisible(true);
 				return;
+			} else {
+				locationLblError.setVisible(false);
 			}
 			
 			if (Validator.containsSpecialCharacters(yearPromoInput)) {
@@ -177,6 +184,7 @@ public class AddStudent extends VBox {
 			
 			if (Validator.isYear(yearPromoInput)) {
 				yearPromoInt = Integer.parseInt(yearPromoInput);
+				yearPromoLblError.setVisible(false);
 			} else {
 				yearPromoLblError.setVisible(true);
 				return;

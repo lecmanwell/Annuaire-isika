@@ -131,7 +131,7 @@ public class MultiSearch extends GridPane {
 			protected void updateItem(Integer item, boolean empty) {
                     super.updateItem(item, empty);
                     if (item == null || empty) {
-                        setText(formationComboBox.getPromptText());
+                        setText(anneeFormationComboBox.getPromptText());
                     } else {
                         setText(String.valueOf(item));
                     }

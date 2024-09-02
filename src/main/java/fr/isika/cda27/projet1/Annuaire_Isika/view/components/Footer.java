@@ -73,16 +73,16 @@ public class Footer extends BorderPane {
 	 */
 
 	public HBox createIconAndDocBox() {
-		String imgPathIconQuestion = "/Images/questionMark.png";
+		String imgPathIconQuestion = "/Images/questionMark1.png";
 		ImageView iconQuestion = new ImageView(new Image(getClass().getResourceAsStream(imgPathIconQuestion)));
 		iconQuestion.setPreserveRatio(true);
-		iconQuestion.setFitWidth(20);
-		iconQuestion.setFitHeight(20);
+		iconQuestion.setFitWidth(15);
+		iconQuestion.setFitHeight(15);
 
 		btnGenerateDocumentation = new CustomButton(scene, this.tree);
 		btnGenerateDocumentation.generateDocumentation();
 
-		iconAndDocBox = new HBox(10);
+		iconAndDocBox = new HBox();
 		iconAndDocBox.getChildren().addAll(iconQuestion, btnGenerateDocumentation);
 		iconAndDocBox.setAlignment(Pos.CENTER);
 
