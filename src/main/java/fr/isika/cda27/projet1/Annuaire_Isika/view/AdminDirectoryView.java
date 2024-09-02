@@ -2,12 +2,12 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewAdmin;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.UserDirectory;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -38,8 +38,10 @@ public class AdminDirectoryView extends BorderPane {
 		this.tree = tree;
 
 		// Création de l'en-tête
-		HeaderViewAdmin header = new HeaderViewAdmin(scene, this.tree);
-
+		Header header = new Header(scene, tree);
+		header.headerAdminView();
+		header.setAlignment(Pos.CENTER);
+		
 		// Création du conteneur central
 		VBox body = new VBox();
 		body.setPadding(new Insets(20, 20, 0, 20));

@@ -1,6 +1,7 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
@@ -87,7 +88,7 @@ public class MultiSearch extends GridPane {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-		this.fillComboBoxWithPossibleValues();
+
 	}
 
 	/**
@@ -111,25 +112,79 @@ public class MultiSearch extends GridPane {
 		formationComboBox.setPromptText("Formation");
 		formationComboBox.setPrefHeight(200);
 		formationComboBox.setPrefWidth(300);
+		formationComboBox.setButtonCell(new ListCell<String>() {
+			protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (item == null || empty) {
+                            setText(formationComboBox.getPromptText());
+                        } else {
+                            setText(item);
+                        }
+                    }
+                
+		});
 
 		anneeFormationComboBox.setPromptText("Année de formation");
 		anneeFormationComboBox.setPrefHeight(200);
 		anneeFormationComboBox.setPrefWidth(300);
+		anneeFormationComboBox.setButtonCell(new ListCell<Integer>() {
+			protected void updateItem(Integer item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (item == null || empty) {
+                        setText(formationComboBox.getPromptText());
+                    } else {
+                        setText(String.valueOf(item));
+                    }
+                }
+            });
 
 		departementComboBox.setPromptText("Département");
 		departementComboBox.setPrefHeight(200);
 		departementComboBox.setPrefWidth(300);
+		departementComboBox.setButtonCell(new ListCell<>() {
+		        protected void updateItem(String item, boolean empty) {
+		            super.updateItem(item, empty);
+		            if (item == null || empty) {
+		                setText(departementComboBox.getPromptText());
+		            } else {
+		                setText(item);
+		            }
+		        }
+		    });
+		
 
 		this.add(lastNameField, 0, 0);
 		this.add(firstNameField, 0, 1);
 		this.add(formationComboBox, 1, 0);
 		this.add(anneeFormationComboBox, 1, 1);
 		this.add(departementComboBox, 2, 1);
-		this.setHgap(70);
+		this.setHgap(40);
 		this.setVgap(20);
 		this.setPadding(new Insets(0, 0, 20, 5));
 		this.setHeight(100);
 		this.setMaxHeight(120);
+		
+		CustomButton btnResetFilter = new CustomButton(this.scene, this.tree);
+		btnResetFilter.setResetFilter();
+		
+		
+		btnResetFilter.setOnAction((e) -> {
+			lastNameField.clear();
+            firstNameField.clear();
+            formationComboBox.setValue(null);
+            formationComboBox.setPromptText("Formation");
+            
+            anneeFormationComboBox.setPromptText("Année de formation");
+            anneeFormationComboBox.setValue(null);
+            
+            departementComboBox.getSelectionModel().clearSelection();
+            departementComboBox.setValue(null);
+//            departementComboBox.setPromptText("Département");
+      
+		});
+		this.add(btnResetFilter, 3, 0);
+		
+		
 
 		if (isAdmin) {
 			CustomButton btnGoToAddStudent = new CustomButton(this.scene, this.tree);
@@ -156,6 +211,7 @@ public class MultiSearch extends GridPane {
 
 		// Mise à jour de la tableView avec les données filtrées
 		studentList.refreshList(filteredData);
+		this.fillComboBoxWithPossibleValues();
 
 	}
 
@@ -223,8 +279,7 @@ public class MultiSearch extends GridPane {
 		this.departementComboBox.setItems(FXCollections.observableArrayList(sortedLocation));
 		this.anneeFormationComboBox.setItems(FXCollections.observableArrayList(sortedYearPromo));
 		
-		
-		System.out.println(sortedPromo.get(0).toString());
 
+		
 	}
 }

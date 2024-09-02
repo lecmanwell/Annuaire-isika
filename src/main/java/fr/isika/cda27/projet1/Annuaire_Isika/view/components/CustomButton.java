@@ -68,7 +68,7 @@ public class CustomButton extends Button {
 		this.setText("Comment fonction cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 		this.setOnAction((event) -> {
-			File pdfFile = new File("src/main/resources/javafx-generate-pdf.pdf");
+			File pdfFile = new File("src/main/resources/Notice_Utilisation_Annuaire_ISIKA.pdf");
 			if (pdfFile.exists()) {
 				if (Desktop.isDesktopSupported()) {
 					try {
@@ -386,6 +386,15 @@ public class CustomButton extends Button {
 	public void validAdmin() {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+	}
+	
+	public void setResetFilter() {
+		this.setText("Effacer recherche");
+		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setPrefHeight(200);
+		this.setPrefWidth(315);
+		this.setPadding(new Insets(3, 20, 3, 20));
+
 	}
 
 

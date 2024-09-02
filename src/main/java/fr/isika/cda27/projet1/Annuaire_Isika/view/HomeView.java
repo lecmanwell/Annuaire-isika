@@ -2,7 +2,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderView;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HomeText;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentCard;
 
@@ -36,7 +36,8 @@ public class HomeView extends BorderPane {
 		this.tree = tree;
 
 		// Création de l'en-tête
-		HeaderView header = new HeaderView(scene);
+		Header header = new Header(scene, tree);
+		header.headerSimple();
 		header.setAlignment(Pos.CENTER);
 
 		// Création du corps avec une carte d'étudiant et du texte d'accueil

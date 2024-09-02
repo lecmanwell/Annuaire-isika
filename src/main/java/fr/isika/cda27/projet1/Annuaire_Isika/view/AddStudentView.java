@@ -3,8 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewAdmin;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HeaderViewGeneral;
+import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -35,16 +34,9 @@ public class AddStudentView extends BorderPane {
 		this.scene = scene;
 		this.tree = tree;
 
-		// Obtention des dimensions de l'écran
-		double screenHeight = Screen.getPrimary().getBounds().getHeight();
-		double screenWidth = Screen.getPrimary().getBounds().getWidth();
-
 		// Création de l'en-tête
-		HeaderViewAdmin header = new HeaderViewAdmin(scene, this.tree);
-		header.setPrefHeight(screenHeight * 0.15);
-		header.setMinHeight(screenHeight * 0.15);
-		header.setMaxHeight(screenHeight * 0.15);
-		header.setPrefWidth(screenWidth);
+		Header header = new Header(scene, tree);
+		header.headerAdminView();
 		header.setAlignment(Pos.CENTER);
 
 		// Création du conteneur du corps
