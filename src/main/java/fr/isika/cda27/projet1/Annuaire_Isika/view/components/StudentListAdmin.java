@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import javafx.util.Callback;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -40,7 +40,7 @@ public class StudentListAdmin extends TableView {
 	public ObservableList<Student> myObservableArrayList;
 	
 	Scene scene;
-	TreeDAO tree;
+	Tree tree;
 	String iconPath = "/Images/trashIcon.png";
 	boolean isAdmin;
 
@@ -62,7 +62,7 @@ public class StudentListAdmin extends TableView {
 	 *              étudiants.
 	 */
 	@SuppressWarnings("unchecked")
-	public StudentListAdmin(Scene scene, TreeDAO tree, boolean isAdmin) {
+	public StudentListAdmin(Scene scene, Tree tree, boolean isAdmin) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

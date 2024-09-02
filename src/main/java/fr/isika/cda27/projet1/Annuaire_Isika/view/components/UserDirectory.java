@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ public class UserDirectory extends GridPane {
 
 	Scene scene;
 
-	public UserDirectory(Scene scene, TreeDAO tree) {
+	public UserDirectory(Scene scene, Tree tree) {
 
 		super();
 		this.scene = scene;

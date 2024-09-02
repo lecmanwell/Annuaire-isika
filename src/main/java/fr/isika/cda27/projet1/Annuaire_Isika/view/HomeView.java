@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HomeText;
@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
 public class HomeView extends BorderPane {
 
 	 public Scene scene;
-	public TreeDAO tree;
+	public Tree tree;
 
 	/**
 	 * Constructeur de la classe.
@@ -30,7 +30,7 @@ public class HomeView extends BorderPane {
 	 * @param scene La scène à laquelle cette vue est attachée.
 	 */
 
-	public HomeView(Scene scene, TreeDAO tree) {
+	public HomeView(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

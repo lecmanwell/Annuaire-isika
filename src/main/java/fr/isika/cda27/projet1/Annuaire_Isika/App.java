@@ -3,7 +3,7 @@ package fr.isika.cda27.projet1.Annuaire_Isika;
 import java.io.IOException;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.ReaderInitialText;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
@@ -23,12 +23,12 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
-	TreeDAO tree;
+	Tree tree;
 	
 	public void init() {
 //		 initialisation données
 		
-		this.tree = new TreeDAO();
+		this.tree = new Tree();
 		ReaderInitialText reader = new ReaderInitialText();
 		try {
 			reader.readInitialText("src/main/resources/STAGIAIRES.DON", this.tree);

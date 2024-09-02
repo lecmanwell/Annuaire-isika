@@ -1,6 +1,6 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.AddStudent;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
@@ -20,7 +20,7 @@ import javafx.stage.Screen;
 
 public class AddStudentView extends BorderPane {
 	private Scene scene;
-	private TreeDAO tree;
+	private Tree tree;
 
     /**
      * Constructeur de la classe.
@@ -29,7 +29,7 @@ public class AddStudentView extends BorderPane {
      * @param tree  L'objet {@code TreeDAO} utilisé pour gérer les stagiaires.
      */
 	
-	public AddStudentView(Scene scene, TreeDAO tree) {
+	public AddStudentView(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

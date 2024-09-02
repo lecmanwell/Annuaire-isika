@@ -18,7 +18,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AddStudentView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
@@ -43,7 +43,7 @@ import javafx.scene.control.TableView;
 
 public class CustomButton extends Button {
 	Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 	/**
 	 * Constructeur pour initialiser un bouton personnalisé avec la scène.
@@ -51,7 +51,7 @@ public class CustomButton extends Button {
 	 * @param scene La scène dans laquelle le bouton sera utilisé.
 	 */
 
-	public CustomButton(Scene scene, TreeDAO tree) {
+	public CustomButton(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;

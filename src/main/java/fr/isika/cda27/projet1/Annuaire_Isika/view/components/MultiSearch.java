@@ -5,7 +5,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
-import fr.isika.cda27.projet1.Annuaire_Isika.model.TreeDAO;
+import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 
@@ -67,7 +67,7 @@ public class MultiSearch extends GridPane {
 //	-------------------
 
 	Scene scene;
-	TreeDAO tree;
+	Tree tree;
 
 	TextField lastNameField = new TextField();
 	TextField firstNameField = new TextField();
@@ -84,7 +84,7 @@ public class MultiSearch extends GridPane {
 	 * @param scene La scène dans laquelle ce composant sera utilisé.
 	 */
 
-	public MultiSearch(Scene scene, TreeDAO tree) {
+	public MultiSearch(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
