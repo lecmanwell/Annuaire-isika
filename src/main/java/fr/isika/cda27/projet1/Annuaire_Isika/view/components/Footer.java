@@ -3,13 +3,8 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.image.Image;
 
-import java.util.ArrayList;
-
-import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -71,7 +66,6 @@ public class Footer extends BorderPane {
 	 * @return Une boîte horizontale contenant l'icône et le bouton de
 	 *         documentation.
 	 */
-
 	public HBox createIconAndDocBox() {
 		String imgPathIconQuestion = "/Images/questionMark1.png";
 		ImageView iconQuestion = new ImageView(new Image(getClass().getResourceAsStream(imgPathIconQuestion)));
@@ -129,7 +123,6 @@ public class Footer extends BorderPane {
 		footerHomeView.setRight(btnAdminAccess);
 
 		this.setBottom(footerHomeView);
-
 	}
 
 	/**
@@ -139,7 +132,6 @@ public class Footer extends BorderPane {
 	 * Ajoute une boîte contenant l'icône et le bouton de documentation à gauche, et
 	 * un bouton de retour à l'accueil à droite.
 	 */
-
 	public void footerHomeViewAdmin() {
 		BorderPane footerHomeViewAdmin = new BorderPane();
 
@@ -152,7 +144,6 @@ public class Footer extends BorderPane {
 		footerHomeViewAdmin.setRight(btnGoBackHome);
 
 		this.setBottom(footerHomeViewAdmin);
-
 	}
 
 	/**
@@ -162,7 +153,6 @@ public class Footer extends BorderPane {
 	 * Ajoute une boîte contenant l'icône et le bouton d'impression à gauche, et un
 	 * bouton d'impression à droite.
 	 */
-
 	public void footerUserDirectoryView() {
 		BorderPane footerUserDirectoryView = new BorderPane();
 
@@ -175,7 +165,6 @@ public class Footer extends BorderPane {
 		footerUserDirectoryView.setRight(btnPrintPfd);
 
 		this.setBottom(footerUserDirectoryView);
-
 	}
 
 	/**
@@ -184,7 +173,6 @@ public class Footer extends BorderPane {
 	 * 
 	 * Ajoute une boîte contenant l'icône et le bouton de déconnexion à gauche.
 	 */
-
 	public void footerAddStudentView() {
 		BorderPane footerAddStudentView = new BorderPane();
 
@@ -197,7 +185,6 @@ public class Footer extends BorderPane {
 		footerAddStudentView.setRight(btnLogOut);
 
 		this.setBottom(footerAddStudentView);
-
 	}
 
 	/**
@@ -207,7 +194,6 @@ public class Footer extends BorderPane {
 	 * Ajoute une boîte contenant l'icône et le bouton de documentation à gauche, et
 	 * une boîte contenant les boutons de déconnexion et d'impression à droite.
 	 */
-
 	public void footerAdminDirectoryView() {
 		BorderPane footerAdminDirectoryView = new BorderPane();
 
@@ -220,5 +206,4 @@ public class Footer extends BorderPane {
 		footerAdminDirectoryView.setRight(logOutAndPrintBox);
 		this.setBottom(footerAdminDirectoryView);
 	}
-
 }
