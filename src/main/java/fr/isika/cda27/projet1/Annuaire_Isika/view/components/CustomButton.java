@@ -68,7 +68,7 @@ public class CustomButton extends Button {
 		this.setText("Comment fonction cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 		this.setOnAction((event) -> {
-			File pdfFile = new File("src/main/resources/javafx-generate-pdf.pdf");
+			File pdfFile = new File("src/main/resources/Notice_Utilisation_Annuaire_ISIKA.pdf");
 			if (pdfFile.exists()) {
 				if (Desktop.isDesktopSupported()) {
 					try {

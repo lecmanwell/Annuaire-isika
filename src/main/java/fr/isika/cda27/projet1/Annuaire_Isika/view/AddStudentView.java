@@ -34,10 +34,6 @@ public class AddStudentView extends BorderPane {
 		this.scene = scene;
 		this.tree = tree;
 
-		// Obtention des dimensions de l'écran
-		double screenHeight = Screen.getPrimary().getBounds().getHeight();
-		double screenWidth = Screen.getPrimary().getBounds().getWidth();
-
 		// Création de l'en-tête
 		Header header = new Header(scene, tree);
 		header.headerAdminView();
