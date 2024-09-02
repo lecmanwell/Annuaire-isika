@@ -1,4 +1,4 @@
-package fr.isika.cda27.projet1.Annuaire_Isika.view.login;
+package fr.isika.cda27.projet1.Annuaire_Isika.helpers;
 
 /**
  * Classe représentant un administrateur avec des informations de connexion

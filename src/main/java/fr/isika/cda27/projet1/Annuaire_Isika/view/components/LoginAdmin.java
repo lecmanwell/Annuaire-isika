@@ -1,8 +1,8 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
+import fr.isika.cda27.projet1.Annuaire_Isika.helpers.Admin;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.login.Admin;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
