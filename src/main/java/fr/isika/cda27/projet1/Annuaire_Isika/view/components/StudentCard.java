@@ -1,6 +1,5 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
-import fr.isika.cda27.projet1.Annuaire_Isika.model.Student;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -30,55 +29,6 @@ public class StudentCard extends GridPane {
 	String anneeFormationString;
 	String localisationString;
 
-	/**
-	 * Constructeur pour créer une carte d'étudiant sans image.
-	 *
-	 * @param name           Nom de l'étudiant.
-	 * @param firstname      Prénom de l'étudiant.
-	 * @param formation      Formation de l'étudiant.
-	 * @param anneeFormation Année de formation de l'étudiant.
-	 * @param localisation   Localisation de l'étudiant.
-	 */
-
-	public StudentCard(Student stud) {
-		super();
-		this.lastNameString = stud.getLastName();
-		this.firstNameString = stud.getFirstName();
-		this.formationString = stud.getNamePromo();
-		this.anneeFormationString = String.valueOf(stud.getYearPromo());
-		this.localisationString = stud.getLocation();
-		this.setAlignment(Pos.CENTER);
-		Label lastNameLabel = new Label(this.lastNameString);
-		lastNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 12));
-
-		// Parametrage du label Prénom
-		Label firstNameLabel = new Label(this.firstNameString);
-		firstNameLabel.setFont(Font.font("Futura", FontWeight.BOLD, 12));
-
-		HBox nameHBox = new HBox();
-		nameHBox.getChildren().addAll(lastNameLabel, firstNameLabel);
-
-		// Parametrage du label Formation
-		Label formationLabel = new Label(this.formationString);
-		formationLabel.setFont(Font.font("Futura", 14));
-
-		// Parametrage du label Année de formation
-		Label anneeFormationLabel = new Label(this.anneeFormationString);
-		anneeFormationLabel.setFont(Font.font("Futura", 14));
-
-		// Parametrage du label Departement
-		Label localisationLabel = new Label("Département : " + this.localisationString);
-		localisationLabel.setFont(Font.font("Futura", 14));
-
-		this.add(nameHBox, 0, 0);
-		this.add(formationLabel, 0, 1);
-		this.add(anneeFormationLabel, 0, 2);
-		this.add(localisationLabel, 0, 3);
-
-		this.setStyle(
-				"-fx-border-color: black;-fx-border-radius: 10px;-fx-background-radius: 10px; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);");
-		this.setPadding(new Insets(10));
-	}
 
 	/**
 	 * Constructeur pour créer une carte d'étudiant avec une image.
