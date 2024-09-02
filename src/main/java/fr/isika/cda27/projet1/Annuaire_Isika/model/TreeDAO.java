@@ -90,7 +90,7 @@ public class TreeDAO {
 		Node node = new Node();
 		ArrayList<Student> list = new ArrayList<Student>();
 		try {
-			node.displayFromBinary(raf, 0, list);
+			node.getListStudentSorted(raf, 0, list);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
