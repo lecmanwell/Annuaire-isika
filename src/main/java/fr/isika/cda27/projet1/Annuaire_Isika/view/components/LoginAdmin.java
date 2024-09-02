@@ -51,11 +51,17 @@ public class LoginAdmin extends VBox {
 		Label passwordLbl = new Label("Mot de passe");
 		PasswordField passwordField = new PasswordField();
 
+		Label errorLabel = new Label("Identifiant ou mot de passe incorrect");
+		errorLabel.setTextFill(Color.RED);
+		errorLabel.setFont(Font.font("Futura", FontWeight.BOLD, 28));
+		errorLabel.setVisible(false);
+
 		// Ajout des composants à la grille
 		gridLoginBox.add(userNameLbl, 0, 0);
 		gridLoginBox.add(userNameTextField, 1, 0);
 		gridLoginBox.add(passwordLbl, 0, 1);
 		gridLoginBox.add(passwordField, 1, 1);
+		gridLoginBox.add(errorLabel, 1, 2);
 		gridLoginBox.setHgap(15);
 		gridLoginBox.setVgap(15);
 		gridLoginBox.setAlignment(Pos.CENTER);
@@ -76,9 +82,7 @@ public class LoginAdmin extends VBox {
 			} else {
 				// Affichage d'un message d'erreur en cas d'identifiant ou mot de passe
 				// incorrect
-				titleLbl.setText("Identifiant ou mot de passe incorrect");
-				titleLbl.setTextFill(Color.RED);
-				titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 28));
+				errorLabel.setVisible(true);
 			}
 
 		});

@@ -1,6 +1,5 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import javafx.util.Callback;
@@ -11,9 +10,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -22,44 +18,62 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
 
 /**
- * Classe représentant une table affichant la liste des étudiants avec des
- * options d'édition et de suppression. Cette table est utilisée dans le
- * contexte de l'administration des étudiants.
+ * La classe `StudentListAdmin` est une extension de `TableView` utilisée pour
+ * afficher une liste d'étudiants dans une interface utilisateur JavaFX. Cette
+ * classe permet aux administrateurs de gérer les informations des étudiants, y
+ * compris l'édition et la suppression.
+ * 
+ * @param <Student> Le type d'objet représentant un étudiant dans le tableau.
+ * 
  */
+
 public class StudentListAdmin extends TableView {
 
 	Student previous;
 
-	/** Liste observable contenant les étudiants affichés dans la table. */
+	/**
+	 * Liste observable des étudiants, utilisée pour mettre à jour dynamiquement la
+	 * table.
+	 */
 	public ObservableList<Student> myObservableArrayList;
-	
+
+	/**
+	 * Référence à la scène JavaFX actuelle.
+	 */
 	Scene scene;
+	/**
+	 * Arbre de données contenant la structure des étudiants.
+	 */
 	Tree tree;
+	/**
+	 * Chemin vers l'icône utilisée pour supprimer un étudiant (corbeille).
+	 */
 	String iconPath = "/Images/trashIcon.png";
+	/**
+	 * Indique si l'utilisateur actuel est un administrateur.
+	 */
 	boolean isAdmin;
 
 	/**
 	 * Retourne la liste observable des étudiants.
-	 *
-	 * @return La liste observable des étudiants.
+	 * 
+	 * @return Liste observable des étudiants.
 	 */
 	public ObservableList<Student> getMyObservableArrayList() {
 		return this.myObservableArrayList;
 	}
 
 	/**
-	 * Constructeur de la classe. Initialise la table des étudiants en créant et en
-	 * configurant les colonnes, et en liant les données des étudiants.
-	 *
-	 * @param scene La scène à laquelle cette table est attachée.
-	 * @param tree  L'objet {@code TreeDAO} utilisé pour accéder aux données des
-	 *              étudiants.
+	 * Constructeur de la classe `StudentListAdmin`. Initialise la table avec les
+	 * données des étudiants et configure les colonnes selon les droits
+	 * administratifs.
+	 * 
+	 * @param scene   La scène JavaFX associée à cette vue.
+	 * @param tree    L'arbre de données contenant les étudiants.
+	 * @param isAdmin Indique si l'utilisateur est un administrateur.
 	 */
 	@SuppressWarnings("unchecked")
 	public StudentListAdmin(Scene scene, Tree tree, boolean isAdmin) {
@@ -68,23 +82,21 @@ public class StudentListAdmin extends TableView {
 		this.tree = tree;
 		this.isAdmin = isAdmin;
 
-		// Chargement des données des étudiants à partir de {@code TreeDAO}
+		// Initialisation de la liste observable avec les données de l'arbre.
 		ArrayList<Student> list = this.tree.setAlphaList();
 		myObservableArrayList = FXCollections.observableArrayList(list);
 		this.setItems(myObservableArrayList);
 
-		
-		
-		// Création et configuration des colonnes
+		// Configuration des colonnes pour chaque attribut des étudiants.
 		TableColumn<Student, String> colNom = new TableColumn<>("Nom");
 		colNom.setCellValueFactory(new PropertyValueFactory<>("lastName"));
 		colNom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-		colNom.setPrefWidth(this.isAdmin? 163 : 180);
+		colNom.setPrefWidth(this.isAdmin ? 163 : 180);
 
 		TableColumn<Student, String> colPrenom = new TableColumn<>("Prenom");
 		colPrenom.setCellValueFactory(new PropertyValueFactory<>("firstName"));
 		colPrenom.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-		colPrenom.setPrefWidth(this.isAdmin? 162 : 174);
+		colPrenom.setPrefWidth(this.isAdmin ? 162 : 174);
 
 		TableColumn<Student, String> colLocation = new TableColumn<>("Département");
 		colLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
@@ -94,7 +106,7 @@ public class StudentListAdmin extends TableView {
 		TableColumn<Student, String> colNamePromo = new TableColumn<>("Formation");
 		colNamePromo.setCellValueFactory(new PropertyValueFactory<>("namePromo"));
 		colNamePromo.setCellFactory(TextFieldTableCell.<Student>forTableColumn());
-		colNamePromo.setPrefWidth(this.isAdmin? 138 : 150);
+		colNamePromo.setPrefWidth(this.isAdmin ? 138 : 150);
 
 		TableColumn<Student, Integer> colYear = new TableColumn<>("Année de formation");
 		colYear.setCellValueFactory(new PropertyValueFactory<>("yearPromo"));
@@ -105,11 +117,11 @@ public class StudentListAdmin extends TableView {
 		ImageView trashIcon = new ImageView(new Image(getClass().getResourceAsStream(iconPath)));
 		trashIcon.setFitHeight(15);
 		trashIcon.setFitWidth(15);
-		colAction.setPrefWidth(this.isAdmin? 40 : 0);
-	
-	
-		
+		colAction.setPrefWidth(this.isAdmin ? 40 : 0);
+
 		if (this.isAdmin) {
+			// Ajoute un bouton de suppression pour chaque ligne si l'utilisateur est un
+			// administrateur.
 			colAction.setCellFactory(new Callback<>() {
 				@Override
 				public TableCell<Student, Void> call(final TableColumn<Student, Void> param) {
@@ -123,7 +135,6 @@ public class StudentListAdmin extends TableView {
 								try {
 									tree.deleteStudent(student);
 								} catch (IOException e1) {
-									// TODO Auto-generated catch block
 									e1.printStackTrace();
 								}
 							});
@@ -135,7 +146,6 @@ public class StudentListAdmin extends TableView {
 							if (empty) {
 								setGraphic(null);
 							} else {
-								// Afficher le bouton uniquement lorsque la ligne est sélectionnée
 								if (getTableView().getSelectionModel().isSelected(getIndex())) {
 									setGraphic(deleteButton);
 								} else {
@@ -149,18 +159,18 @@ public class StudentListAdmin extends TableView {
 			});
 		}
 
-		// Ajouter un écouteur pour rafraîchir la table lorsque la sélection change
+		// Rafraîchit la table lors du changement de sélection.
 		this.getSelectionModel().selectedIndexProperty().addListener((obs, oldSelection, newSelection) -> {
-			this.refresh(); // Rafraîchir la table pour mettre à jour l'affichage des boutons
+			this.refresh();
 		});
 
-		// Ajout des colonnes à la table
+		// Ajoute les colonnes à la table en fonction du rôle (admin ou non).
 		if (this.isAdmin) {
-			
+
 			this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear, colAction);
 		} else {
-			
-            this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear);
+
+			this.getColumns().addAll(colNom, colPrenom, colLocation, colNamePromo, colYear);
 		}
 		if (this.isAdmin) {
 
@@ -191,23 +201,28 @@ public class StudentListAdmin extends TableView {
 							tree.upDateStudent(previous, oldValue);
 
 						} catch (IOException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
-						
+
 					if (newValue != null) {
-					previous = new Student(newValue.getLastName(), newValue.getFirstName(), newValue.getLocation(),
-							newValue.getNamePromo(), newValue.getYearPromo());
+						previous = new Student(newValue.getLastName(), newValue.getFirstName(), newValue.getLocation(),
+								newValue.getNamePromo(), newValue.getYearPromo());
 					}
 				}
 
 			});
 		}
-	
+
 	}
-	
-	public void refreshList(FilteredList<Student> list){
+
+	/**
+	 * Rafraîchit la liste affichée dans la table avec une liste filtrée
+	 * d'étudiants.
+	 * 
+	 * @param list La liste filtrée des étudiants à afficher.
+	 */
+	public void refreshList(FilteredList<Student> list) {
 		this.setItems(list);
 	}
 
