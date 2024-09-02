@@ -18,54 +18,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 
 /**
- * Classe représentant un composant de recherche multi-critères. Cette classe
+ * Classe représentant un composant de recherche multi-critères dynamique. Cette classe
  * permet de créer des interfaces de recherche pour les utilisateurs et les
  * administrateurs, avec différents champs de saisie et options de filtrage.
  */
 
 public class MultiSearch extends GridPane {
-//--------------------
-	public TextField getLastNameField() {
-		return lastNameField;
-	}
-
-	public void setLastNameField(TextField lastNameField) {
-		this.lastNameField = lastNameField;
-	}
-
-	public TextField getFirstNameField() {
-		return firstNameField;
-	}
-
-	public void setFirstNameField(TextField firstNameField) {
-		this.firstNameField = firstNameField;
-	}
-
-	public ComboBox<String> getFormationComboBox() {
-		return formationComboBox;
-	}
-
-	public void setFormationComboBox(ComboBox<String> formationComboBox) {
-		this.formationComboBox = formationComboBox;
-	}
-
-	public ComboBox<Integer> getAnneeFormationComboBox() {
-		return anneeFormationComboBox;
-	}
-
-	public void setAnneeFormationComboBox(ComboBox<Integer> anneeFormationComboBox) {
-		this.anneeFormationComboBox = anneeFormationComboBox;
-	}
-
-	public ComboBox<String> getDepartementChoiceBox() {
-		return departementComboBox;
-	}
-
-	public void setDepartementChoiceBox(ComboBox<String> departementChoiceBox) {
-		this.departementComboBox = departementChoiceBox;
-	}
-//	-------------------
-
 	Scene scene;
 	Tree tree;
 
@@ -75,20 +33,19 @@ public class MultiSearch extends GridPane {
 	ComboBox<Integer> anneeFormationComboBox = new ComboBox<Integer>();
 	ComboBox<String> departementComboBox = new ComboBox<String>();
 	StudentListAdmin studentList;
-
+	
 	ArrayList<String> listFormations;
 
 	/**
 	 * Constructeur de la classe. Initialise le composant en liant la scène fournie.
 	 *
 	 * @param scene La scène dans laquelle ce composant sera utilisé.
+	 * @param tree  L'arbre contenant la liste des étudiants pour les opérations de recherche.
 	 */
-
 	public MultiSearch(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-
 	}
 
 	/**
@@ -96,11 +53,15 @@ public class MultiSearch extends GridPane {
 	 * incluent les noms, les prénoms, la formation, l'année de formation et le
 	 * département. Ajoute les composants au {@code GridPane} avec des espacements
 	 * et des marges définis.
+	 * Configure également les boutons pour réinitialiser les filtres et ajouter de nouveaux étudiants si l'utilisateur est un administrateur.
+	 * @param studentList La liste des étudiants affichée à l'utilisateur.
+	 * @param isAdmin     Un booléen indiquant si l'utilisateur est un administrateur. Si c'est le cas, des fonctionnalités supplémentaires sont activées.
 	 */
 
 	public void multiSearch(StudentListAdmin studentList, boolean isAdmin) {
 		this.studentList = studentList;
 
+		// Configuration des champs de saisie et des ComboBox
 		lastNameField.setPrefHeight(200);
 		lastNameField.setPrefWidth(300);
 		lastNameField.setPromptText("Nom");
@@ -121,9 +82,8 @@ public class MultiSearch extends GridPane {
                             setText(item);
                         }
                     }
-                
 		});
-
+		
 		anneeFormationComboBox.setPromptText("Année de formation");
 		anneeFormationComboBox.setPrefHeight(200);
 		anneeFormationComboBox.setPrefWidth(300);
@@ -137,7 +97,7 @@ public class MultiSearch extends GridPane {
                     }
                 }
             });
-
+		
 		departementComboBox.setPromptText("Département");
 		departementComboBox.setPrefHeight(200);
 		departementComboBox.setPrefWidth(300);
@@ -164,10 +124,9 @@ public class MultiSearch extends GridPane {
 		this.setHeight(100);
 		this.setMaxHeight(120);
 		
+		// Configuration du bouton pour réinitialiser les filtres
 		CustomButton btnResetFilter = new CustomButton(this.scene, this.tree);
 		btnResetFilter.setResetFilter();
-		
-		
 		btnResetFilter.setOnAction((e) -> {
 			lastNameField.clear();
             firstNameField.clear();
@@ -179,19 +138,17 @@ public class MultiSearch extends GridPane {
             
             departementComboBox.getSelectionModel().clearSelection();
             departementComboBox.setValue(null);
-//            departementComboBox.setPromptText("Département");
-      
 		});
 		this.add(btnResetFilter, 3, 0);
 		
-		
-
+		// Si l'utilisateur est un administrateur, ajouter un bouton pour accéder à l'interface d'ajout d'étudiant
 		if (isAdmin) {
 			CustomButton btnGoToAddStudent = new CustomButton(this.scene, this.tree);
 			btnGoToAddStudent.goToAddStudent();
 			this.add(btnGoToAddStudent, 3, 1);
 		}
-
+		
+		// Configuration des filtres pour mettre à jour dynamiquement la liste des étudiants affichée
 		FilteredList<Student> filteredData = new FilteredList<>(studentList.getMyObservableArrayList(), p -> true);
 		lastNameField.textProperty().addListener((observable, olvValue, newValue) -> {
 			filteredData.setPredicate(student -> filterStudent(student));
@@ -208,34 +165,46 @@ public class MultiSearch extends GridPane {
 		anneeFormationComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(student -> filterStudent(student));
 		});
-
+		
 		// Mise à jour de la tableView avec les données filtrées
 		studentList.refreshList(filteredData);
 		this.fillComboBoxWithPossibleValues();
-
+		
 	}
+		/**
+		 * Applique les critères de recherche pour filtrer un étudiant.
+		 * <p>
+		 * Cette méthode vérifie chaque champ de saisie pour déterminer si un étudiant correspond aux critères de recherche spécifiés.
+		 * Si un critère est rempli et qu'un étudiant ne correspond pas à ce critère, la méthode retourne {@code false}, sinon {@code true}.
+		 * </p>
+		 * 
+		 * @param student L'étudiant à évaluer.
+		 * @return {@code true} si l'étudiant correspond aux critères de recherche, sinon {@code false}.
+		 */
+		public boolean filterStudent(Student student) {
+			if (!lastNameField.getText().isEmpty()
+					&& !student.getLastName().toLowerCase().contains(lastNameField.getText().toLowerCase())) {
+				return false;
+			}
+			if (!firstNameField.getText().isEmpty()
+					&& !student.getFirstName().toLowerCase().contains(firstNameField.getText().toLowerCase())) {
+				return false;
+			}
+			if (departementComboBox.getValue() != null && !departementComboBox.getValue().equals(student.getLocation())) {
+				return false;
+			}
+			if (formationComboBox.getValue() != null && !formationComboBox.getValue().equals(student.getNamePromo())) {
+				return false;
+			}
+			if (anneeFormationComboBox.getValue() != null
+					&& !anneeFormationComboBox.getValue().equals(student.getYearPromo())) {
+				return false;
+			}
+			return true;
+		}
 
-	public boolean filterStudent(Student student) {
-		if (!lastNameField.getText().isEmpty()
-				&& !student.getLastName().toLowerCase().contains(lastNameField.getText().toLowerCase())) {
-			return false;
-		}
-		if (!firstNameField.getText().isEmpty()
-				&& !student.getFirstName().toLowerCase().contains(firstNameField.getText().toLowerCase())) {
-			return false;
-		}
-		if (departementComboBox.getValue() != null && !departementComboBox.getValue().equals(student.getLocation())) {
-			return false;
-		}
-		if (formationComboBox.getValue() != null && !formationComboBox.getValue().equals(student.getNamePromo())) {
-			return false;
-		}
-		if (anneeFormationComboBox.getValue() != null
-				&& !anneeFormationComboBox.getValue().equals(student.getYearPromo())) {
-			return false;
-		}
-		return true;
-	}
+
+
 
 	/**
 	 * Remplit les ComboBox avec les valeurs possibles dérivées de la liste
@@ -245,7 +214,6 @@ public class MultiSearch extends GridPane {
 	 * les assigne aux ComboBox correspondantes pour la formation, le département,
 	 * et l'année de formation.
 	 */
-
 	public void fillComboBoxWithPossibleValues() {
 		
 		ArrayList<Student> studentList = this.tree.setAlphaList();
@@ -266,6 +234,7 @@ public class MultiSearch extends GridPane {
 			}
 		}
 
+		// Tri des valeurs possibles pour garantir un affichage ordonné dans les ComboBox
 		ArrayList<String> sortedPromo = new ArrayList<String>(possiblePromo);
 		Collections.sort(sortedPromo);
 
@@ -275,11 +244,9 @@ public class MultiSearch extends GridPane {
 		ArrayList<Integer> sortedYearPromo = new ArrayList<Integer>(possibleYearPromo);
 		Collections.sort(sortedYearPromo);
 
+		// Remplissage des ComboBox avec les valeurs triées
 		this.formationComboBox.setItems(FXCollections.observableArrayList(sortedPromo));
 		this.departementComboBox.setItems(FXCollections.observableArrayList(sortedLocation));
 		this.anneeFormationComboBox.setItems(FXCollections.observableArrayList(sortedYearPromo));
-		
-
-		
 	}
 }
