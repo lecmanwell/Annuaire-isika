@@ -1,6 +1,5 @@
 package fr.isika.cda27.projet1.Annuaire_Isika.model;
 
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
