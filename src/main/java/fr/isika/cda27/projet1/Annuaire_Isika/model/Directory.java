@@ -11,82 +11,77 @@ import java.util.ArrayList;
  */
 
 public class Directory {
-
-	
-    /**
-     * Liste des étudiants dans l'annuaire.
-     */
+/**
+ * Les champs privés de la classe Directory.
+ *
+ * @param studentsList Une liste ArrayList pour stocker les étudiants.
+ * @param raf Un RandomAccessFile pour gérer l'accès au fichier binaire de sauvegarde.
+ * @param tree L'arbre binaire associé à Directory pour la gestion des données.
+ */
 	private ArrayList<Student> studentsList;
-	
-	/**
-     * Le RandomAccessFile pour accéder au fichier binaire.
-     */
 	private RandomAccessFile raf;
-	
-    /**
-     * Le TreeDAO pour gérer les opérations sur l'arbre binaire.
-     */
 	private Tree tree;
 
-    /**
-     * Constructeur par défaut de la classe Directory.
-     * Initialise la liste des étudiants et le DAO pour l'arbre binaire.
-     * Initialise également le fichier binaire pour la lecture et l'écriture.
-     */
-
+	/**
+	 * Construit une nouvelle instance de Directory avec l'arbre binaire donné.
+	 * Initialise une liste ArrayList vide pour studentsList et assigne l'arbre
+	 * fourni. Ouvre un RandomAccessFile pour le stockage de données binaires avec
+	 * le chemin de fichier "src/main/resources/binarySave.bin" en mode
+	 * lecture-écriture. Si le fichier n'existe pas, il sera créé. Si une erreur se
+	 * produit lors de l'ouverture du fichier, elle sera interceptée et la trace de
+	 * pile sera imprimée.
+	 *
+	 * @param tree L'arbre binaire à associer à Directory.
+	 */
 	public Directory(Tree tree) {
 		this.studentsList = new ArrayList<Student>();
 		this.tree = tree;
-//		this.treeDao = new	TreeDAO();
 
 		try {
 			this.raf = new RandomAccessFile("src/main/resources/binarySave.bin", "rw");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-    /**
-     * Retourne la liste des étudiants.
-     * 
-     * @return Liste des étudiants.
-     */
-	
+
+	/**
+	 * Retourne la liste des étudiants.
+	 * 
+	 * @return Liste des étudiants.
+	 */
+
 	public ArrayList<Student> getStudentsList() {
 		return studentsList;
 	}
-	
-    /**
-     * Définit la liste des étudiants.
-     * 
-     * @param studentsList Liste des étudiants à définir.
-     */
-	
+
+	/**
+	 * Définit la liste des étudiants.
+	 * 
+	 * @param studentsList Liste des étudiants à définir.
+	 */
+
 	public void setStudentsList(ArrayList<Student> studentsList) {
 		this.studentsList = studentsList;
 	}
-	
-	
-    /**
-     * Ajoute un étudiant à la liste des étudiants.
-     * Affiche un message de confirmation dans la console.
-     * 
-     * @param student L'étudiant à ajouter à la liste.
-     */
+
+	/**
+	 * Ajoute un étudiant à la liste des étudiants. Affiche un message de
+	 * confirmation dans la console.
+	 * 
+	 * @param student L'étudiant à ajouter à la liste.
+	 */
 
 	public void addStudentToList(Student student) {
 		studentsList.add(student);
 
 	}
 
-	
-    /**
-     * Ajoute un étudiant à l'arbre binaire via le DAO.
-     * 
-     * @param student L'étudiant à ajouter à l'arbre.
-     */
-	
+	/**
+	 * Ajoute un étudiant à l'arbre binaire via le DAO.
+	 * 
+	 * @param student L'étudiant à ajouter à l'arbre.
+	 */
+
 	public void addStudentToTree(Student student) {
 		this.tree.addToTree(student);
 
