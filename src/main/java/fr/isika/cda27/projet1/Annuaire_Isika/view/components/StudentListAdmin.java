@@ -197,10 +197,11 @@ public class StudentListAdmin extends TableView {
 							e.printStackTrace();
 						}
 					}
-
+						
+					if (newValue != null) {
 					previous = new Student(newValue.getLastName(), newValue.getFirstName(), newValue.getLocation(),
 							newValue.getNamePromo(), newValue.getYearPromo());
-
+					}
 				}
 
 			});
