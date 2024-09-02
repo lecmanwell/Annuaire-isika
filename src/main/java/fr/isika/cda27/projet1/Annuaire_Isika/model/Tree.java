@@ -18,7 +18,7 @@ public class Tree {
 	public ArrayList<Student> students;
 
 	/**
-	 * Constructeur de la classe TreeDAO. Initialise le fichier binaire pour la
+	 * Constructeur de la classe Tree. Initialise le fichier binaire pour la
 	 * sauvegarde des données et crée une liste d'étudiants vide.
 	 */
 	public Tree() {
