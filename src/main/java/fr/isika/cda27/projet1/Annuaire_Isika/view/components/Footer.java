@@ -76,8 +76,8 @@ public class Footer extends BorderPane {
 		String imgPathIconQuestion = "/Images/questionMark1.png";
 		ImageView iconQuestion = new ImageView(new Image(getClass().getResourceAsStream(imgPathIconQuestion)));
 		iconQuestion.setPreserveRatio(true);
-		iconQuestion.setFitWidth(17);
-		iconQuestion.setFitHeight(17);
+		iconQuestion.setFitWidth(15);
+		iconQuestion.setFitHeight(15);
 
 		btnGenerateDocumentation = new CustomButton(scene, this.tree);
 		btnGenerateDocumentation.generateDocumentation();
