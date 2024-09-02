@@ -4,9 +4,6 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.FileOutputStream;
-import java.time.LocalDate;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +21,6 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeViewAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.UserDirectoryView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,14 +28,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 /**
  * Classe représentant un bouton personnalisé pour l'application. Cette classe
  * permet de créer différents boutons avec des styles et actions spécifiques.
  */
-
 public class CustomButton extends Button {
 	Scene scene;
 	Tree tree;
@@ -49,13 +41,13 @@ public class CustomButton extends Button {
 	 * Constructeur pour initialiser un bouton personnalisé avec la scène.
 	 * 
 	 * @param scene La scène dans laquelle le bouton sera utilisé.
+	 * @param tree  L'arbre de données pour accéder aux informations des étudiants.
 	 */
 
 	public CustomButton(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-
 	}
 
 	/**
@@ -63,7 +55,6 @@ public class CustomButton extends Button {
 	 * bouton affiche le texte "Comment fonctionne cet annuaire ?" et ouvre le
 	 * fichier PDF lorsqu'il est cliqué.
 	 */
-
 	public void generateDocumentation() {
 		this.setText("Comment fonction cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
@@ -91,7 +82,6 @@ public class CustomButton extends Button {
 	 * bouton affiche le texte "Accès administrateur" et change la scène pour la vue
 	 * administrateur lorsqu'il est cliqué.
 	 */
-
 	public void adminAccess() {
 		this.setText("Accès administrateur");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
@@ -109,16 +99,12 @@ public class CustomButton extends Button {
 	 * change la scène pour la vue de l'annuaire des utilisateurs lorsqu'il est
 	 * cliqué.
 	 */
-
 	public void goToDirectory() {
 		this.setText("Accéder à l'annuaire");
 		this.setStyle("-fx-background-color: #144d65;-fx-padding: 10 20; -fx-text-fill: white;");
-
-		//
 		this.setOnAction((e) -> {
 			scene.setRoot(new UserDirectoryView(this.scene, this.tree));
 		});
-
 	}
 
 	/**
@@ -128,7 +114,6 @@ public class CustomButton extends Button {
 	 * 
 	 * @param tableView La vue de la liste des étudiants à imprimer.
 	 */
-
 	public void printDirectory(StudentListAdmin tableView) {
 		this.setText("Imprimer l'annuaire");
 		this.setStyle(
@@ -138,7 +123,6 @@ public class CustomButton extends Button {
 			try {
 				this.generatePDF(tableView);
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
@@ -149,7 +133,6 @@ public class CustomButton extends Button {
 	 * Configure le bouton pour la déconnexion. Le bouton affiche le texte
 	 * "Déconnexion" et change la scène pour la vue d'accueil lorsqu'il est cliqué.
 	 */
-
 	public void logOut() {
 		this.setText("Deconnexion");
 		this.setStyle(
@@ -168,26 +151,17 @@ public class CustomButton extends Button {
 		});
 	}
 
-	public void addStudent() {
-		this.setText("Ajouter un stagiaire");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
-
-	}
-
 	/**
 	 * Configure le bouton pour revenir à la vue d'accueil depuis la vue d'accueil
 	 * administrateur. Le bouton affiche le texte "Retoura l'accueil" et change la
 	 * scène pour la vue d'accueil lorsqu'il est cliqué.
 	 */
-
 	public void backToHome() {
 		this.setText("Retour a l'accueil");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-
 		this.setOnAction((e) -> {
 			scene.setRoot(new HomeView(scene, this.tree));
 		});
-
 	}
 
 	/**
@@ -195,12 +169,10 @@ public class CustomButton extends Button {
 	 * général. Le bouton affiche le texte "Accueil" et change la scène pour la vue
 	 * d'accueil lorsqu'il est cliqué.
 	 */
-
 	public void homeButtonTitle() {
 		this.setText("Accueil");
 		this.setStyle("-fx-background-color: transparent;");
 		this.setFont(Font.font("Futura", FontWeight.BOLD, 14));
-
 		this.setOnMouseEntered((e) -> {
 			this.setTextFill(Color.web("#adb6b6"));
 		});
@@ -218,7 +190,6 @@ public class CustomButton extends Button {
 	 * général. Le bouton affiche le texte "Annuaire" et change la scène pour la vue
 	 * de l'annuaire des utilisateurs lorsqu'il est cliqué.
 	 */
-
 	public void goToDirectoryTitle() {
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");
@@ -229,11 +200,9 @@ public class CustomButton extends Button {
 		this.setOnMouseExited((e) -> {
 			this.setTextFill(Color.web("#333333"));
 		});
-
 		this.setOnAction((e) -> {
 			scene.setRoot(new UserDirectoryView(scene, this.tree));
 		});
-
 	}
 
 	/**
@@ -241,7 +210,6 @@ public class CustomButton extends Button {
 	 * général. Le bouton affiche le texte "Administrateur" et change la scène pour
 	 * la vue administrateur lorsqu'il est cliqué.
 	 */
-
 	public void adminAccessTitle() {
 		this.setText("Administrateur");
 		this.setStyle("-fx-background-color: transparent;");
@@ -252,11 +220,9 @@ public class CustomButton extends Button {
 		this.setOnMouseExited((e) -> {
 			this.setTextFill(Color.web("#333333"));
 		});
-
 		this.setOnAction((e) -> {
 			scene.setRoot(new HomeViewAdmin(scene, this.tree));
 		});
-
 	}
 
 	/**
@@ -269,7 +235,6 @@ public class CustomButton extends Button {
 	 * @param promoTextField     Champ de texte pour la promotion.
 	 * @param yearPromoTextField Champ de texte pour l'année de la promotion.
 	 */
-
 	public void addStudentFromFields(TextField lastNameTextField, TextField firstNameTextField,
 			TextField locationTextField, TextField promoTextField, TextField yearPromoTextField) {
 		this.setText("Valider");
@@ -286,19 +251,18 @@ public class CustomButton extends Button {
 	 * @throws IOException Si une erreur se produit lors de la création du fichier
 	 *                     PDF.
 	 */
-
 	private void generatePDF(StudentListAdmin tableView) throws IOException {
 		String dest = "stagiaires.pdf";
-		
-		 // Créer un écrivain PDF
+
+		// Créer un écrivain PDF
 		try {
 			PdfWriter writer = new PdfWriter(dest);
 			PdfDocument pdf = new PdfDocument(writer);
 			Document document = new Document(pdf);
-			
+
 			// Nombre de colonnes dans la TableView
 			int numberOfColumns = 5;
-			
+
 			// Ajouter un titre
 			document.add(new Paragraph("Liste des Stagiaires"));
 
@@ -342,11 +306,9 @@ public class CustomButton extends Button {
 		this.setPrefHeight(200);
 		this.setPrefWidth(315);
 		this.setPadding(new Insets(3, 20, 3, 20));
-
 		this.setOnAction((e) -> {
 			scene.setRoot(new AddStudentView(this.scene, this.tree));
 		});
-
 	}
 
 	/**
@@ -354,7 +316,6 @@ public class CustomButton extends Button {
 	 * affiche le texte "Annuaire" et change la scène pour la vue de l'annuaire
 	 * administrateur lorsqu'il est cliqué.
 	 */
-
 	public void goToDirectoryAdminTitle() {
 		this.setText("Annuaire");
 		this.setStyle("-fx-background-color: transparent;");
@@ -372,29 +333,28 @@ public class CustomButton extends Button {
 		this.setOnAction((e) -> {
 			scene.setRoot(new AdminDirectoryView(scene, this.tree));
 		});
+	}
 
-	}
-//-----------------------------	
-	public void searchStudent() {
-		 List<Student> searchResult = new ArrayList<Student>();
-	this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
-	this.setText("Rechercher");
-	
-	}
-	
+	/**
+	 * Configure le bouton pour accéder à l'annuaire administrateur après qu'il ait
+	 * renseigné ses logins. Le bouton affiche le texte "Valider" et change la scène
+	 * pour la vue de l'annuaire administrateur lorsqu'il est cliqué.
+	 */
 	public void validAdmin() {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
 	}
-	
+
+	/**
+	 * Configure le bouton pour réinitialiser les champs de texte de la recherche
+	 * multicritères. Le bouton affiche le texte "Effacer recherche".
+	 */
 	public void setResetFilter() {
 		this.setText("Effacer recherche");
-		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
+		this.setStyle(
+				"-fx-background-color: #144d65; -fx-text-fill: white; -fx-background-radius: 15; -fx-border-radius: 15;");
 		this.setPrefHeight(200);
 		this.setPrefWidth(315);
 		this.setPadding(new Insets(3, 20, 3, 20));
-
 	}
-
-
 }

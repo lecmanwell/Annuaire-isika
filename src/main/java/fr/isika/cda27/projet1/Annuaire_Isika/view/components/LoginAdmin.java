@@ -2,13 +2,9 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
 
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.AdminDirectoryView;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.HomeView;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.login.Admin;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -18,7 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 
 /**
  * Représente une vue de connexion pour les administrateurs. Cette classe
@@ -56,11 +51,17 @@ public class LoginAdmin extends VBox {
 		Label passwordLbl = new Label("Mot de passe");
 		PasswordField passwordField = new PasswordField();
 
+		Label errorLabel = new Label("Identifiant ou mot de passe incorrect");
+		errorLabel.setTextFill(Color.RED);
+		errorLabel.setFont(Font.font("Futura", FontWeight.BOLD, 28));
+		errorLabel.setVisible(false);
+
 		// Ajout des composants à la grille
 		gridLoginBox.add(userNameLbl, 0, 0);
 		gridLoginBox.add(userNameTextField, 1, 0);
 		gridLoginBox.add(passwordLbl, 0, 1);
 		gridLoginBox.add(passwordField, 1, 1);
+		gridLoginBox.add(errorLabel, 1, 2);
 		gridLoginBox.setHgap(15);
 		gridLoginBox.setVgap(15);
 		gridLoginBox.setAlignment(Pos.CENTER);
@@ -81,9 +82,7 @@ public class LoginAdmin extends VBox {
 			} else {
 				// Affichage d'un message d'erreur en cas d'identifiant ou mot de passe
 				// incorrect
-				titleLbl.setText("Identifiant ou mot de passe incorrect");
-				titleLbl.setTextFill(Color.RED);
-				titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 28));
+				errorLabel.setVisible(true);
 			}
 
 		});

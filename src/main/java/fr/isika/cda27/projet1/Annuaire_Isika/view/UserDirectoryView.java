@@ -5,7 +5,6 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.UserDirectory;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -21,7 +20,7 @@ import javafx.scene.layout.VBox;
 public class UserDirectoryView extends BorderPane {
 
 	private Scene scene;
-	Tree tree;
+	private Tree tree;
 
 	/**
 	 * Constructeur de la classe. Initialise la vue du répertoire des utilisateurs
@@ -37,7 +36,7 @@ public class UserDirectoryView extends BorderPane {
 		this.tree = tree;
 
 		// Création de l'en-tête général
-		Header header = new Header(scene, tree);
+		Header header = new Header(this.scene, this.tree);
 		header.headerUserDirectoryView();
 		header.setAlignment(Pos.CENTER);
 
@@ -48,8 +47,8 @@ public class UserDirectoryView extends BorderPane {
 		// Création de l'espace de recherche
 
 		// Création du répertoire des utilisateurs avec une barre de défilement
-		StudentListAdmin userDirectory = new StudentListAdmin(scene, this.tree, false);
-		MultiSearch multiSearch = new MultiSearch(scene, this.tree);
+		StudentListAdmin userDirectory = new StudentListAdmin(this.scene, this.tree, false);
+		MultiSearch multiSearch = new MultiSearch(this.scene, this.tree);
 		multiSearch.multiSearch(userDirectory, false);
 		ScrollPane scrollpane = new ScrollPane();
 		userDirectory.setMinWidth(scrollpane.getWidth());
@@ -63,7 +62,7 @@ public class UserDirectoryView extends BorderPane {
 		body.getChildren().addAll(multiSearch, scrollpane);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene, this.tree, userDirectory);
+		Footer footer = new Footer(this.scene, this.tree, userDirectory);
 		footer.footerUserDirectoryView();
 
 		// Configuration de la vue

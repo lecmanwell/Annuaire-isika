@@ -59,7 +59,6 @@ public class Header extends HBox {
 	 * @param scene la scène JavaFX associée.
 	 * @param tree  l'arbre de données utilisé pour la gestion de l'annuaire.
 	 */
-
 	public Header(Scene scene, Tree tree) {
 		this.scene = scene;
 		this.tree = tree;
@@ -97,7 +96,6 @@ public class Header extends HBox {
 		stripesBox.setAlignment(Pos.CENTER);
 
 		return stripesBox;
-
 	}
 
 	/**
@@ -106,14 +104,12 @@ public class Header extends HBox {
 	 * @param logoWidthRatio le ratio de la largeur du logo par rapport à la scène.
 	 * @return un ImageView contenant le logo.
 	 */
-
 	public ImageView createLogo(double logoWidthRatio) {
 
 		ImageView imgViewLogo = new ImageView(new Image(getClass().getResourceAsStream(imgPathLogo)));
 		imgViewLogo.fitWidthProperty().bind(scene.widthProperty().multiply(logoWidthRatio));
 		imgViewLogo.setPreserveRatio(true);
 		return imgViewLogo;
-
 	}
 
 	/**
@@ -158,7 +154,6 @@ public class Header extends HBox {
 	 * 
 	 * @return un HBox contenant le menu administrateur.
 	 */
-
 	public HBox createMenuAdmin() {
 
 		// Création des boutons de navigation

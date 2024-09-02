@@ -4,7 +4,6 @@ import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -15,7 +14,6 @@ import javafx.scene.text.TextAlignment;
  * Classe représentant une vue de la page d'accueil de l'annuaire. Cette vue
  * affiche un titre, une description et un bouton pour accéder à l'annuaire.
  */
-
 public class HomeText extends VBox {
 
 	private Scene scene;
@@ -27,7 +25,6 @@ public class HomeText extends VBox {
 	 * 
 	 * @param scene La scène dans laquelle cette vue sera affichée.
 	 */
-
 	public HomeText(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
@@ -59,5 +56,4 @@ public class HomeText extends VBox {
 		this.getChildren().addAll(titleLabel, descriptionLabel, btnDirectory);
 
 	}
-
 }
