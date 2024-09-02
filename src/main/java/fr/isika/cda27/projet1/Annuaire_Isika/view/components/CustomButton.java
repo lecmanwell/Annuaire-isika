@@ -325,7 +325,6 @@ public class CustomButton extends Button {
 			if (Desktop.isDesktopSupported()) {
 				Desktop.getDesktop().open(new File(dest));
 			}
-			System.out.println("PDF généré avec succès !");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
