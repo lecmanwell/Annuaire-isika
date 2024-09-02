@@ -3,7 +3,6 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view;
 import fr.isika.cda27.projet1.Annuaire_Isika.model.Tree;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.HomeText;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.LoginAdmin;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentCard;
 import javafx.geometry.Insets;
@@ -11,34 +10,30 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
-
 
 /**
- * Vue d'accueil pour l'administrateur.
- * Cette vue affiche une carte d'étudiant, un formulaire de connexion administrateur et un pied de page.
- * Elle configure également l'en-tête, le pied de page et le style de la scène.
+ * Vue d'accueil pour l'administrateur. Cette vue affiche une carte d'étudiant,
+ * un formulaire de connexion administrateur et un pied de page. Elle configure
+ * également l'en-tête, le pied de page et le style de la scène.
  */
 public class HomeViewAdmin extends BorderPane {
 
 	private Scene scene;
 	private Tree tree;
 
-	
-    /**
-     * Constructeur de la classe.
-     *
-     * @param scene La scène à laquelle cette vue est attachée.
-     */
+	/**
+	 * Constructeur de la classe.
+	 *
+	 * @param scene La scène à laquelle cette vue est attachée.
+	 * @param tree  Classe qui contient le CRUD du fichier de sauvegarde.
+	 */
 	public HomeViewAdmin(Scene scene, Tree tree) {
 		super();
 		this.scene = scene;
 		this.tree = tree;
 
 		// Création de l'en-tête
-		Header header = new Header(scene, tree);
+		Header header = new Header(this.scene, this.tree);
 		header.headerSimple();
 		header.setAlignment(Pos.CENTER);
 
@@ -51,7 +46,7 @@ public class HomeViewAdmin extends BorderPane {
 		StudentCard studentCard = new StudentCard(imagePath, "Projet", "Isika", "Architecte Logiciel", "2024", "92");
 
 		// Création du formulaire de connexion administrateur
-		LoginAdmin loginAdmin = new LoginAdmin(scene, this.tree);
+		LoginAdmin loginAdmin = new LoginAdmin(this.scene, this.tree);
 		loginAdmin.setAlignment(Pos.CENTER);
 
 		// Ajout des composants au conteneur principal
@@ -61,9 +56,9 @@ public class HomeViewAdmin extends BorderPane {
 		body.setHgap(20);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene, this.tree);
+		Footer footer = new Footer(this.scene, this.tree);
 		footer.footerHomeViewAdmin();
-		
+
 		// Configuration du BorderPane
 		this.setTop(header);
 		this.setBottom(footer);

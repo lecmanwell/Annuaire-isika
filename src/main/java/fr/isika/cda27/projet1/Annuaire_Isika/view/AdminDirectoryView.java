@@ -5,7 +5,6 @@ import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Footer;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.Header;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.MultiSearch;
 import fr.isika.cda27.projet1.Annuaire_Isika.view.components.StudentListAdmin;
-import fr.isika.cda27.projet1.Annuaire_Isika.view.components.UserDirectory;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,8 +21,7 @@ import javafx.scene.layout.VBox;
 public class AdminDirectoryView extends BorderPane {
 
 	private Scene scene;
-	Tree tree;
-
+	private Tree tree;
 
 	/**
 	 * Constructeur de la classe.
@@ -41,7 +39,7 @@ public class AdminDirectoryView extends BorderPane {
 		Header header = new Header(scene, tree);
 		header.headerAdminView();
 		header.setAlignment(Pos.CENTER);
-		
+
 		// Création du conteneur central
 		VBox body = new VBox();
 		body.setPadding(new Insets(20, 20, 0, 20));
@@ -50,7 +48,7 @@ public class AdminDirectoryView extends BorderPane {
 
 		// Création de la liste des étudiants avec une zone de défilement
 		StudentListAdmin userDirectory = new StudentListAdmin(this.scene, this.tree, true);
-		
+
 		MultiSearch multiSearch = new MultiSearch(this.scene, this.tree);
 		multiSearch.multiSearch(userDirectory, true);
 		ScrollPane scrollpane = new ScrollPane();
@@ -64,7 +62,7 @@ public class AdminDirectoryView extends BorderPane {
 		body.getChildren().addAll(multiSearch, scrollpane);
 
 		// Création du pied de page
-		Footer footer = new Footer(scene,this.tree, userDirectory);
+		Footer footer = new Footer(scene, this.tree, userDirectory);
 		footer.footerAdminDirectoryView();
 
 		// Configuration du BorderPane

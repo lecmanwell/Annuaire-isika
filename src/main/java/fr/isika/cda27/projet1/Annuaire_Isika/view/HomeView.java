@@ -21,13 +21,14 @@ import javafx.scene.layout.GridPane;
 
 public class HomeView extends BorderPane {
 
-	 public Scene scene;
+	public Scene scene;
 	public Tree tree;
 
 	/**
 	 * Constructeur de la classe.
 	 * 
 	 * @param scene La scène à laquelle cette vue est attachée.
+	 * @param tree  Classe qui contient le CRUD du fichier de sauvegarde.
 	 */
 
 	public HomeView(Scene scene, Tree tree) {
