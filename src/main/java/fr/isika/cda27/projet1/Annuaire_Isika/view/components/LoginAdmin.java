@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -81,6 +82,7 @@ public class LoginAdmin extends VBox {
 				// Affichage d'un message d'erreur en cas d'identifiant ou mot de passe
 				// incorrect
 				titleLbl.setText("Identifiant ou mot de passe incorrect");
+				titleLbl.setTextFill(Color.RED);
 				titleLbl.setFont(Font.font("Futura", FontWeight.BOLD, 28));
 			}
 

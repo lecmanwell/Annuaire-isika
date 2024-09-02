@@ -87,7 +87,6 @@ public class MultiSearch extends GridPane {
 		super();
 		this.scene = scene;
 		this.tree = tree;
-
 		this.fillComboBoxWithPossibleValues();
 	}
 

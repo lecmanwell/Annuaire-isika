@@ -168,11 +168,6 @@ public class CustomButton extends Button {
 		});
 	}
 
-	public void modifyStudent() {
-		this.setText("Modifier");
-
-	}
-
 	public void addStudent() {
 		this.setText("Ajouter un stagiaire");
 		this.setStyle("-fx-background-color: #144d65; -fx-text-fill: white;");
@@ -279,6 +274,7 @@ public class CustomButton extends Button {
 			TextField locationTextField, TextField promoTextField, TextField yearPromoTextField) {
 		this.setText("Valider");
 		this.setStyle("-fx-background-color: #144d65; -fx-padding: 10 20; -fx-text-fill: white;");
+		this.setDefaultButton(true);
 	}
 
 	/**
