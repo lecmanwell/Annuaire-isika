@@ -17,6 +17,9 @@ import javafx.scene.layout.GridPane;
  * Vue principale de l'application, représentant la page d'accueil. Cette vue
  * affiche un en-tête, un corps avec une carte d'étudiant et du texte, ainsi
  * qu'un pied de page. Elle définit également le style de la scène.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class HomeView extends BorderPane {

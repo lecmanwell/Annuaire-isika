@@ -7,6 +7,9 @@ import java.time.LocalDate;
  * des données dans le contexte de l'annuaire. Elle fournit des méthodes
  * statiques pour vérifier les caractères spéciaux, la validité des noms, des
  * promotions, des années et des longueurs de chaînes.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Validator {

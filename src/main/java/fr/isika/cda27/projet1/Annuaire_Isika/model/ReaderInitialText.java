@@ -9,6 +9,9 @@ import java.io.IOException;
  * La classe ReaderInitialText est responsable de la lecture d'un fichier texte
  * contenant des informations sur les étudiants, et de leur ajout à un annuaire
  * (Directory).
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class ReaderInitialText {

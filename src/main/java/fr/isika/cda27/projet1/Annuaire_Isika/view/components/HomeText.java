@@ -13,6 +13,9 @@ import javafx.scene.text.TextAlignment;
 /**
  * Classe représentant une vue de la page d'accueil de l'annuaire. Cette vue
  * affiche un titre, une description et un bouton pour accéder à l'annuaire.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class HomeText extends VBox {
 

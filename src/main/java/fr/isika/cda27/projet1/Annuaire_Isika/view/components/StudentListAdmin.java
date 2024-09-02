@@ -28,6 +28,8 @@ import javafx.scene.image.Image;
  * 
  * @param <Student> Le type d'objet représentant un étudiant dans le tableau.
  * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class StudentListAdmin extends TableView {

@@ -21,6 +21,9 @@ import javafx.scene.Scene;
  * Classe représentant un composant de recherche multi-critères dynamique. Cette classe
  * permet de créer des interfaces de recherche pour les utilisateurs et les
  * administrateurs, avec différents champs de saisie et options de filtrage.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class MultiSearch extends GridPane {

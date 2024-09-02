@@ -10,6 +10,9 @@ import java.util.ArrayList;
  * dans un fichier binaire. Cette classe fournit des méthodes pour ajouter des
  * étudiants à l'arbre et pour lire la liste des étudiants dans un ordre
  * alphabétique.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Tree {

@@ -19,6 +19,9 @@ import javafx.scene.text.TextAlignment;
  * Classe représentant une vue pour ajouter un nouveau stagiaire. Cette vue
  * fournit un formulaire pour saisir les informations du stagiaire et un bouton
  * pour valider l'ajout du stagiaire.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class AddStudent extends VBox {
 	Tree tree;

@@ -16,6 +16,9 @@ import javafx.scene.text.FontWeight;
  * les informations d'un étudiant, telles que le nom, le prénom, la formation,
  * l'année de formation, et la localisation. Elle peut également afficher une
  * photo de l'étudiant.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class StudentCard extends GridPane {

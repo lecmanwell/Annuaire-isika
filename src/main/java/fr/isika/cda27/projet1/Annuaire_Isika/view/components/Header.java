@@ -29,6 +29,8 @@ import javafx.scene.shape.Rectangle;
  * de navigation, et de la classe {@link Tree} pour la gestion des données
  * sous-jacentes.
  * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Header extends HBox {

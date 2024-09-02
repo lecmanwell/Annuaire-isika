@@ -8,6 +8,9 @@ import java.util.Objects;
  * nom, le prénom, la localisation, le nom de la promotion et l'année de
  * promotion. Elle implémente l'interface Comparable pour permettre la
  * comparaison des étudiants en fonction de leur nom de famille.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Student implements Comparable<Student> {

@@ -16,6 +16,8 @@ import javafx.scene.layout.VBox;
  * Vue pour l'annuaire administrateur. Cette vue affiche une liste de stagiaires
  * avec une barre de recherche et une zone de défilement. Elle configure
  * également l'en-tête, le pied de page et le style de la scène.
+ * @author groupe1
+ * @version 1.0
  */
 
 public class AdminDirectoryView extends BorderPane {

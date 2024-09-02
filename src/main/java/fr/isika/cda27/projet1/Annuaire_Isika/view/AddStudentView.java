@@ -14,6 +14,9 @@ import javafx.scene.layout.HBox;
  * Vue pour l'ajout d'un nouveau stagiaire. Cette vue affiche un en-tête, un
  * corps contenant le formulaire d'ajout de stagiaire, ainsi qu'un pied de page.
  * Elle configure également le style de la scène.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class AddStudentView extends BorderPane {

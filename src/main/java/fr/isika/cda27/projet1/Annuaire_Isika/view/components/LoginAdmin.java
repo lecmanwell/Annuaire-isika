@@ -21,6 +21,9 @@ import javafx.scene.text.FontWeight;
  * connecter en entrant un identifiant et un mot de passe. Si les informations
  * sont correctes, l'administrateur est redirigé vers la vue de l'annuaire
  * administrateur. Sinon, un message d'erreur est affiché.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class LoginAdmin extends VBox {

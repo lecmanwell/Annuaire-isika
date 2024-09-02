@@ -5,6 +5,9 @@ package fr.isika.cda27.projet1.Annuaire_Isika.view.login;
  * statiques. Cette classe fournit des méthodes pour obtenir le nom
  * d'utilisateur et le mot de passe de l'administrateur, ainsi que pour valider
  * les informations de connexion fournies par l'utilisateur.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class Admin {
 

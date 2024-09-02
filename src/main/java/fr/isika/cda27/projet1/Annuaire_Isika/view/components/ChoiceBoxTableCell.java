@@ -10,6 +10,9 @@ import javafx.scene.control.TableCell;
  * permet à l'utilisateur de sélectionner une année de promotion à partir d'une
  * liste déroulante et de mettre à jour l'année de promotion de l'étudiant
  * associé.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class ChoiceBoxTableCell extends TableCell<Student, Integer> {
 	private final ChoiceBox<Integer> choiceBox;

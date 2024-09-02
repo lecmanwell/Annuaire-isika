@@ -13,6 +13,9 @@ import javafx.scene.layout.GridPane;
  * utilisateur. Elle affiche les informations des étudiants dans une grille de
  * cartes d'étudiants. La classe utilise le modèle de données fourni par la
  * classe Tree pour récupérer la liste des étudiants.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class UserDirectory extends GridPane {
 

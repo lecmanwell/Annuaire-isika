@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * La classe Directory représente un annuaire d'étudiants. Elle contient une
  * liste d'étudiants et permet de gérer l'accès à un fichier binaire pour
  * sauvegarder les données des étudiants.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Directory {

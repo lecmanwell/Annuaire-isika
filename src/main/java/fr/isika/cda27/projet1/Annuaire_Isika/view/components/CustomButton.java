@@ -32,6 +32,9 @@ import javafx.scene.text.FontWeight;
 /**
  * Classe représentant un bouton personnalisé pour l'application. Cette classe
  * permet de créer différents boutons avec des styles et actions spécifiques.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class CustomButton extends Button {
 	Scene scene;

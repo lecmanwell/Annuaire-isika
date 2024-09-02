@@ -15,6 +15,9 @@ import javafx.scene.Scene;
  * composée de divers boutons et icônes pour la navigation et les actions
  * utilisateur, et est conçue pour s'adapter à différentes vues de
  * l'application.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 
 public class Footer extends BorderPane {

@@ -16,6 +16,9 @@ import javafx.scene.layout.VBox;
  * Classe représentant la vue du répertoire des utilisateurs. Cette vue affiche
  * un en-tête, un espace de recherche et un répertoire des utilisateurs avec une
  * barre de défilement.
+ * 
+ * @author groupe1
+ * @version 1.0
  */
 public class UserDirectoryView extends BorderPane {
 
