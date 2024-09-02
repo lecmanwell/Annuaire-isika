@@ -75,7 +75,7 @@ public class Validator {
 			return false;
 		}
 		int year = Integer.parseInt(text);
-		int currentYear = LocalDate.now().getYear();
+		int currentYear = (LocalDate.now().getYear() + 1);
 		if (year >= 1990 && year <= currentYear) {
 			return true;
 		}
