@@ -128,7 +128,7 @@ public class AddStudent extends VBox {
 		gridAddStudent.add(firstNameLblError, 0, 3, 2, 1);
 		gridAddStudent.add(promoLbl, 0, 4);
 		gridAddStudent.add(promoTextField, 1, 4);
-		gridAddStudent.add(promoLblError, 1, 5, 2, 1);
+		gridAddStudent.add(promoLblError, 0, 5, 2, 1);
 		gridAddStudent.add(yearPromoLbl, 0, 6);
 		gridAddStudent.add(yearPromoTextField, 1, 6);
 		gridAddStudent.add(yearPromoLblError, 0, 7, 2, 1);
