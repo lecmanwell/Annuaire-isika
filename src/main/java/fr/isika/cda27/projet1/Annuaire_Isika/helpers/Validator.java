@@ -1,4 +1,4 @@
-package fr.isika.cda27.projet1.Annuaire_Isika.view.components;
+package fr.isika.cda27.projet1.Annuaire_Isika.helpers;
 
 import java.time.LocalDate;
 
