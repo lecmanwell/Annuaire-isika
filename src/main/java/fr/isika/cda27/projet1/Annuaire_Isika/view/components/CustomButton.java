@@ -59,7 +59,7 @@ public class CustomButton extends Button {
 	 * fichier PDF lorsqu'il est cliqué.
 	 */
 	public void generateDocumentation() {
-		this.setText("Comment fonction cet annuaire ?");
+		this.setText("Comment fonctionne cet annuaire ?");
 		this.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
 		this.setOnAction((event) -> {
 			File pdfFile = new File("src/main/resources/Notice_Utilisation_Annuaire_ISIKA.pdf");
